@@ -11,30 +11,30 @@ url :'/views/jsp'
 
 ajax(conf);
 
-* ÀÚ¹Ù½ºÅ©¸³Æ®¿¡´Â var, string, number, function Áß ÇÏ³ª.
-* ÀÚ¹Ù½ºÅ©¸³Æ®¿¡¼­ Æã¼ÇÀÇ ÆÄ¶ó¹ÌÅÍ´Â ÀÖ¾îµµ±×¸¸, ¾ø¾îµµ±×¸¸! "option"ÀÌ´Ù!
-* ÀÚ¹Ù½ºÅ©¸³Æ®´Â °°Àº ½ºÅ©¸³Æ® ¿µ¿ªÀÇ Æã¼ÇÀ» ½Ï ÀĞ°í È£Ãâ¹®µéÀ» ½ÇÇàÇÏ±â¶§¹®¿¡ ¾Æ·¡¿¡ Æã¼ÇÀ» ÀÛ¼ºÇØµµ À§¿¡¼­ È£ÃâÇÒ ¼ö ÀÖ´Ù.
-* µû¶ó¼­ ½ºÅ©¸³Æ® ±¸¿ª¿¡ µû¶ó ¼ø¼­´ë·Î ½ÇÇàµÊ.
+* ìë°”ìŠ¤í¬ë¦½íŠ¸ì—ëŠ” var, string, number, function ì¤‘ í•˜ë‚˜.
+* ìë°”ìŠ¤í¬ë¦½íŠ¸ì—ì„œ í‘ì…˜ì˜ íŒŒë¼ë¯¸í„°ëŠ” ìˆì–´ë„ê·¸ë§Œ, ì—†ì–´ë„ê·¸ë§Œ! "option"ì´ë‹¤!
+* ìë°”ìŠ¤í¬ë¦½íŠ¸ëŠ” ê°™ì€ ìŠ¤í¬ë¦½íŠ¸ ì˜ì—­ì˜ í‘ì…˜ì„ ì‹¹ ì½ê³  í˜¸ì¶œë¬¸ë“¤ì„ ì‹¤í–‰í•˜ê¸°ë•Œë¬¸ì— ì•„ë˜ì— í‘ì…˜ì„ ì‘ì„±í•´ë„ ìœ„ì—ì„œ í˜¸ì¶œí•  ìˆ˜ ìˆë‹¤.
+* ë”°ë¼ì„œ ìŠ¤í¬ë¦½íŠ¸ êµ¬ì—­ì— ë”°ë¼ ìˆœì„œëŒ€ë¡œ ì‹¤í–‰ë¨.
  
-ÇÏÁö¸¸ 
-test();  // ÀÌ°Å´Â ¾ÈµÊ! ¾Æ·¡°¡ º¯¼ö¶ó º¯¼ö¶ó°í ÀÎ½ÄÇØ¾ßÇÏ±â¶§¹®¿¡
-var test = function(){ // var°¡ Æã¼ÇÀ¸·Î ¹Ù²î´Â ¼ø°£! ±×¶§ Æã¼ÇÀ¸·Î ÀÎ½ÄÇÔ.
+í•˜ì§€ë§Œ 
+test();  // ì´ê±°ëŠ” ì•ˆë¨! ì•„ë˜ê°€ ë³€ìˆ˜ë¼ ë³€ìˆ˜ë¼ê³  ì¸ì‹í•´ì•¼í•˜ê¸°ë•Œë¬¸ì—
+var test = function(){ // varê°€ í‘ì…˜ìœ¼ë¡œ ë°”ë€ŒëŠ” ìˆœê°„! ê·¸ë•Œ í‘ì…˜ìœ¼ë¡œ ì¸ì‹í•¨.
 alert(1);
 }
 
 
 var conf = {
-	str :'³­ conf²¨'
+	str :'ë‚œ confêº¼'
 	func : function(){
-		alert('³ªµµ conf ²¨');
+		alert('ë‚˜ë„ conf êº¼');
 	}
 }
 alert(conf.str);
 conf.func();
 
-* jspf´Â Ä³½Ã¸¦ ÇÑ¹øÀúÀåÇÏ¸é ±×°Í¸¸ ºÒ·¯¿È µû¶ó¼­ ½ÃÅ©¸´Å©·Ò(Ä³½Ã¸¦ ÀúÀåÇÏÁö¾ÊÀ½) ½ÇÇàÇÏ´ø°¡ or Å©·ÒÄ³½Ã³¯·Á¾ß ÇÏÁö¸¸!
-head.jsp ÆÄÀÏ¿¡ <script src="${jsPath}/common.js?ver=1"></script> ?ver=n¸¦ ³Ö¾î¼­ ¹öÀüÀ» ´Ù¸£°Ô ÇÔ. ÀÌ°Ç Æí¹ıÀÓ.
-** jstl·Î º¯¼ö¸¸µé¾îÁØ´ÙÀ½¿¡ ÇÑ²¨¹ø¿¡ ¹Ù²Ù´Â ¹æ¹ıµµ ÀÖÀ½!
+* jspfëŠ” ìºì‹œë¥¼ í•œë²ˆì €ì¥í•˜ë©´ ê·¸ê²ƒë§Œ ë¶ˆëŸ¬ì˜´ ë”°ë¼ì„œ ì‹œí¬ë¦¿í¬ë¡¬(ìºì‹œë¥¼ ì €ì¥í•˜ì§€ì•ŠìŒ) ì‹¤í–‰í•˜ë˜ê°€ or í¬ë¡¬ìºì‹œë‚ ë ¤ì•¼ í•˜ì§€ë§Œ!
+head.jsp íŒŒì¼ì— <script src="${jsPath}/common.js?ver=1"></script> ?ver=në¥¼ ë„£ì–´ì„œ ë²„ì „ì„ ë‹¤ë¥´ê²Œ í•¨. ì´ê±´ í¸ë²•ì„.
+** jstlë¡œ ë³€ìˆ˜ë§Œë“¤ì–´ì¤€ë‹¤ìŒì— í•œêº¼ë²ˆì— ë°”ê¾¸ëŠ” ë°©ë²•ë„ ìˆìŒ!
 <c:set var="ver" value="1.0.1"/> 
 <script src="${jsPath}/jquery-3.4.1.js?ver=${ver}"></script>
 <script src="${jsPath}/bootstrap.js?ver=${ver}"></script>
@@ -43,24 +43,25 @@ head.jsp ÆÄÀÏ¿¡ <script src="${jsPath}/common.js?ver=1"></script> ?ver=n¸¦ ³Ö¾î¼
 <link rel="stylesheet" href="${cssPath}/bootstrap.css?ver=${ver}"/>
 <link rel="stylesheet" href="${cssPath}/bootstrap-reboot.css?ver=${ver}"/>
 <link rel="stylesheet" href="${cssPath}/bootstrap-grid.css?ver=${ver}"/>
+// commonì— í‘ì…˜ ì¶”ê°€í• ë•Œ ì‚¬ë¡€ì„.
 
-* var inputs = document.querySelector('#biTitle'); // # µÚ¿¡id=biTitle ·Î º¸¸éµÊ. = document.getElementById("biTitle)
-* var inputs = document.querySelector('[id]'); // ¼Ó¼ºÁß¿¡ idÀÖ´Â °ÍÀ» °®°í¿Í¶ó. id°¡ ¿©·¯°³¶ó¸é Á¦ÀÏ ¸ÕÀúÀÇ °ÍÀ» °¡Á®¿È.
-* var inputs = document.querySelectorAll('[id]'); // id¸¦ ÀüºÎ´Ù °®°í¿Í¶ó
+* var inputs = document.querySelector('#biTitle'); // # ë’¤ì—id=biTitle ë¡œ ë³´ë©´ë¨. = document.getElementById("biTitle)
+* var inputs = document.querySelector('[id]'); // ì†ì„±ì¤‘ì— idìˆëŠ” ê²ƒì„ ê°–ê³ ì™€ë¼. idê°€ ì—¬ëŸ¬ê°œë¼ë©´ ì œì¼ ë¨¼ì €ì˜ ê²ƒì„ ê°€ì ¸ì˜´.
+* var inputs = document.querySelectorAll('[id]'); // idë¥¼ ì „ë¶€ë‹¤ ê°–ê³ ì™€ë¼
 
-* ÀÚ¹Ù½ºÅ©¸³Æ®ÀÇ for¹®Àº ¼¼°¡Áö°¡ÀÖ´Ù.
+* ìë°”ìŠ¤í¬ë¦½íŠ¸ì˜ forë¬¸ì€ ì„¸ê°€ì§€ê°€ìˆë‹¤.
 var arr =['a','b','c'];
 ** for(var i=0;i<arr.length;i++){
 	var ar = arr[i]
-	console.log(ar); // ¿ì¸®°¡ ¾Ë´ø°Í
+	console.log(ar); // ìš°ë¦¬ê°€ ì•Œë˜ê²ƒ
 }
 ** for(var i in arr){
 	var ar= arr[i]
  	console.log(ar;
-}	// ¸Ê±¸Á¶¶óµµ Å°°¡ ¼ø¼­´ë·Î ³ª¿Í¼­ »ÌÀ» ¼ö ÀÖ´Ù. "for in"¹®
+}	// ë§µêµ¬ì¡°ë¼ë„ í‚¤ê°€ ìˆœì„œëŒ€ë¡œ ë‚˜ì™€ì„œ ë½‘ì„ ìˆ˜ ìˆë‹¤. "for in"ë¬¸
 ** for(var ar of arr){
 	console.log(ar);
-}	// ÀÚ¹ÙÀÇ Çâ»óµÈ for¹®°ú ¶È°°À½ "for of"¹®
+}	// ìë°”ì˜ í–¥ìƒëœ forë¬¸ê³¼ ë˜‘ê°™ìŒ "for of"ë¬¸
 
 ***
 	var arr = ["dog","cat","fish"];
@@ -75,36 +76,36 @@ var arr =['a','b','c'];
 		console.log(animal);
 	}
 
-* ÀÚ¹Ù½ºÅ©¸³Æ®¿¡¼­ if(input.id){ // if¹® ¾È¿¡ ÀÖ´Â°ÍµéÀº °ªÀÌ ÀÖÀ¸¸é "true", ¾øÀ¸¸é "false".
+* ìë°”ìŠ¤í¬ë¦½íŠ¸ì—ì„œ if(input.id){ // ifë¬¸ ì•ˆì— ìˆëŠ”ê²ƒë“¤ì€ ê°’ì´ ìˆìœ¼ë©´ "true", ì—†ìœ¼ë©´ "false".
 
-* var a ='' "or" null "or" ¼±¾ğ¸¸; // if¿¡ ºÎÁ¤¿¬»êÀÚ¸¦ ½èÀ¸´Ï ¾øÀ¸¸é true.
+* var a ='' "or" null "or" ì„ ì–¸ë§Œ; // ifì— ë¶€ì •ì—°ì‚°ìë¥¼ ì¼ìœ¼ë‹ˆ ì—†ìœ¼ë©´ true.
 if(!a){
  alert(1)
 }
 
-* post¿¡¼­´Â ?·Î Àü´Ş¾ÈÇÏ°í send·Î Àü´ŞÇÑ´Ù
+* postì—ì„œëŠ” ?ë¡œ ì „ë‹¬ì•ˆí•˜ê³  sendë¡œ ì „ë‹¬í•œë‹¤
 
-* »ïÇ×¿¬»êÀÚ
-	var param = (conf.param)?conf.param:''; // a?b:c // a°¡ true¸é b, false¸é c  /// µû¶ó¼­ conf.param¿¡ °ªÀÌ 0,null,'' ÀÌ¸é false. °ªÀÌ ÀÖ¾î¾ß true
+* ì‚¼í•­ì—°ì‚°ì
+	var param = (conf.param)?conf.param:''; // a?b:c // aê°€ trueë©´ b, falseë©´ c  /// ë”°ë¼ì„œ conf.paramì— ê°’ì´ 0,null,'' ì´ë©´ false. ê°’ì´ ìˆì–´ì•¼ true
 	xhr.send(param); 
-* var animals = [] ÀÌ°Å´Â "¸®½ºÆ®". ¼ø¼­¸¸ Áß¿äÇÔ. Å°°ªÀÌ ¾øÀ½. 
+* var animals = [] ì´ê±°ëŠ” "ë¦¬ìŠ¤íŠ¸". ìˆœì„œë§Œ ì¤‘ìš”í•¨. í‚¤ê°’ì´ ì—†ìŒ. 
   var ani = {
- 	name : "°­¾ÆÁö" 
-  }		// ÀÚ¹ÙÀÇ ¸Ê°ú ºñ½ÁÇÑ "±¸Á¶Ã¼".
+ 	name : "ê°•ì•„ì§€" 
+  }		// ìë°”ì˜ ë§µê³¼ ë¹„ìŠ·í•œ "êµ¬ì¡°ì²´".
 
-* 2°¡ÁöÀÇ Â÷ÀÌÁ¡Àº? 	
+* 2ê°€ì§€ì˜ ì°¨ì´ì ì€? 	
  	alert(animals[0].name); 
-	alert(animals[0]['name']); // 2Â÷¿ø ¹è¿­°ú °¡±î¿ò.
+	alert(animals[0]['name']); // 2ì°¨ì› ë°°ì—´ê³¼ ê°€ê¹Œì›€.
 
 * var ani={};  		=	Map<String,String> map = new HashMap<>();
+  ani.name = 'ê³ ì–‘ì´'; 	= 	map.put("name","ê³ ì–‘ì´");
   var anis=[];		=	List<Map<String,String>> list = new ArrayList<>();
-  anis.push(ani); 	= 	list.add(map);
-  ani.name = '°í¾çÀÌ'; 	= 	map.put("name","°í¾çÀÌ");
-  console.log(anis) 	= 	System.out.pritnln(list);
+  anis.push(ani); 		= 	list.add(map);
+  console.log(anis) 		= 	System.out.pritnln(list);
 
-* var divs = document.querySelectorAll('div'); // div¶ó´Â ÅÂ±×ÀÇ °ªÀ» ÀüºÎ°¡Á®¿Í¶ó
+* var divs = document.querySelectorAll('div'); // divë¼ëŠ” íƒœê·¸ì˜ ê°’ì„ ì „ë¶€ê°€ì ¸ì™€ë¼
 
-* var hobby = "Ãà±¸";
+* var hobby = "ì¶•êµ¬";
 
 var inputs = document.querySelectorAll('input');
 for(var input of inputs){
@@ -118,12 +119,40 @@ btn.onclick = function(){
 	alert(1);
 } 
 
-´Â °°´Ù! 
-<button onclick = 'click()'>Å¬¸¯</button>
-ÀÇ ½ºÅ©¸³Æ®
+ëŠ” ê°™ë‹¤! 
+<button onclick = 'click()'>í´ë¦­</button>
+ì˜ ìŠ¤í¬ë¦½íŠ¸
 function click(){
 	alert(1);
-}  // onclickÀ¸·Î ÇÏ´Â °Íº¸´Ù ¿ä»õ Ãß¼¼´Â ½ºÅ©¸³Æ®¿¡ ½Ã±×³ÎÀ» ³Ö¾î¼­ ºÒ·¯¿À´Â °Í.
+}  // onclickìœ¼ë¡œ í•˜ëŠ” ê²ƒë³´ë‹¤ ìš”ìƒˆ ì¶”ì„¸ëŠ” ìŠ¤í¬ë¦½íŠ¸ì— ì‹œê·¸ë„ì„ ë„£ì–´ì„œ ë¶ˆëŸ¬ì˜¤ëŠ” ê²ƒ.
 
-* ÀÚ¹Ù½ºÅ©¸³Æ®¿¡¼­ ¸®½ºÆ®´Â µ¥ÀÌÅÍÅ¸ÀÔÀÌ À¯µ¿ÀûÀÌ±â ¶§¹®¿¡ °¢¹æ¿¡ ¿©·¯°¡Áö Å¸ÀÔÀ» ³ÖÀ» ¼ö ÀÖ´Ù. ¸¸¾à ±× ¾È¿¡¼­
-  Å°°ªÀ» °¡Áø ±¸Á¶Ã¼ÀÇ ¹ë·ù¸¦ °¡Á®¿À°í ½Í´Ù¸é ['key']¸¦ ÀÌ¿ëÇÏÀÚ.
+* ìë°”ìŠ¤í¬ë¦½íŠ¸ì—ì„œ ë¦¬ìŠ¤íŠ¸ëŠ” ë°ì´í„°íƒ€ì…ì´ ìœ ë™ì ì´ê¸° ë•Œë¬¸ì— ê°ë°©ì— ì—¬ëŸ¬ê°€ì§€ íƒ€ì…ì„ ë„£ì„ ìˆ˜ ìˆë‹¤. ë§Œì•½ ê·¸ ì•ˆì—ì„œ
+  í‚¤ê°’ì„ ê°€ì§„ êµ¬ì¡°ì²´ì˜ ë°¸ë¥˜ë¥¼ ê°€ì ¸ì˜¤ê³  ì‹¶ë‹¤ë©´ ['key']ë¥¼ ì´ìš©í•˜ì.
+
+
+* alert(contents['div1']); // ë§µí˜•íƒœì˜ êµ¬ì¡°ì²´ í˜¸ì¶œí•˜ëŠ”ë°©ë²•
+ 	
+	for(var i in arr){
+		console.log(arr[i]);
+	}
+	for(var animal of arr){
+		console.log(animal);
+	} // ë¦¬ìŠ¤íŠ¸ í˜•íƒœë¥¼ í˜¸ì¶œí•˜ëŠ” ë°©ë²•.
+
+* nodeList 
+var contents = {
+	div1:'í—¬ë¡œìš°',
+	div2:'í•˜í•˜í•˜',
+	div3:'í—ˆí—ˆí—ˆ'
+}
+var divs = document.querySelectorAll('div'); // var divs = [div#div1, div#div2, div#div3];
+for(var abc of divs){
+	alert(abc);
+}
+* ê·¸ëƒ¥ List
+var arr = ["dog","cat","fish"];
+for(var animal of arr){
+	alert(animal);
+}
+
+

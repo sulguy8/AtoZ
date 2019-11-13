@@ -5,26 +5,35 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div id = "div1">div1</div>
-<div id = "div2">div2</div>
-<div id = "div3">div3</div>
+<div id = "divfirst">강</div>
+<div id = "divsecond">아</div>
+<div id = "divthird">지</div>
 
 <script>
 var contents = {
-	div1:'헬로우',
-	div2:'하하하',
-	div3:'허허허'
+	강:'헬로우',
+	아:'하하하',
+	지:'허허허'
 }
 
-
-alert(contents);
-
+/* var contents = {'강:헬로우', '아:하하하', '지:허허허'} */
 
 var divs = document.querySelectorAll('div');
-for(var i=0; i<divs.length; i++){
-	var div = divs[i];
-	div.innerText = contents[div.innerText];
+/* var divs = [div#first, div#second, div#third];  */
+
+var abc = divs[1];
+
+abc.innerText = contents[abc.innerText];
+/* 아  = contents['아']; */
+
+/* var divs = document.querySelectorAll('div');
+for(var abc of divs){
+	alert(abc);
 }
+var arr = ["dog","cat","fish"];
+for(var animal of arr){
+	alert(animal);
+} */
 
 </script>
 
