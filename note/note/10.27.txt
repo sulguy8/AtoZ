@@ -1,0 +1,57 @@
+private static final String abc
+private final static String abc 바뀌어도 됨.
+
+<select name - "search">
+	<option value = "ui_name">이름</option>
+jsp로 땡겨올땐
+
+String search = request.getParameter("search");
+
+if(search!=null) {
+	if("ui_name".equals(search)) {
+	 	sql += " where ui_name like ? ";
+
+list에서 getString("ui_num")하면  rs.next한 부분의 num을 가져감.
+
+form 태그에 버튼이 액션이 없다면 자기페이지에서 jsp를 한번 돌림.
+
+체크박스같은 같은 이름의 여러개의 밸류를 받고 싶다면
+String[] hobbies = request.getParameterValues("hobby");
+
+request.setCharacterEncoding("utf-8");
+	String[] hobbies = request.getParameterValues("hobby");
+	String hobby = "";
+		for(int i=0; i<hobbies.length; i++){
+			hobby += hobbies[i] + ",";
+		}
+	hobby = hobby.substring(0, hobby.length()-1);
+	out.println(hobby);
+
+setString 쓸때 ps쓰는구나!
+
+체크박스 : /user/user-update.jsp
+셀렉트박스 : /board/board-list.jsp
+
+## 모르겠음...
+	public String checkStr(String str, String targetStr) {
+		String[] strs = str.split(",");
+		for(String s:strs) {
+			if(s.equals(targetStr)){
+				return "checkd";
+			}
+		}
+		return "";
+	}
+
+# 순서!
+1. html로 폼이나 테이블을 먼저 그린다.(굳이 rs.setString이 필요없다면 그냥 먼저 폼이나 테이블 만들어!)
+
+2. 위에 내용들을 request.getParameter로 <% 영역안에 끌어온다. %>
+3. sql문을 작성한다.
+4. Connection con을 소환! ps or stmt와 짝궁.
+5. ?를 ps.setString 이나 stmt.setString으로 잘라낸다.
+6. ResultSet이나 int result 소환!
+7. while이나 if문으로 테이블에 넣어준다.
+
+연결된 상황에서!
+8. Database에서 html로 가져올땐 <%=rs.getString%> or <%=stmt.getString%>

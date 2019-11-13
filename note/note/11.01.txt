@@ -1,0 +1,23 @@
+header.jspf 파일
+
+jsp : 보통이거씀
+jspx : 요건 안쓰긴하는데 jsp에서 조금 발전했을때 사용해야하는 이름.
+jspf : include할 파일의 의미 
+
+
+login.jsp에서
+<% String rPath = request.getContextPath(); %> 요거 붙여주고
+<%=rPath=>/경로~   를 원래 넣어줘야한다. 
+
+DAO는 데이터베이스영역
+
+서비스 > 컨트롤러 > 화면 순으로 확인!
+
+유전(상속)적인 : exetends, 
+overloading, overridding : 하나의 이름으로 다양한 행동을 하고싶을때.
+
+행동적인 : interface, 행동을 통일시켜주고 싶을때.
+List<> = new list<>안되는 이유. 리스트가 인터페이스라 ArrayList,LinkedList로 받아야함/
+Map도 마찬가지
+
+

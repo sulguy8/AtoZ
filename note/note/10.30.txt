@@ -1,0 +1,44 @@
+*.do 누가봐도 jsp
+이벤트만! 카멜케이스 쓰지말고 소문자로 통일하자 onsubmit
+white space "" 비문자열 요놈을 없애는 trim
+
+alter sequence seq_ui_num increment by 빼고싶은수(-7) ;
+
+location.href='<%=url %>'; //앵커태그와 비슷한데 그냥바로 그쪽링크로 보내버림.
+
+
+## form 태그의 method
+get(select 할때, 조회, 검색어처리, 우리입장으로 리스트뽑는거, 단일 뽑는거(수정) 단! 로그인만 post! 아이디 비밀번호 때문에.), 동기화가 내가보는화면에서 일어남.
+post(새로운 생성, 입력, 어떤 리소스를 새로 생성할때)
+이외에 
+put(수정)
+delete(삭제)
+option(나 해도돼? 백엔드와 프론트엔드할때 반드시 알아야함.)
+
+Data
+Access
+Object
+말그대로 말단직원 데이터베이스와 1차적인 협력관계. 서비스에 전달만한다.
+
+따라서 실제 실행되는 부분은 DAO에서! 
+
+web-inf.view.user.index.jsp인데
+기본적으로 실행되는 index.jsp가 web-inf 폴더내에 있으니 /views/를 타야열림
+/views/와 연계되는 URIController로 타고 들어가면 열리고
+(web-inf)views.user.index(jsp)를 떼버리게 되니까 저 주소만으로도 web-inf에 접근이 가능한 것.
+그렇게 돌아오면 이미 URIController를 거친상태였으니.
+여기서 (views)/user/signup이 생략되어있음.
+
+try catch문에서 중간에 리턴되도 finally는 return 이전에 실행됨!
+
+return됐다고 끝이라고 생각하지 말자.
+
+다수의 변수들을 하나로 묶으려면? 맵!
+
+RequestDispatcher rd = request.getRequestDispatcher("/target.jsp");
+rd.forward(request, response); // 다른놈들을 화면을 보여줌.
+
+* MVC 패턴
+Model : 아래 두놈들이 아니면 전부 모델! 화면도 아니고, 중개자 역할도 아닌. 비지니스 모집단이라고 부름 이것들을 모델이라 생각해도 좋다.
+View : Jsp
+Controller : 우리들이 컨트롤이라고 말하는것
