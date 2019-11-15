@@ -36,3 +36,30 @@ ${requestScope.name} 는 아무것도("",비문자열)을 출력하고
 
 * http !! localhost/test1/ 는  localhost:80/test1/ . 80을 기본적으로 생략해놓음.
   https !! localhost/test1/ 는  localhost:443/test1/ . 443을 기본적으로 생략해놓음.
+
+
+
+    	response.setContentType("application/json;charset=utf-8");
+		String getStr = request.getParameter("id");
+		
+		System.out.println(getStr);
+		
+	 	List<String> lst = new ArrayList<String>();
+		lst.add("가나다");
+		lst.add("나다라");
+		lst.add("가다");
+		lst.add("오라");
+		
+		List<String> tmpLst = new ArrayList<String>();
+		for(int i=0; i<lst.size(); i++) {
+			if(lst.get(i).indexOf(getStr)!=-1) {
+				tmpLst.add(getStr);
+			}		
+		}	
+	
+		System.out.println("나는 결과물" + tmpLst);
+		
+		PrintWriter pw = response.getWriter();
+		pw.print(g.toJson(tmpLst));
+		
+	}
