@@ -1,0 +1,38 @@
+* forward는 무언가 들고 이동하는거고. move는 그냥 가는 것.
+
+* 만약에 루트폴더가 "/" 아닐때 ? 서블릿에다가 이런 작업을 해줘야 함.
+String rootPath = request.getContextPath();
+String path = request.getRequestURI();
+path = path.replace(rootPath, "");
+path = " /WEB-INF" + path + ".jsp";
+
+* 같은 리퀘스트는 서블릿을 거치더라도 다른 jsp에서도 계속 유지됨.
+같은 리퀘스트로 이동된 jsp 에서 request.getParameter('name')은 ${param.name}으로 축소해서 부를 수 있다. // name은 ?name="" 이거임.
+
+* jstl과 jsp의 차이는 기능적으로 같지만 단순히 표현방식이라고 생각하자. jstl은 태그기반라이브러리.
+
+* jstl의 기본스코프는 page 
+
+* <c:set var=" name" value = "abc" scope = "request"/>
+는 이거랑 같다. <% request.setAttribute("name","abc");
+
+${name} // 아래랑 차이점은. 제일 작은 scope인 page.name이 나옴.
+${requestScope.name} // 이거는 request 스코프의 name.
+<%=request.getAttribute("name") %> // 스코프가 같다면! 세개 모두 같다.
+
+** 하지만!! 위에도 차이점이 있긴있음. eltag는 없으면 비문자열을 뱉음. jsp와 차이점은 
+만약 request가 없다면 
+${requestScope.name} 는 아무것도("",비문자열)을 출력하고 
+<%=request.getAttribute("name") %>  는 null을 출력한다.
+
+* 
+8. son() {
+	super(str);
+} // 확인!
+15. document.querySelector('#test')
+16. document.querySelector('input[name=id]')
+17. document.querySelector('input[id=input]')
+18. 80,443
+
+* http !! localhost/test1/ 는  localhost:80/test1/ . 80을 기본적으로 생략해놓음.
+  https !! localhost/test1/ 는  localhost:443/test1/ . 443을 기본적으로 생략해놓음.
