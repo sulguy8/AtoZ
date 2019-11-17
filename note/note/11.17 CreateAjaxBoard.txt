@@ -45,6 +45,6 @@
 		var tds = document.querySelectorAll('[data-col]');	// 현 페이지 JSP에서 ID가 data-col인 것들을 리스트로 전부가져옴
 		for(var td of tds){
 			var col = td.getAttribute('data-col');		// td(=tds)리스트에서 data-col들의 키값들을 리스트순서대로 가져옴.
-			td.innerHTML = board[col];
+			td.innerHTML = board[col];			// 갖고온 내용들을 board[키값]에 맞게 td(=tds)에 넣음.
 		}
 	* update.jsp
