@@ -1,13 +1,11 @@
-package review.remind;
-
 public class Pojo {
 	int a;
 	int b;
 	String result;
 	
-	void setNum(int x, int y) {
-		this.a = x;
-		this.b = y;
+	void setNum(int a, int b) {
+		this.a = a;
+		this.b = b;
 		this.result = "안뇽";
 	}
 	public String getNum() {
