@@ -1,0 +1,59 @@
+1. loadOnStartup, filter 순으로 메모리를 먼저 만들고 그다음에 필터를 거쳐서 servlet이 한글을 알아먹을 수 있도록 "request"가 한글화된다.
+
+2. InitServlet에서 loadOnStartup을 거쳐갈때 static 영역이 활성화가 되면서
+	static {
+		String path = "/config/mybatis-config.xml";
+		InputStream is = UserInfoDAOImpl.class.getResourceAsStream(path);
+		ssf = new SqlSessionFactoryBuilder().build(is);	
+	} 이걸로 한가지 일(오라클)만 하는 공장을 세울 터를 만들어놓음.
+
+##### 여기서 "ssf"변수의 역할은? #####
+String path로 "/config/mybatis-config.xml";받아오게 되는데!
+<configuration>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+        <property name="username" value="bdi"/>
+        <property name="password" value="12345678"/>
+      </dataSource>
+    </environment>
+  </environments>
+
+  <mappers>
+    <mapper resource="/config/mapper/userInfo.xml"/>
+  </mappers>
+
+</configuration> // "DB에 접속"하는 역할과 더불어 "쿼리문"을 가져올 mappers의 설정또한 여기서 한다.
+
+3. UserController에 도착해서 List<UserInfoVO> uiList = uis.getUserList(null)
+	UserInfoVO는 GetaSeta메소드로 
+	@Data // 게타세타 메소드 전부 생기는 명령어. 이게없으면 아래 변수들은 전부 노란줄이 생김.
+	public class UserInfoVO {
+		private Integer uiNum;
+		private String uiName;
+		private String uiId;
+		private String uiPwd;
+		private String credat;
+		private String cretim;
+		private String moddat;
+		private String modtim;
+		private String active;
+	} // 이런식으로 구성되어있음.
+
+4. List<UserInfoVO> getUserList(Map<String, String> pUser) 	// 서비스를 거치고
+
+5. private SqlSessionFactory ssf;				// 한가지 일(오라클)만 하는 공장을 세워 놓는다!
+   public List<UserInfoVO> selectUserList(Map<String, String> pUser)  // DAO에 도착! 	
+	SqlSession ss = InitServlet.getSqlSession(); 		// InitServlet의 public static SqlSession getSqlSession()의 리턴값을 가져옴. 즉 쿼리문과 DB접속.
+   return ss.selectList("UserInfo.selectUserList",pUser); 		// 여기서 쿼리문을 실행시킴! 이것은 userInfo.xml과 같다. 
+
+##### 따라서 우리가 받는 리턴값은? #####
+List<UserInfoVO> uiList = ss.selectList.selectList("UserInfo.selectUserList",pUser);
+
+결론! 우리가 결과적으로 받는 리스트는 userInfo.xml의 쿼리문의 결과로 나오는 DB 리스트들의 Map<String, String> pUser 형태이다.
+
+6. UserController의 List<UserInfoVO> uiList = uis.getUserList(null);가 완성되고 이것을 JSON형태로 JSP에 날린다.
+   response.setContentType("application/json;charset=utf-8"); 이것을 브라우저가 알아들을 수 있도록 utf-8형태로 바꾸어서 날린다.	
