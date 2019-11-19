@@ -43,6 +43,8 @@ String path로 "/config/mybatis-config.xml";받아오게 되는데!
 		private String active;
 	} // 이런식으로 구성되어있음.
 
+    Map<String,String> istMap = gson.fromJson(json, Map.class); // 여기서  VO와 JSON의 "Key"를 비교해서 "Key value"를 대입시킴 // 따라서 둘의 "Key"이름은 한치의 오차가 있으면 안됨!
+
 4. List<UserInfoVO> getUserList(Map<String, String> pUser) 	// 서비스를 거치고
 
 5. private SqlSessionFactory ssf;				// 한가지 일(오라클)만 하는 공장을 세워 놓는다!
@@ -57,3 +59,18 @@ List<UserInfoVO> uiList = ss.selectList.selectList("UserInfo.selectUserList",pUs
 
 6. UserController의 List<UserInfoVO> uiList = uis.getUserList(null);가 완성되고 이것을 JSON형태로 JSP에 날린다.
    response.setContentType("application/json;charset=utf-8"); 이것을 브라우저가 알아들을 수 있도록 utf-8형태로 바꾸어서 날린다.	
+
+============================================================================================================================================
+
+* post의 데이터를 받을땐 parameter로 받지않는다. 따라서! JSon형태로 payload(적재)형태로 보낼거임.
+BufferedReader br = request.getReader();
+		String str = null;
+		String json = "";
+		while((str=br.readLine())!=null) {
+			json +=str;
+		}
+
+
+* @WebServlet(name = "ViewsServlet", urlPatterns = {"/views/*"},loadOnStartup = 2)
+
+* document.querySelector('#uiName').value;
