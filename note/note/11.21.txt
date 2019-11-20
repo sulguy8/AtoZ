@@ -1,0 +1,33 @@
+* 파일을 배포하고싶다면.
+
+DiskFileItemFactory dfif = new DiskFileItemFactory(); 		// 공장을 짓고
+dfif.setSizeThreshold(memSize);				// 효율성을 위해 기계마다 할당량을 분담시키고 
+dfif.setRepository(new File(System.getProperty("java.io.tmpdir"))); 	// 임시로 쟁겨놓을 창고를 지정
+ServletFileUpload sfu = new ServletFileUpload(dfif);		// 기계의 스위치를 올리고
+sfu.setFileSizeMax(fileSize);					// 내용물이 들어갈 박스 크기
+sfu.setSizeMax(totalSize);					// 수용가능한 박스의 양
+
+if(ServletFileUpload.isMultipartContent(request)) {		// 요청이 들어왔나? 왔으면 true!
+	try {
+		List<FileItem> fList = sfu.parseRequest(request);		// 요청을 리스트에 담고
+		Map<String,Object> param = new HashMap<>();	// 키와밸류를 담을 맵을 만들고
+				
+		for(FileItem fi:fList) {				// 리스트를 하나씩 읽어보자
+			String key = fi.getFieldName();		// key에다가 jsp에서 입력한 키를 입력
+			if(fi.isFormField()) {				// 만약에 키밸류가 있다면?
+				String value = fi.getString("utf-8");	// 그것은 utf-8로 받을거고
+				param.put(key, value);		// 맵에다가 키와 밸류로 저장!
+			} else {
+				param.put(key, fi);			// 키밸류가 file형식이면 이쪽으로
+			}
+		}
+		fts.insertFileTest(param);			// 서비스로 보내자
+	} catch (FileUploadException e) {
+		e.printStackTrace();
+	}
+
+} else {
+	throw new ServletException("파일 형식이 잘못되었습니다.");
+}
+
+* mybatis-config에도 잘 추가했었는지 확인해보자 ㅠㅠ

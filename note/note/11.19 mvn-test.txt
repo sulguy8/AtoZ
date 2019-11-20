@@ -1,14 +1,27 @@
-1. loadOnStartup, filter ¼øÀ¸·Î ¸Þ¸ð¸®¸¦ ¸ÕÀú ¸¸µé°í ±×´ÙÀ½¿¡ ÇÊÅÍ¸¦ °ÅÃÄ¼­ servletÀÌ ÇÑ±ÛÀ» ¾Ë¾Æ¸ÔÀ» ¼ö ÀÖµµ·Ï "request"°¡ ÇÑ±ÛÈ­µÈ´Ù.
+1. index.jsp, ViewsController ï¿½ï¿½ï¿½ï¿½ï¿½
+2. Controller, serivce, dao, vo Ã¤ï¿½ï¿½ï¿½
+3. configï¿½ï¿½Å°ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½(mybatis-config.xml, mapper/mapper.xml)
+4. filter ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¼­ css,jsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½! / "web.xml"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+5. InitServlet ï¿½ï¿½ï¿½ï¿½ï¿½
+6. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½
 
-2. InitServlet¿¡¼­ loadOnStartupÀ» °ÅÃÄ°¥¶§ static ¿µ¿ªÀÌ È°¼ºÈ­°¡ µÇ¸é¼­
+
+int uiNum = Integer.parseInt(request.getParameter("uiNum"));
+UserInfoVO user = new UserInfoVO();
+user.setUiNum(uiNum);
+
+
+1. loadOnStartup, filter ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ð¸®¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½Ä¼ï¿½ servletï¿½ï¿½ ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½Ë¾Æ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ "request"ï¿½ï¿½ ï¿½Ñ±ï¿½È­ï¿½È´ï¿½.
+
+2. InitServletï¿½ï¿½ï¿½ï¿½ loadOnStartupï¿½ï¿½ ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ static ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½Ç¸é¼­
 	static {
 		String path = "/config/mybatis-config.xml";
 		InputStream is = UserInfoDAOImpl.class.getResourceAsStream(path);
 		ssf = new SqlSessionFactoryBuilder().build(is);	
-	} ÀÌ°É·Î ÇÑ°¡Áö ÀÏ(¿À¶óÅ¬)¸¸ ÇÏ´Â °øÀåÀ» ¼¼¿ï ÅÍ¸¦ ¸¸µé¾î³õÀ½.
+	} ï¿½Ì°É·ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½ ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½Å¬)ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
-##### ¿©±â¼­ "ssf"º¯¼öÀÇ ¿ªÇÒÀº? #####
-String path·Î "/config/mybatis-config.xml";¹Þ¾Æ¿À°Ô µÇ´Âµ¥!
+##### ï¿½ï¿½ï¿½â¼­ "ssf"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½? #####
+String pathï¿½ï¿½ "/config/mybatis-config.xml";ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½ ï¿½Ç´Âµï¿½!
 <configuration>
   <environments default="development">
     <environment id="development">
@@ -26,11 +39,11 @@ String path·Î "/config/mybatis-config.xml";¹Þ¾Æ¿À°Ô µÇ´Âµ¥!
     <mapper resource="/config/mapper/userInfo.xml"/>
   </mappers>
 
-</configuration> // "DB¿¡ Á¢¼Ó"ÇÏ´Â ¿ªÇÒ°ú ´õºÒ¾î "Äõ¸®¹®"À» °¡Á®¿Ã mappersÀÇ ¼³Á¤¶ÇÇÑ ¿©±â¼­ ÇÑ´Ù.
+</configuration> // "DBï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ò°ï¿½ ï¿½ï¿½ï¿½Ò¾ï¿½ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ mappersï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¼­ ï¿½Ñ´ï¿½.
 
-3. UserController¿¡ µµÂøÇØ¼­ List<UserInfoVO> uiList = uis.getUserList(null)
-	UserInfoVO´Â GetaSeta¸Þ¼Òµå·Î 
-	@Data // °ÔÅ¸¼¼Å¸ ¸Þ¼Òµå ÀüºÎ »ý±â´Â ¸í·É¾î. ÀÌ°Ô¾øÀ¸¸é ¾Æ·¡ º¯¼öµéÀº ÀüºÎ ³ë¶õÁÙÀÌ »ý±è.
+3. UserControllerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ List<UserInfoVO> uiList = uis.getUserList(null)
+	UserInfoVOï¿½ï¿½ GetaSetaï¿½Þ¼Òµï¿½ï¿½ 
+	@Data // ï¿½ï¿½Å¸ï¿½ï¿½Å¸ ï¿½Þ¼Òµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½É¾ï¿½. ï¿½Ì°Ô¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	public class UserInfoVO {
 		private Integer uiNum;
 		private String uiName;
@@ -41,28 +54,28 @@ String path·Î "/config/mybatis-config.xml";¹Þ¾Æ¿À°Ô µÇ´Âµ¥!
 		private String moddat;
 		private String modtim;
 		private String active;
-	} // ÀÌ·±½ÄÀ¸·Î ±¸¼ºµÇ¾îÀÖÀ½.
+	} // ï¿½Ì·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½.
 
-    Map<String,String> istMap = gson.fromJson(json, Map.class); // ¿©±â¼­  VO¿Í JSONÀÇ "Key"¸¦ ºñ±³ÇØ¼­ "Key value"¸¦ ´ëÀÔ½ÃÅ´ // µû¶ó¼­ µÑÀÇ "Key"ÀÌ¸§Àº ÇÑÄ¡ÀÇ ¿ÀÂ÷°¡ ÀÖÀ¸¸é ¾ÈµÊ!
+    Map<String,String> istMap = gson.fromJson(json, Map.class); // ï¿½ï¿½ï¿½â¼­  VOï¿½ï¿½ JSONï¿½ï¿½ "Key"ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ "Key value"ï¿½ï¿½ ï¿½ï¿½ï¿½Ô½ï¿½Å´ // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ "Key"ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Èµï¿½!
 
-4. List<UserInfoVO> getUserList(Map<String, String> pUser) 	// ¼­ºñ½º¸¦ °ÅÄ¡°í
+4. List<UserInfoVO> getUserList(Map<String, String> pUser) 	// ï¿½ï¿½ï¿½ñ½º¸ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½
 
-5. private SqlSessionFactory ssf;				// ÇÑ°¡Áö ÀÏ(¿À¶óÅ¬)¸¸ ÇÏ´Â °øÀåÀ» ¼¼¿ö ³õ´Â´Ù!
-   public List<UserInfoVO> selectUserList(Map<String, String> pUser)  // DAO¿¡ µµÂø! 	
-	SqlSession ss = InitServlet.getSqlSession(); 		// InitServletÀÇ public static SqlSession getSqlSession()ÀÇ ¸®ÅÏ°ªÀ» °¡Á®¿È. Áï Äõ¸®¹®°ú DBÁ¢¼Ó.
-   return ss.selectList("UserInfo.selectUserList",pUser); 		// ¿©±â¼­ Äõ¸®¹®À» ½ÇÇà½ÃÅ´! ÀÌ°ÍÀº userInfo.xml°ú °°´Ù. 
+5. private SqlSessionFactory ssf;				// ï¿½Ñ°ï¿½ï¿½ï¿½ ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½Å¬)ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½!
+   public List<UserInfoVO> selectUserList(Map<String, String> pUser)  // DAOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½! 	
+	SqlSession ss = InitServlet.getSqlSession(); 		// InitServletï¿½ï¿½ public static SqlSession getSqlSession()ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DBï¿½ï¿½ï¿½ï¿½.
+   return ss.selectList("UserInfo.selectUserList",pUser); 		// ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å´! ï¿½Ì°ï¿½ï¿½ï¿½ userInfo.xmlï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. 
 
-##### µû¶ó¼­ ¿ì¸®°¡ ¹Þ´Â ¸®ÅÏ°ªÀº? #####
+##### ï¿½ï¿½ï¿½ï¿½ ï¿½ì¸®ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½? #####
 List<UserInfoVO> uiList = ss.selectList.selectList("UserInfo.selectUserList",pUser);
 
-°á·Ð! ¿ì¸®°¡ °á°úÀûÀ¸·Î ¹Þ´Â ¸®½ºÆ®´Â userInfo.xmlÀÇ Äõ¸®¹®ÀÇ °á°ú·Î ³ª¿À´Â DB ¸®½ºÆ®µéÀÇ Map<String, String> pUser ÇüÅÂÀÌ´Ù.
+ï¿½ï¿½ï¿½! ï¿½ì¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ userInfo.xmlï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DB ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ Map<String, String> pUser ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.
 
-6. UserControllerÀÇ List<UserInfoVO> uiList = uis.getUserList(null);°¡ ¿Ï¼ºµÇ°í ÀÌ°ÍÀ» JSONÇüÅÂ·Î JSP¿¡ ³¯¸°´Ù.
-   response.setContentType("application/json;charset=utf-8"); ÀÌ°ÍÀ» ºê¶ó¿ìÀú°¡ ¾Ë¾ÆµéÀ» ¼ö ÀÖµµ·Ï utf-8ÇüÅÂ·Î ¹Ù²Ù¾î¼­ ³¯¸°´Ù.	
+6. UserControllerï¿½ï¿½ List<UserInfoVO> uiList = uis.getUserList(null);ï¿½ï¿½ ï¿½Ï¼ï¿½ï¿½Ç°ï¿½ ï¿½Ì°ï¿½ï¿½ï¿½ JSONï¿½ï¿½ï¿½Â·ï¿½ JSPï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+   response.setContentType("application/json;charset=utf-8"); ï¿½Ì°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾Æµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ utf-8ï¿½ï¿½ï¿½Â·ï¿½ ï¿½Ù²Ù¾î¼­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.	
 
 ============================================================================================================================================
 
-* postÀÇ µ¥ÀÌÅÍ¸¦ ¹ÞÀ»¶© parameter·Î ¹ÞÁö¾Ê´Â´Ù. µû¶ó¼­! JSonÇüÅÂ·Î payload(ÀûÀç)ÇüÅÂ·Î º¸³¾°ÅÀÓ.
+* postï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ parameterï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ê´Â´ï¿½. ï¿½ï¿½ï¿½ï¿½! JSonï¿½ï¿½ï¿½Â·ï¿½ payload(ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 BufferedReader br = request.getReader();
 		String str = null;
 		String json = "";
