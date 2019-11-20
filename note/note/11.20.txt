@@ -1,0 +1,11 @@
+1. index.jsp, ViewsController 만들기
+2. Controller, serivce, dao, vo 채우기
+3. config패키지 채우기(mybatis-config.xml, mapper/mapper.xml)
+4. filter 만들기 여기서 css,js오류를 피하게 만들 수 있다! / "web.xml"에 필터 추가
+5. InitServlet 만들기
+6. 각 서비스 채우기
+
+
+int uiNum = Integer.parseInt(request.getParameter("uiNum"));
+UserInfoVO user = new UserInfoVO();
+user.setUiNum(uiNum);
