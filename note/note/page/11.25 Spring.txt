@@ -1,4 +1,5 @@
 * mvc 패턴 2 가 board 프로젝트에서 하던방식
+
 * 순수 html로도 가능하긴한데. 브라우저가 가만히 있는 상태에서 xhr이 갔다오는형태 
 
 * mvn-test는 json형태로 response.getWriter~~ 로  뿌려주는 형태 저것을 parsing해서 html로 만들어주는 작업.
@@ -57,7 +58,7 @@ Ajax에 대해서 조사
 		return "test/test";
 
 
-* servlet-controller.xml
+* servlet-context.xml
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
@@ -100,3 +101,11 @@ Ajax에 대해서 조사
 		<constructor-arg value="소나타"></constructor-arg>
 	</bean>	// ioc에 이렇게 추가해줘야 함. value가 arg가 됨.
 
+* 위와 아래는 같은 구문
+//		FileSystemResource fsr = new FileSystemResource("src/main/resources/ioc/ioc-1.xml");
+//		BeanFactory beanFactory = new XmlBeanFactory(fsr);
+//		CarMaker cm = (CarMaker)beanFactory.getBean("carMaker");
+		
+//		ApplicationContext ac = new ClassPathXmlApplicationContext("ioc/ioc-2.xml");
+//		CarMaker cm = (CarMaker)ac.getBean("carMaker");
+	
