@@ -1,0 +1,102 @@
+* mvc 패턴 2 가 board 프로젝트에서 하던방식
+* 순수 html로도 가능하긴한데. 브라우저가 가만히 있는 상태에서 xhr이 갔다오는형태 
+
+* mvn-test는 json형태로 response.getWriter~~ 로  뿌려주는 형태 저것을 parsing해서 html로 만들어주는 작업.
+
+* file은 ajax를 이용해서 form태그를 이용했었음.
+
+* 스프링은 mvc패턴을 용이하게 도와줌. jsp와 스프링(프레임웍)도 자바임.
+
+* 우리도 자바처럼 일반 스트링을 의미있는 것으로 정의할 수 있다!(reflection)
+
+* 메모리가 생성됐을때 null이랑 그냥 null이 대입되는것은 다르다.
+
+* Method[] methods = clazz.getMethods();
+  Method[] methods = clazz.getDeclaredMethods(); // 2개의 차이는 아랫것은 자기가 갖고있는것만 보여주고 위에것은 상속받는 전부 보여줌.
+
+* invoke : 프로그래밍에서 해당메소드를 실행한다라고 이해하면 쉽다.
+
+* method.invoke(h, 20);// h로 실행하긴 할건데 뭘로 할거냐고? 20!
+
+* reflection의 목적은 내가 모르는 임의의 의미있는 class의 메소드나 변수들을 알아보고 바로바로 씀에 있다.
+
+어노테이션(자바에서 어마어마한 일을 해냄)과 코멘트(//, /*)는 구분해야함.
+
+* 스프링 4.x이하버전들은 STS깔아야함. 근데 너무 무겁고 느림.
+
+* OOP : 객체지향 프로그램or 프로그래밍
+
+# Spring 
+A(aspect)OP : 관점지향 프로그램 // oop기반에서 aop관점으로 개발하자. 우리가 하나하나 한글화 작업을 해주던 Filter역할이 이러한 개념과 비슷하다. 
+					DAO에서 엄청길었던 것들을 Service에서 해냈던것도 개념이 비슷하다.
+I(inversion(역전))O(of)C(control(제어)) : 역전제어라고 한다. 제어를 역전시킴. 원래 우리가 각각의 서블릿을 호출해서 메모리 생성을 직접해야하는데 톰캣한테 이러이러한 일이 발생했을때 제어해라 라고 시키는 것. 
+D(dependancy)I(injection) : A클래스와 B클래스에서 B에 A의 메모리를 생성했을때 A는 B가 없어도 되지만 B는 A가 없으면 안됨. 따라서 B는 A에 의존성을 우리가 강제적으로 주입한 것임. 컨스트럭과 세터까지만 잘 알아둬도 됨(게터도 있긴한데..)
+
+추가적으로 DL도 있음.
+
+// 스프링은 원래 만들어진 AOP, IOC, DI의 개념들을 쉽게 작업할 수 있고 고급스러운 웹개발을 도와주는 보조의 개념
+// 만들어있는걸 배우는게 더 빠르니까.
+
+*** 숙제
+AOP,IOC,DI 3가지 조사
+Ajax에 대해서 조사
+
+* 스프링 3.x는 javaSE-1.6이하
+
+* HomeController.java
+  @RequestMapping(value = "/", method = RequestMethod.GET) // 이것이 스프링의 겟방식. 하나의 value가 get방식에 대입되어있다.
+  서블릿의 정체성은implement로 인터페이스와 연결되어있어야하는데, HomeController.java는 @Controller 이거때문에 서블릿역할을 해줄수 있는거임
+
+  model.addAttribute("serverTime", formattedDate ); // request.setAttribute같은개념
+
+@RequestMapping(value="/test") // 메소드를 아무것도 주지 않음! /test만 맞으면 get post put delete 전부다 가능
+
+	public String test(Model m) {
+		// /WEB-INF/views/test/test.jsp
+		System.out.println(m); // 기본구조는 {} 맵형식, 이렇게나왔다는것은 누군가 new 했기때문에 null이뜨는 것임.
+		return "test/test";
+
+
+* servlet-controller.xml
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean> // 우리가 viewservlet만들어준거랑 비슷
+
+
+* home.jsp
+<%@ page contentType="text/html; charset=utf-8" session="false"%> 해줘야 한글안깨짐
+
+
+* 만약에 메이븐 에러가 많이 뜬다면? 카페같이 여러명이 공유하는 것.
+1. 아파치 메이븐을 설치한다.
+2. 로컬디파짓토리에 강제로 다운받게한다.
+ 
+* 이 구조가 있어야 bean이 작동하는 구나. new > other > bean~~ 
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+
+</beans>
+
+* 프로젝트가 롬복을 바라봐도 롬복을 설치해야한다.
+
+* 클래스의 시작은 패키지이다.
+
+* BeanFactory beanFactory = new XmlBeanFactory(fsr); // 스트라이크("ㅡ")오류는? 회수권제도가 없어질때 유예기간을 주는 느낌. 나 분명히 이야기했다. 없어질 수 있다고!
+
+* Reflection으로 생성된 메모리는 일반적으로 new로 생성하는 것과 달리("h1==h2" false!) 같은 메모리를 재사용한다.("h1==h2" true!) 한번 만들어졌다면 계속 사용한다.
+
+** "싱글톤" 패턴이라고 함.
+
+* FileSystemResource fsr = new FileSystemResource("src/main/resources/ioc/ioc-1.xml"); 	// 이 경로에서 저 파일들을 읽는 것.
+  BeanFactory beanFactory = new XmlBeanFactory(fsr);					// 콩이 있어야 두부공장이 가동함. 콩을 입고하는 과정, 재료가 뭔지는 알고는 있다.
+  Human h = (Human)beanFactory.getBean("h"); 						// 얘는 해당아이디인 h를 호출하지 않으면 작동안함.(lazyloading), 따라서 human이 있는지는 알고는있다. 하지만 만들지 않았다!
+
+* 생성자 주입! 만약에 클래스가 기본생성자가 아닌 파라미터로 받는 기본생성자라면? 	
+	<bean id="car" class="com.sp.bdi.test.test2.Car">
+		<constructor-arg value="소나타"></constructor-arg>
+	</bean>	// ioc에 이렇게 추가해줘야 함. value가 arg가 됨.
+
