@@ -3,6 +3,7 @@ logger.info("hello", locale); // info : 찍히고 경로까지 다나옴. syso보다 경제적�
 
 * private static final Logger logger = LoggerFactory.getLogger(HomeController.class); // 클래스마다 logger쓰려면 선언해줘야함.
   lombok을 이용해서 @Slf4j를 선언하면 위에것을 대신할 수 있다.
+흐름을 읽고 근거를 갖고 행동하는 것.
 
 String str ="나는";
 String naem = "홍길동";
@@ -101,7 +102,7 @@ System.out.println("hello", locale); // 이제 왠만하면 안쓰는게 나음.
 			}
 		}
 		
-* user-info에서 타입알리아스를 사용하고 싶다면 mybati-config에서 타입알리아스 설정하면됨.
+* userVO에서 타입알리아스를 사용하고 싶다면 mybati-config에서 타입알리아스 설정하면됨.
 
 
 
