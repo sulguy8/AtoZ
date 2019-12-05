@@ -1,0 +1,129 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+1. 스프링 레거시 프로젝트 만들고 스프링버전(4.3.18.RELEASE), 자바버전(1.7) 업그레이드 
+
+2. 스프링 프로젝트를 만들고 서버를 통해서 home에 잘 접속이 되는지 확인할 것.
+
+3. pom.xml에 필요한 것들을 넣고 <finalName>prac</finalName> 추가 이후 해당 프로젝트 update 할 것.
+
+4. web.xml을 확인하고 listener와 init-param타는 것들을 확인할것
+	a. root-context.xml : DBCon과 작성과 더불어 mybatis셋팅, 맵핑에 관련되어있는 xml 만들기.
+	b. servlet-context.xml : ViewsController에서 했던 것들. <context : component-scan base-package="경로 잘 지정해주기"> 
+
+5. com.sp.bdi에 Controller, Service, DAO, VO 작성하고 ARC로 테스트해보기
+
+6. Filter(생성하고 web.xml에 filter가 잘 추가됐는지 확인!) 작성하기. 화면할때는 filter꺼놓고 할것. 
+
+7. war파일(goal에다가 clean install)만들고 git에 연동한 이후 .gitignore(/.settings, /target) 추가하고 commit
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+1. CentOS, VirtualBox 설치
+
+2. VirtualBox 설정하고 CentOS 실행
+
+3. root사용자로 로그인 (안했을 때는 su - root)
+
+4. 복붙(마우스우클릭)하기 위해 virtualbox의 포트포워딩에서 putty port와 일치시키는 작업 
+	root > # cd /etc/sysconfig/network-scripts/ > # vi ifcfg-enp0s3 > ONBOOT=yes 
+   	> # dhclient > # ip addr > # yum install net-tools > # ifconfig > # yum install wget -y
+
+5. putty(22) 포트 포워딩 추가하기(하는김에 톰캣(8080)도)
+
+5. putty로  tomcat, java 설치하기
+	Tomcat : # wget http://apache.tt.co.kr/tomcat/tomcat-8/v8.5.49/bin/apache-tomcat-8.5.49.tar.gz >
+		# tar -xvf apache-tomcat-8.5.49.tar.gz
+	Java : # yum install java-1.8.0-openjdk
+
+8. 방화벽 해제
+	bin > # firewall-cmd --list-all > # firewall-cmd --permanent --zone=public --add-port=8080/tcp > 
+	# firewall-cmd --reload > ./startup.sh	
+
+9. cmd에서 ipconfig /flushdns 확인자 캐시를 플러시해주고 브라우저에서 localhost:84 잘 접속되나 확인하기
+
+10. 윈도우(program files/java/jdk1.8.0_221\jre\lib\ext\)에서 
+    리눅스(usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/jre/lib/ext/로 winScp로 ojdbc 설치하기
+
+11. bin에다가 maven 설치 // yum install maven -y , git 설치 // yum install git -y
+
+12. root > 깃 파일 복사하기 // git clone > cd prac > 해당 깃폴더 들어가서 리눅스로 전달할 war파일 만들기 # mvn clean install
+
+13. target > # mv ./prac.war /root/apache-tomcat-8.5.49/webapps/ 으로 war옮기기
+
+14. 고급 보안 방화벽 > 새규칙 > 포트(체크박스) >  1521 > oralce(이름) > 쿼리박스에서 자기 아이피(cmd > ipconfig)로 테스트 >
+     jsp 파일 > root-context.xml에서 localhost를 자기 아이피(cmd > ipconfig)로 바꾸기 > putty로 돌아와 prac 폴더에서
+     # git pull origin master로 pull > # mv ./prac.war /root/apache-tomcat-8.5.49/webapps 파일 덮어씌우기	
+ 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# 화면 구현
+res 만들고 테스트해보기(파일 대소문자 가릴것.)
+
+1. head, header만들기
+
+2. web.xml에서 prelude
+
+3. res확인해보기
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# pom.xml
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.22</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+
+		<!-- DB LIB Start -->
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.5.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.lazyluke</groupId>
+			<artifactId>log4jdbc-remix</artifactId>
+			<version>0.2.7</version>
+		</dependency>
+
+		<!-- DB LIB END -->
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.7.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.3</version>
+		</dependency>
