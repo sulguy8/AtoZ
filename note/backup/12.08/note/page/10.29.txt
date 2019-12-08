@@ -1,0 +1,116 @@
+자바스크립트 :	첫번째 방향 = 브라우저
+		두번째 방향 = Nodejs(따로 설치해야함! 리눅스,윈도우 등등 nodejs만깔려있으면 다됨.)
+
+모바일에서 임베디드(예를 들자면 엠피쓰리안에 들어가는 프로그램)프로그램으로 고랭썼지만, 자바 이후로 다른곳에서 병행가능하게.
+
+폼안에 버튼은 기본적으로 submit!
+
+자바스크립트를 하기위에 알아야할 것!
+Document
+Object
+Model
+
+Browser
+Object
+Model
+
+<></> 이범위 하나하나를 객체로 봄. 처음부터 끝까지 접근 가능
+둘다 윈도우꺼
+따라서 alert()는 window.alert() 윈도우의 내장객체
+
+
+
+https://www.w3schools.com/tags/tag_input.asp
+
+
+public class Execute {
+	publuc static void test(int a) {
+		if(a==1) {
+		System.out.pritnln("a는 1이군요");
+		return;
+		}
+	
+		if(a==2) {
+		System.out.pritnln("a는 1이군요");
+		return;
+		}
+		
+		System.out.println("끝!");
+
+	public static void main..	
+
+user_info board_info
+1. 아무나 글 x
+2. 로그인 해야지만
+3. 파일 업로드까지.
+
+create table user_info(
+ui_num number primary key,
+ui_name varchar2(30) not null,
+ui_id varchar2(30) not null,
+ui_pwd varchar2(30) not null,
+credat char(8) not null,
+cretim char(6) not null,
+moddat char(8) not null,
+modtim char(6) not null,
+active char(1) default '1'
+);
+
+select * from board_info;
+
+create table board_info(
+bi_num number primary key,
+bi_title varchar2(300) not null,
+bi_content varchar2(4000) not null,
+ui_num number not null,
+credat char(8) not null,
+cretim char(6) not null,
+moddat char(8) not null,
+modtim char(6) not null,
+active char(1) default '1',
+constraints fk_ui_num foreign key(ui_num)	// 안해줘도 생기지만 내가 원하는 이름으로 하려고 만듬. (ui_num)은 board_info꺼! 만약 이름을 바꿀거면 데이터타입이 일치해야한다.
+						// 
+references user_info(ui_num) // 여기는 user_info에 있는거 그대로 써야됨
+);
+
+insert into board_info
+values(1, 'test', 'test', 1, '20191019', '131500', '20191019', '131500', 1); // 안되는 이유! BDI.FK_UI_NUM에 따르면 여기 데이터 타입이랑 일치하지 않아서.
+
+web.xml 정보가 싹다있음! 남들이 보기 안좋으니까! web-inf는 외부에서 접근할 수 없는 폴더. 브라우저(외부)에서 jsp파일 찾으려고 접근하려하면 404 오류뜸.
+
+context root 는 "/"(문서상) = ""(브라우저상) 아무것도 없는게 정상이다. 다만 뒤에"/bdi"더 달려있으면 "/"있음
+
+스프링배우기 전까지 상당히 괴롭힐 서블릿.. 스프링은 서블릿이 이미돼있음. 그래서 안쓰는 것처럼 느껴짐.
+
+@ 자바에선 어노테이션이라부름
+
+Protected이기 때문에 상속받는중
+doGet 
+doPost
+
+is, has는 리턴타입이 false
+do get, do post : get,post로 들어왔다.
+
+유입경로를 설정해줘야 작동! 리모컨. web.xml
+
+web.xml은 서버시작할때 한번밖에 실행안함. 수정했을때 서버껐다 켜야됨
+
+대소문자를 바꿀때 톰캣을 클리어시켜야함. 
+
+우리는 만들어진 소재를 조립하는 사람들이라.. 톰캣을 다 까볼필요는 없지만 쓰는 방법은 알아야지.
+
+doPost를 확인하려면
+1.태그로 그값을 받던가.
+2.
+
+#tdd 개발방식(테스트 주도개발방식)
+단계별 테스트
+1. 데이터베이스 드라이버 잘 되나 
+2. 커넥션 잘 이었나
+3. 커넥션 잘갖고오고
+4. 셀렉트문이 잘돌아가는지?
+
+?기준으로 내가 원하는 키밸류를 보낼 수 있잖아?
+
+URL : 로케이션, 실제로있는 물리적인 주소  
+URI : 조금더 큰 개념. 물리적이지 않고 논리적으로 정한 주소값을 쓸때.

@@ -1,0 +1,36 @@
+* xml의 필터는 서버킬때 무조건 실행되는 것들을 실행하고 urlpattern에 맞는 것으로 통해지면 해당 필터로 시작한다.
+
+* xml도 properties의 inputStream처럼 parsing하는 기능이 따로있다. 
+
+* String 으로 메모리 만드는방법은 "리플렉션"이라 한다.
+
+* WAS(Tomcat)이 xml을 스트링으로 parsing시켜서 메모리를 생성하기 때문에 굳이 필터를 new 안해줘도 실행이 되는 것이다.
+
+* public void init(FilterConfig fConfig) throws ServletException // 여기서 fConfig는 webxml의 <filter></filer>를 읽어서 new 해주기 위해 사용되는 인스턴스다. 따라서 서버가 켜졌다는 전제하에 무조건 실행된다.
+
+* init메소드는 static이 아니라서 무조건 메모리가 생성되어야 한다. 따라서 무조건 서버만 키면 자동으로 실행되는 public EncodingFilter()를 먼저 실행시켜야 init메소드가 실행됨.
+
+* 서버시작 > filter // 메모리 생성 > on load start // 메모리생성 > 서버시작 완료!
+
+* dofilter도 메모리가 생성되긴하는데 url패턴이 지나가면 그때마다 거쳐서 감. 
+
+** 셋톱박스을 연상해보면 쉬움. 티비 켜지면 자기가 업로드하면 자기한테 입력된 입력단자부터 찾는다. 이미 on이 되어있을때 정해져있는 일들을 선행하는 것 인데 우리는 그것의 수혜를 받는 것.
+
+* 필터끼리 연결되어있는것은 chain과 비슷하다하여 chain class라고 함.
+
+* chain.doFilter(request, response); // 다음필터에 태우기위한 chain. nodejs의 next랑 좀 비슷함.
+
+* public EncodingFilter() {
+    	excludePatterns.add(".js");
+    	excludePatterns.add(".css");
+    	excludePatterns.add(".html");
+    	excludePatterns.add(".htm");
+    } 	// 오류조심!
+
+
+
+
+
+
+
+
