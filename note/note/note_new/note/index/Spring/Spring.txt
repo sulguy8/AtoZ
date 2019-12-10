@@ -1,0 +1,241 @@
+* 스프링은 mvc패턴을 용이하게 도와줌. jsp와 스프링(프레임웍)도 자바임.
+
+* 메모리가 생성됐을때 null이랑 그냥 null이 대입되는것은 다르다.
+
+* 어노테이션(자바에서 어마어마한 일을 해냄)과 코멘트(//, /*)는 구분해야함.
+
+* 스프링 4.x이하버전들은 STS깔아야함. 근데 너무 무겁고 느림.
+
+# Spring 
+A(aspect)OP : 관점지향 프로그램 // oop기반에서 aop관점으로 개발하자. 우리가 하나하나 한글화 작업을 해주던 Filter역할이 이러한 개념과 비슷하다. 
+			        DAO에서 엄청길었던 것들을 Service에서 해냈던것도 개념이 비슷하다.
+I(inversion(역전))O(of)C(control(제어)) : 역전제어라고 한다. 제어를 역전시킴. 원래 우리가 각각의 서블릿을 호출해서 메모리 생성을 직접해야하는데 톰캣한테 이러이러한 일이 발생했을때 제어해라 라고 시키는 것. 
+D(dependancy)I(injection) : A클래스와 B클래스에서 B에 A의 메모리를 생성했을때 A는 B가 없어도 되지만 B는 A가 없으면 안됨. 따라서 B는 A에 의존성을 우리가 강제적으로 주입한 것임. 컨스트럭과 세터까지만 잘 알아둬도 됨(게터도 있긴한데..)
+추가적으로 DL도 있음.
+// 스프링은 원래 만들어진 AOP, IOC, DI의 개념들을 쉽게 작업할 수 있고 고급스러운 웹개발을 도와주는 보조의 개념
+// 만들어있는걸 배우는게 더 빠르니까.
+
+* 스프링 3.x는 javaSE-1.6이하
+
+* HomeController.java
+  @RequestMapping(value = "/", method = RequestMethod.GET) // 이것이 스프링의 겟방식. 하나의 value가 get방식에 대입되어있다.
+  서블릿의 정체성은implement로 인터페이스와 연결되어있어야하는데, HomeController.java는 @Controller 이거때문에 서블릿역할을 해줄수 있는거임
+  model.addAttribute("serverTime", formattedDate ); // request.setAttribute같은개념
+
+@RequestMapping(value="/test") // 메소드를 아무것도 주지 않음! /test만 맞으면 get post put delete 전부다 가능
+
+	public String test(Model m) {
+		// /WEB-INF/views/test/test.jsp
+		System.out.println(m); // 기본구조는 {} 맵형식, 이렇게나왔다는것은 누군가 new 했기때문에 null이뜨는 것임.
+		return "test/test";
+
+* home.jsp
+<%@ page contentType="text/html; charset=utf-8" session="false"%> 해줘야 한글안깨짐
+
+* 이 구조가 있어야 bean이 작동하는 구나. new > other > bean~~ 
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+</beans>
+
+* BeanFactory beanFactory = new XmlBeanFactory(fsr); // 스트라이크("ㅡ")오류는? 회수권제도가 없어질때 유예기간을 주는 느낌. 나 분명히 이야기했다. 없어질 수 있다고!
+
+* FileSystemResource fsr = new FileSystemResource("src/main/resources/ioc/ioc-1.xml"); 	// 이 경로에서 저 파일들을 읽는 것.
+  BeanFactory beanFactory = new XmlBeanFactory(fsr);					// 콩이 있어야 두부공장이 가동함. 콩을 입고하는 과정, 재료가 뭔지는 알고는 있다.
+  Human h = (Human)beanFactory.getBean("h"); 						// 얘는 해당아이디인 h를 호출하지 않으면 작동안함.(lazyloading), 따라서 human이 있는지는 알고는있다. 하지만 만들지 않았다!
+
+* 생성자 주입! 만약에 클래스가 기본생성자가 아닌 파라미터로 받는 기본생성자라면? 	
+	<bean id="car" class="com.sp.bdi.test.test2.Car">
+		<constructor-arg value="소나타"></constructor-arg>
+	</bean>	// ioc에 이렇게 추가해줘야 함. value가 arg가 됨.
+
+* 위와 아래는 같은 구문
+//		FileSystemResource fsr = new FileSystemResource("src/main/resources/ioc/ioc-1.xml");
+//		BeanFactory beanFactory = new XmlBeanFactory(fsr);
+//		CarMaker cm = (CarMaker)beanFactory.getBean("carMaker");
+		
+//		ApplicationContext ac = new ClassPathXmlApplicationContext("ioc/ioc-2.xml");
+//		CarMaker cm = (CarMaker)ac.getBean("carMaker");
+
+###	<context:component-scan base-package="com.sp.bdi.user" /> // test공부한거 보려면 ~~bdi.user에 user지워야됨
+
+* <bean id="car1" class="com.sp.bdi.test.test2.Car" scope="prototype"> // 스코프를 주면 호출할때마다 메모리를 생성함. 메소드들은 메소드가 끝나는시점에서 죽어버림.
+
+* 싱글톤, 프로토타입 잘구분해서 사용할 것.
+
+* servlet-context.xml // basepackage라고 부름! 
+에서 24번라인 <context:component-scan base-package="com.sp.bdi"/> 때문에 bdi의 @를 다 읽어올수 있는것
+
+* 스트링에서 읽을수있는 "@"들
+1. @Controller
+2. @Service
+3. @Repository // DAO
+4. @Component // VO
+
+* ajax할때 web.xml에서 설정하거나? 서블릿에서 설정하거나 2가지 방식이었는데 스프링도 basepackage하거나 ioc하거나 비슷함.
+
+* 메모리 생성된거랑 정의를 하는것은 다르다! // "null"은 메모리 생성, "Food(name=null, price=null)가 뜨는 것은 정의"
+
+* 메모리 생성은 @Component("cook") 정의는 @Autowired // "null" 에서 "Food(name=null, price=null)" 만들어줌. 
+	@Autowired // 자동으로 연결해줘. 이게 있으면 메소드를 실행을 해줌. 그리고 메모리로 생성된걸 자동으로 집어넣어줌.
+	public void setF(Food f) {
+		this.f = f;
+	} // 이렇게 하면 setF가 파라미터로 받는 Food f를 따로 정의 안해줘도됨.
+
+** 원래는 이렇게 해줬어야 했음.
+public class Execute {
+	public static void main(String[] args) {
+		ApplicationContext ac = new ClassPathXmlApplicationContext("ioc/ioc-3.xml"); // 메모리 생성.
+
+		Cook cook = (Cook)ac.getBean("cook");
+		Food food = (Food)ac.getBean("food"); 
+
+		cook.setF(food);
+		System.out.println(cook.getF());
+	}
+}
+
+* 상속받는 관계(bab은 food라고 불릴 수 있는 상황이면 원래 food가 있는 상황에서 food라고 불릴수 있는 것이 2가지가 되잖아.)
+  에서 @Autowired의 오류를 피하기위해 @Qualifier("bob")이라고 정확히 하나로 찍어줘야함.
+
+* final인 String의 기본생성자String()를 String(arg)로 사용하고 싶다면?
+	<bean id="str"	 class="java.lang.String">
+		<constructor-arg value = "초밥"></constructor-arg> // 이렇게 해줘야 한다!
+
+비교1 ////////////////////////////////////////////////////////////////////////////////
+
+<bean id = "cpu" class="java.lang.String">
+	<constructor-arg value="I5"></constructor-arg> // 생성자의 arg에 "I5" 대입해라. String처럼 특별한 참조형 데이터타입만 가능한 것.
+</bean> // Execute에서 c.setCpu("I5")를 한거고
+String cpu = new String("I5"); 처럼 한거임.
+
+위의 말에 덧붙이면. 아래처럼 한 것임.
+cpu = new String("I5"); // 참조형 데이터 타입은 원래는 이렇게 해줘야하는데
+String cpu = "I5"; // 자주쓰이니까 이렇게 줄어든 것임.
+
+비교2 ////////////////////////////////////////////////////////////////////////////////
+	
+<bean id = "computer" class="com.sp.bdi.test.test4.Computer">
+	<property name="cpu">
+		<value>I5</value>
+	</property>
+</bean> // 얘는 그냥 값만 준거임.
+c.setCpu("I5") 이렇게.
+
+결과 /////////////////////////////////////////////////////////////////////////////////
+<bean id = "cpu" class="java.lang.String">
+	<constructor-arg value="I5"></constructor-arg> 
+</bean>
+<bean id = "computer" class="com.sp.bdi.test.test4.Computer">
+	<property name="cpu">
+		<ref bean="cpu"></ref>
+	</property>
+</bean>
+
+이렇게 해서 final인 String도 arg를 지정해서 사용할 수 있게 되는 것.(다른 참조형변수들, 즉 new를 사용해야하는 변수들은 불가능하다.)
+///////////////////////////////////////////////////////////////////////////////////////
+
+String str1 = "abc";
+String str2 = "abc";
+
+참조형 데이터타입은 따로 new해주지 않으면 같은곳을 바라보기때문에 str1 == str2를 하면 true가 뜸.
+
+String str1 = "abc";
+String str2 = new String("abc");
+
+이렇게 메모리를 따로 지정해줘야 false가 뜸.
+
+* @Autowired // String 으로 지정해주면 string 2가지를 찾음. 따라서 qualifier로 지정을 해줘야함.
+
+* 생성자주입, 세터(세터 메소드에@Autowired, @Qualifier("ram1")) 주입
+	<bean id="cpu1" class="java.lang.String">
+		<constructor-arg value="I5"></constructor-arg>
+	</bean> <					// 생성자 주입
+	<bean id="ram1" class="java.lang.String">
+		<constructor-arg value="16G"></constructor-arg>
+	</bean>
+
+	<bean id="car1" class="com.sp.bdi.test.test2.Car"
+		scope="prototype">
+		<constructor-arg value="소나타"></constructor-arg>
+	</bean>
+	<bean id="carMaker" class="com.sp.bdi.test.test2.CarMaker">
+		<constructor-arg value="기아"></constructor-arg>
+		<property name="car"> 			// 세터 주입
+			<ref bean="car1" />
+		</property>
+		<property name="price">
+			<ref bean="car2" />
+		</property>
+	</bean>
+
+* 에러!
+Could not autowire field: private com.sp.bdi.test.test4.Monitor com.sp.bdi.test.test4.Computer.monitor; 
+nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: 
+No matching bean of type [com.sp.bdi.test.test4.Monitor] found for dependency: 
+expected at least 1 bean which qualifies as autowire candidate for this dependency.
+
+이게 뜨면 해당서블릿에  @Component("monitor") 하던가
+ioc에 	<bean class="com.sp.bdi.test.test4.Monitor"></bean> 하던가 해서 메모리 생성을 해줘야함.
+
+* @Autowired는 메모리를 생성한 뒤에만 사용이 가능하다!
+
+* 스프링을 배우는 이유!
+1. 여러사람들이 싱글톤을 만들면 다른사람들이 한 것들을 분석해야함.
+2. 스프링을 쓰면 분석할 필요가없음. @ 와 xml만 보면됨
+
+* web.xml // 웹이 아닐때 우리가 메모리호출을 우리가 했었음. 하지만 웹에서는! 서버를 킬때부터 메모리를 만드는 것이 아님. 서버를 키면!
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  // 요게 올라갈때
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value> // 여기 xml을 읽음. 아래 ** 참고
+		</init-param>
+		<load-on-startup>1</load-on-startup> // 여기를 거치기때문에 서버를 키고 여기를 거쳐야 메모리를 생성해주는거임.!
+	</servlet> // 이쪽에서 loadonstartup을하고
+
+** servlet-context.xml // 웹 서블릿들의 메모리를 자동으로 생성한다!
+<context:component-scan base-package="com.sp.bdi.user" />
+
+* pom.xml 라이브러리
+<properties>
+		<java-version>1.6</java-version>
+		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
+		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.slf4j-version>1.6.6</org.slf4j-version>
+</properties>  // 별 의미는 없고 여기있는 버전으로 쓸거야! 여기서 숫자만 바꿔줘도 버전업이 됨.
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework-version}</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency> // 여기서 메이븐에 접근하는것임
+
+* root-context.xml // 데이터 베이스 셋팅은 여기다가.
+
+* dbcp2(우리는 자바버전이 1.6이기때문에 이거씀)나 히카리(가장속도가 빠름)가 가장많이쓰임.
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency> // 이게 있어야 jsp가 컴파일이 됨.
+
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency> // 자바로 하여금 테스트를 해줄수 있게 하는것.
+}
