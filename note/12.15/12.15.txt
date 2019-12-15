@@ -1,0 +1,15 @@
+* produces="application/text;charset=utf-8" // 리스폰스를 이렇게 쓰겠다.
+
+* model로 리턴 받아오는 것은 처음에 전부다 써줌. 여기까지 서버단으로 받겠다.
+* @responsebody return에서 받아오는것은 스크립트를 받아오는 것. 이제부턴 브라우저 단에서 받겠다
+
+*<c:if test="${name =='이길동'}">checked</c:if> // 옛날 태그에 접근하는 방식.
+
+* <script>
+	var name ='${name}'
+	alert(name);
+</script>  // 브라우저 단에서 만들어져서 들어가기 때문에 컨트롤러에있는 name이 나옴.
+
+* $('input[value='+ name +']').attr('checked',true); 는 아래와 같다
+<input type="radio" name="name" value="우길동" checked = true>
+** 이해하려면 property와 attribute를 이해하고 있어야 함.
