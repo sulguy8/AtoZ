@@ -1,0 +1,44 @@
+* 자바에서 arc 구현하기
+	public Message doTranslate(TransVO tvo) {
+		try {
+			String text = URLEncoder.encode(tvo.getText(),"UTF-8");
+			URL url = new URL(apiUrl);
+			HttpURLConnection hc = (HttpURLConnection)url.openConnection();
+			hc.setRequestMethod("POST");
+			hc.setRequestProperty("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+			hc.setRequestProperty("X-Naver-Client-Id", id);
+			hc.setRequestProperty("X-Naver-Client-Secret", secret);
+			String param = "source=" +tvo.getSource() + "&target=" + tvo.getTarget() + "&text=" + tvo.getText();
+			hc.setDoOutput(true);
+			DataOutputStream dos = new DataOutputStream(hc.getOutputStream());
+			dos.writeBytes(param);
+			dos.flush();
+			dos.close(); 			// 여기까지가 나의 output
+			
+			int status = hc.getResponseCode();  	// 200
+			
+			InputStreamReader isr = new InputStreamReader(hc.getInputStream());
+			BufferedReader br = new BufferedReader(isr);
+			StringBuffer res = new StringBuffer();
+			String str = null;
+			while((str=br.readLine())!=null) {
+				res.append(str);
+			}
+				TransVO resultTvo = om.readValue(res.toString(), TransVO.class);
+				log.info(res.toString());
+				log.info("tvo=>{}", resultTvo);
+				return resultTvo.getMessage();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+* property 읽는 방법
+		InputStream fis = PropertiesReader.class.getClassLoader().getResourceAsStream(path);
+		Properties prop = new Properties();
+		prop.load(fis);
+		System.out.println(prop.getProperty("client.id"));
+		System.out.println(prop.getProperty("client.secret"));

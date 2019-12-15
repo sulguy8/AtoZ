@@ -1,0 +1,205 @@
+* display
+block : 부모의 크기만큼 채움. 크기조절 가능. 이걸로 디스플레이를 구성해야함.  만약 100%라면 자기 부모의 크기를 따라가기 때문에 굳이 width를 설정할 필요가 없음
+inline : 단순한 텍스트로 생각. 따라서 크기조절 불가
+inline-block : inline과 block의 속성을 둘다 갖고있음
+none : 안보임
+
+<style>
+    div {
+        display: block;
+        width : 300px;
+        height: 200px;
+        background-color : red;
+    }
+    span {
+        display: inline-block;
+        width : 200px;
+        height: 500px;
+        background-color : blue;
+    }
+</style>
+</head>
+<body>
+    <div>div</div>
+    <span>span</span>
+</body>
+
+* css boxmodel
+** box-sizing: content-box(기본값)
+** box-sizing: border-box(border까지 width에 포함) 따라서 content의 크기가 줄어듦.
+// inline의 전부를 *로 선택가능. 하지만 속도가 느려진다는 단점이있음.
+* {
+    margin: 0;
+    padding: 0;
+}
+// 이게 요즘 스타일
+
+h1, p {
+    margin: 0;
+}
+//
+
+* margin: 0 auto; // 상하는 0, margin은 auto로 해서 자동으로 브라우저 크기에 맞게 조절됨.
+** 이것의 축약형이다 
+	margin-left: auto;
+    	margin-right: auto;
+
+* 위 아래는 같은 화면이지만 다른방법의 float를 지정하여 위치를 조절한다.
+.item-a{
+    float: left;
+    width: 27%;    
+    background-color: yellow;
+}
+.item-b{
+    float: right;
+    width: 50%;
+    background-color: greenyellow;
+}
+
+// 
+
+.item-a{
+    float: left;
+    width: 27%;    
+    background-color: yellow;
+}
+.item-b{
+    float: left;
+    width: 50%;
+    margin-left: 3%;
+    background-color: greenyellow;
+}
+
+# display inline-block이랑 float를 이용해서 2단컬럼 layout만들기!
+
+<style>
+body { 
+    margin:0;
+    font-size: 2em;
+}
+
+h1, p {
+    margin: 0;
+}
+
+.container {
+    /* max-width: 1000px;
+    margin: 0 auto; */
+    background: pink;
+}
+
+.container:after {
+    content: '';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+.item {
+    float: left;
+    padding: 5%;
+}
+.item-a{
+    width: 30%;    
+    background-color: yellow;
+}
+.item-b{
+    width: 50%;
+    background-color: greenyellow;
+}
+footer{
+   clear: both; 
+   background-color: gray;
+}
+</style>
+</head>
+<body>
+    <div class= "container">
+        <section class="item item-a">
+            <h1>Section a</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam minima quisquam, consectetur fuga et voluptas voluptates quibusdam cumque distinctio quos vitae mollitia quae maiores. Delectus illo inventore autem sequi?
+            </p>
+        </section>
+        <section class="item item-b">
+            <h1>Section a</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ipsam minima quisquam, consectetur fuga et voluptas voluptates quibusdam cumque distinctio quos vitae mollitia quae maiores. Delectus illo inventore autem sequi?
+            </p>
+        </section>
+    </div>
+    <footer>footer</footer>
+</body>
+</html>
+
+* float가 되어버리면 content역할을 하는 container가 품고있지를 못한다.
+
+* clear: both; // float(가,나 로 이어진 인라인적요소인 텍스트라고 생각할 것)에다가 엔터치는것과 같다. 사실 clear: left, clear: right 해줘야하지만 both로 통일
+
+* 자식 elements들을 float했다면 부모 element가 끝나는 시점에서 clear:both를 해줘야 부모가 그것들을 품을 수 있다.
+ 부모 element가 정상적으로 높이를 확보하기 위해서!
+
+
+* ctrl+~ cmd // 를 열지않고 vscode에서 바로 실행가능.
+Html : 벽돌, 구조물
+css : 형용사적인 정의
+
+* css, 반응형 페이지.
+
+* css 선택자 
+셀렉터 + 선언블록(프로퍼티+값)
+
+** 자식, 손자 선택자
+>는 바로 하단(자식)
+" "공백은 그것을 포함한 모든요소.(자식+손자)
+
+
+
+
+
+* element 요소의 범위를 알것. 하나의 요소가 여러개의 요소를 포함
+
+* 어트리뷰트(속성) : 하나의 요소에 속성을 부여하여 이러한 요소가 ~를 갖고있다를 부여
+
+이것이 css에서 중요한 요소로 꼽힘.
+
+* html페이지에서 !누르고 emmet? 이거누르면 처음시작이 다나옴.
+
+* div*5, w1000, bg, lorem*100(임의의 텍스트)
+
+* 블록요소 : div가 기본적으로 갖음. 컨텐트, 한공간에 다른 div가 올 수 없음.
+* 인라인요소
+
+* margin:상 우 하 좌 , 상 하 , 좌 우
+
+* 우선순위 제일 최하단
+
+* float : 요소들을 전부다 왼쪽으로 정렬. float을 정의안해준 요소들과 섞일수 있음 "clear :both;" 이걸해줘야 그이후에 문제점을 잡을 수 있음
+
+* wrap을 상속받아서 아랫것들이 전부 변함
+    <style>
+        #wrap { font-size: 40px; color : #fff; text-transform : uppercase; width: 1000px; height: 1000px; background: #999;}
+        #header {width: 1000px; height: 100px; background: #888;}
+        #side-l {float : left; width: 150px; height: 800px; background-color: #777;}
+        #content {float : left; width: 700px; height: 800px; background-color: #666;}
+        #side-r {float : left; width: 150px; height: 800px; background-color: #555;}
+        #footer {clear :both; width: 1000px; height: 100px; background-color: #444;}
+    </style>
+
+* https://webzz.tistory.com/225 여기서 어떠한 요소로 사용됐는지 알 수 있음(블록요소,인라인요소 등등..)
+
+* box-sizing: border-box // 다른 수치들을 변경안해줘도됨. 작업성을 제고한다.
+
+* 헤더
+네비게이터
+컨테츠
+풋츠
+
+
+* css 숙제!
+
+
+전체를 wrap으로 묶고 
+헤더 가입신청
+텍스트 박스 인풋박스 선언
+
+float right

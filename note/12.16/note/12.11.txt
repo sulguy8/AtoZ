@@ -1,0 +1,28 @@
+* 브라우저가 꺼졌을때 세션이 사라지는 이유는 브라우저가 서버에게 알려주기 때문에. 옛날에는 전부 설정해줬어야 했음.
+
+* 필터와 aop는 역할은 비슷한데 개념은 살짝 다름. aop가 필터와 객체사이에 살짝?걸쳐있는정도
+
+* <beans:ref bean ="sessionInterceptor"/> 원래 SessionInterceptor.java이기때문에 대문자 S로 시작해야하지만 @component 뒤에 ("~~") 없기때문에 소문자가 가능 
+
+* true로 하면 페이지 이동하고 false로 하면 막아짐	
+	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) {
+		String uri = req.getRequestURI();
+		log.info("uri=>{}",uri);
+		return false; 
+
+* 예전처럼 jspf에다가 할 수 도있는데 세션이 만료가 되어있어도 백엔드에 접근이 가능하기 때문에(uiNum을 읽을 수 없음) interceptor를 사용해야 한다.
+
+* 			<mvc:exclude-mapping path="/views/user/login"/>
+			<mvc:exclude-mapping path="/login"/>
+
+* 브라우저는 순서대로 호출한다. 따라서 제이쿼리 다음에다가 ajax를 호출해야함.
+
+
+
+
+유저 // 사진과 그에 대한 컨텐츠를 올림. 많이 찾은 유저의 게시물이 좌측에 순서대로 위치하게 됨.
+
+외국인 // 쓰는 단어는 현재 우리 DB에 있는 것과 비교해서 실시간(on key)으로 검색어를 추천해줌. 외국인이 클릭할때마다 cnt+1이 됨.
+cnt 정렬해서 1,2,3 순위로 뽑아옴.
+
+on key
