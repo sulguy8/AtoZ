@@ -1,0 +1,39 @@
+* @ServerEndpoint("/ws/chat") // url 패턴과 비슷. ws://localhost/ws/chat 이 주소가 됨(http://localhost/ws/chat 이거랑 다르다는 이야기)
+
+* 연결하고나서 서버에서 메세지 보내는 방법. 지금까지 이게 불가능했었음
+
+	public void open(Session ss) {
+		log.info(ss.getId()); 		// 이게 Event
+		try {
+			ss.getBasicRemote().sendText("Hello"); // 이게 Message Event
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+ 
+
+* @OnOpen // 클라이언트에서 해당서버에 연결을 맺었을때 발생하는 이벤트 // jsp 페이지의 var ws = new WebSocket(url);에서 연결됨.
+
+* @OnMessage // 클라이언트부터 메세지가 들어왔을 때
+
+* @OnClose // 단톡방에 누군가 나가면 그 누군가는 받지 못해야함. 그래서 해주는게 close
+
+* @OnError // 중간에 전화가 고장나거나 기지국이 잘못된 경우. 서비스할땐 꼭 추가할 것.
+
+* remove를 해줘야 새로고침할 때 이전에 있던 세션들이 남아있어서 중복오류가 뜨는 것을 막을 수 있다.
+	public void close(Session ss)	{
+		ssList.remove(ss);
+		log.info(ss.getId());
+	}
+
+
+
+네이티브 앱 키
+f1e3b7c660c264a50f5d3fa30a1c0252
+REST API 키
+767aa6a80210ffef7481599fc07b2acb
+JavaScript 키
+b85851085750cb2d6d68432ed0595259
+Admin 키
+203d614d0e4c7743329f5ebbae618f9f
