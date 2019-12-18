@@ -1,0 +1,33 @@
+* onload startup, filter, listner 구분해서 사용할 것. 셋중에 listner가 서버가 켜지자마자 실행되기 때문에 가장 빨리 실행된다. 
+
+* listener // 서버가 켜질때 servlet-context가 켜질때까지 기다림. 그래서 listener라고 부름
+
+	서블릿 컨텍스트가 실행될때 무조건 실행됨
+	어플리케이션스코프 하나만 바라봄
+
+    public void contextDestroyed(ServletContextEvent arg0)  {    	// 끝날때 
+         // TODO Auto-generated method stub
+    }
+
+
+    public void contextInitialized(ServletContextEvent arg0)  { 	// 시작할때
+         // TODO Auto-generated method stub
+    }
+
+* sc.setAttribute("name", "홍길동"); 리스너에 이렇게 저장하면 ${applicationScope.name}로 호출할 수 있다.
+
+* WAS > Servlet Container > 각각 url 을 기억하는 서블릿들. 따라서 url이 같다해도 Servlet Container가 다르면 사용가능하다.
+
+* 기본생성자 생성시 오류날때 3가지를 의심해봐야함
+1. 기본생성자에 파라미터값이 있을때
+2. 추상클래스일때
+3. 기본생성자가 아닐때
+
+
+사용자 지정 TCP 규칙
+TCP
+3003
+0.0.0.0/0  => 여기서 소숫점기준으로  / 이후 "서브넷마스크"라고 불리는 값에따라 
+
+
+
