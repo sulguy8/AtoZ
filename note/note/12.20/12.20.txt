@@ -1,0 +1,72 @@
+* 우리가 지금까지 배웠던 것들!
+eclipse
+java 1.8
+tomcat 8.5
+framework spring 4.3x
+
+형상관리자 
+1. github
+2. gitlab
+
+* 운영서버에다가 아랫것들 깔아서 사용
+AWS의 ec2(redhat8버전)
+open.jdk 1.8
+maven 3.4.5
+git 2.x
+tomcat 8.5의 manager
+
+* ssh로 putty와 win scp로 작업
+
+* jenkins를 통해서 gitlab과 tomcat 8.5의 manager를 연결시켜서 webhook으로 gitlab을 연동시킴. 편하게 작업
+
+* spring boot는 spring과 달리 tomcat이 embeded되어있음. 그래서 서버 버튼으로 켜는 대신에 메인메소드가 있는 곳에서 자바실행시켜서 서버를 킴
+
+* spring boot 서버킬때 기본 db가 설정되어있다면 꺼야함. 
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
+
+* spring boot에 jackson내장되어있음. 따라서 데이터 바인딩이 알아서 됨.
+
+* spring boot가 어떤 원리로 실행되는지 알것
+@RestController에서
+@response body 기본생략됨. return이 body로 태워나감
+
+* 자바 스크립트 el태그와 html el태그와 다름
+`<li>${li}</li>` 이게 html에서 자바스크립트 el태그 사용하는 방법 따라서 jsp에서 이렇게 하면 동작하지 않음.
+
+* 스프링부트에서 인터페이스를 만들면 상속받는 클래스를 알아서 만들어줌. 마치 무명클래스처럼
+
+* AOP(관점지향)은 OOP(객체지향)의 완성형
+
+* @Aspect가 있어야 @Before가 됨 그리고 @Component가 있어야 메모리 생성
+
+* AOP에 총 5개의 @가 있음
+around > before > 메서드 실행 > after 순으로 진행됨. 따라서 이 세가지는 꼭 알아둘 것.
+@after
+@before
+@arround
+
+@after return
+@after throwing
+
+
+@Component
+@Aspect
+@Slf4j
+public class LogAOP {
+	@Before("execution(* com.bdi.sb.controller..*())")
+	public void before(JoinPoint jp) {
+		log.info("join point=>{}", jp);
+	}
+	@After("execution(* com.bdi.sb.controller..*())")
+	public void after(JoinPoint jp) {
+		log.info("난 메서드가 실행된 뒤에 실행됨~");
+	}
+	@Around("execution(* com.bdi.sb.controller..*())")
+	public Object around(ProceedingJoinPoint pjp) throws Throwable {
+		log.info("ProceedingJoinPoint=>{}", pjp);
+		Object ojb = pjp.proceed();
+		return ojb; // null로하면 화면에 아무것도 안뜸.
+	}
+}
+
+* private는 proxy 구현이 안됨.
