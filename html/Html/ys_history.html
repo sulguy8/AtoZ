@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+    /* body */
+    body {
+        margin: 0;
+        font-size: 1em;
+    }
+    h1, p {
+        margin: 0;
+    }
+    table {
+        margin: 10px auto;
+    }
+
+     /* container */
+     .container {
+        max-width: 700px;
+        height: 600px;
+        margin: 50px auto;
+        border : 1px solid black; 
+        background-color: pink;
+
+     }
+     .container:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    /* header */
+    .header {
+        display : block;
+        width: 20%;
+        height: 30px;
+        padding: 2%;
+        border : 1px solid black;
+        background-color: whitesmoke;
+
+        float: left;
+        margin-top: 2%;
+        margin-left: 6.85%;
+    }
+    
+    .item {
+        display : block;
+        width: 84%;
+        height: 450px;
+        padding: 3%;
+        border : 1px solid black;
+        background-color: whitesmoke;
+
+        float: left;
+        margin-top: 2%;
+        margin-left: 5%;  
+    }
+
+</style>
+
+</head>
+<body>
+    <div class= "container">
+        <section class= "header header-a">
+            <button data-target="all">전체</button>
+        </section>
+        <section class= "header header-b">
+            <button data-target="credat">일자별</button>
+        </section>
+        <section class= "header header-c">
+            <button data-target="user">유저별</button>
+        </section>
+
+        <section class="item item-a">
+        <table border="1" data-id="all">
+                <tr>
+                    <th data-order="ps_num asc">기록번호▼</th>
+                    <th data-order="ps.ui_num desc">번역요청자번호▲</th>
+                    <th data-order="ps.ui_num desc">번역요청자ID▲</th>
+                    <th data-order="pi_num desc">번역번호▲</th>
+                    <th data-order="ps.credat desc">번역일자▲</th>
+                </tr>
+                <tbody id="tBody">
+                </tbody>
+            </table>
+
+            <table border="1" data-id="credat" style="display: none">
+                <tr>
+                    <th>일자</th>
+                    <th>번역횟수</th>
+                </tr>
+                <tbody id="tBody2">
+                </tbody>
+        </table>
+        </section>
+
+    </div>
+</body>
+</html>
