@@ -1,0 +1,686 @@
+JSP : 자바와 html을 같이 쓰고싶어서
+eltag : 긴 JSP를 줄여쓰기위해 등장 ${ }
+
+JSTL : 
+
+자바스크립트 : 자바와 완전 다른 언어. 일반적인 계산과 더불어 태그의 속성에 영향을 미침.
+JQuery : 자바스크립트를 보조하기 위해 등장. 태그의 속성에 영향을 미치기 위해 $( ) 사용.
+
+String rootPath = request.getContextPath();
+String search = request.getParameter("search");
+String searchStr = request.getParameter("searchStr");
+<input type="text" name="bi_title" value="${board.biTitle}">
+<%=user.get("uiId")%> = ${user.uiId}
+
+<c:if test="${user.uiNum==board.uiNum }">
+	<button onclick="goPage('/board/update?biNum=${board.biNum}')">수정하기</button>
+	<button onclick="goPage('/board/delete?biNum=${board.biNum}')">삭제하기</button>
+</c:if>
+
+<%
+Map<String,Object> user = null;
+if(session.getAttribute("user")!=null){
+	user = (Map<String,Object>)session.getAttribute("user");
+}
+%>
+
+<%@ include file="/WEB-INF/views/common/header.jspf"%>
+<jsp:include page="/WEB-INF/views/head/head.jsp"></jsp:include>
+
+<%
+pageContext.setAttribute("msg", "난 페이지");
+request.setAttribute("msg","난 리퀘스트");
+session.setAttribute("msg","난 세션");
+application.setAttribute("msg","난 어플리케이션");
+RequestDispatcher rd = request.getRequestDispatcher("/views/test/2");
+rd.forward(request, response);
+String a = request.getParameter("a");
+%>
+
+<% 
+RequestDispatcher rd = request.getRequestDispatcher("/target");
+rd.forward(request, response);
+%>
+
+document.write(xhr.responseText);
+
+xhr.setRequestHeader('Content-Type','application/json');
+
+
+
+<button onclick="submit()">전송</button>
+
+var tBody = document.getElementById('tBody');
+
+window.onload = refresh;
+
+<input type="text" id="biTitle" placeholder="제목을 작성해주세요">
+
+<input type="number" id="uiNum" value="3">
+
+var inputs = document.querySelectorAll('[id]');
+
+input.value=board[input.id];
+
+location.href = '/views/user/ajax';
+
+<form method="POST" action="/user/ajax" enctype="application/x-www-form-urlencoded">
+
+<c:forEach var="str" items="${requestScope.list}">
+
+
+$('table[data-id]').css('display','none')
+$('table[data-id=' + this.getAttribute('data-target')+']').css('display','');
+document.querySelector('input[name=hobby][value=축구]').checked = true;
+var checks = document.querySelectorAll('[name=search]:checked');
+
+if(document.querySelector('#source').value == 'no' || document.querySelector('#target').value == 'no')
+
+$('#result').val(res.result.translatedText); // val()안에 값이 있다면 seta 역할. innerText와 비슷
+
+<script>
+alert(document.querySelector("#div").innerText);
+$(document).ready(function(){
+	$('#btn').on('click', function(){
+		var param = "나는 파람";
+		alert(param);
+	});
+});		// 자바스크립트 안의 $는 Jquery
+</script>
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# Web.xml
+  <jsp-config>
+  	<jsp-property-group>
+  		<url-pattern>*.jsp</url-pattern>
+  		<include-prelude>/WEB-INF/views/common/header.jspf</include-prelude>
+  	</jsp-property-group>
+  </jsp-config>
+
+# header.jspf
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="cssPath" value="${pageContext.request.contextPath}/bt/css"/>
+<c:set var="jsPath" value="${pageContext.request.contextPath}/bt/js"/>
+
+# head.jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<c:set var="ver" value="1.0.1"/>
+<script src="${jsPath}/jquery-3.4.1.js?ver=${ver}"></script>
+<script src="${jsPath}/bootstrap.js?ver=${ver}"></script>
+<script src="${jsPath}/bootstrap.bundle.js?ver=${ver}"></script>
+<script src="${jsPath}/common.js?ver=${ver}"></script>
+<link rel="Stylesheet" href="/${cssPath}/bootstrap.css?ver=${ver}"/>
+<link rel="Stylesheet" href="/${cssPath}/bootstrap-reboot.css?ver=${ver}"/>
+<link rel="Stylesheet" href="/${cssPath}/bootstrap-grid.css?ver=${ver}"/>
+
+function goPage(url){
+	location.href = '/views' + url;
+}
+function makeFormData(){
+	var objs = document.querySelectorAll('input[id],textarea[id]')
+	var formData = new FormData(); // 우리는 폼데이터 형식으로 보내니까!
+	for(var i=0;i<objs.length;i++){
+		var obj = objs[i];
+		if(obj.type=='file'){
+			if(obj.files.length){
+			formData.append(obj.id, obj.files[0]);
+			}
+		}else{
+			formData.append(obj.id, obj.value);
+		}
+	}
+	return formData;
+}
+function send(conf){
+	var xhr = new XMLHttpRequest();
+	xhr.open(conf.method, conf.url);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				conf.func(xhr.responseText);
+			}
+		}
+	}
+	xhr.send(conf.data);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<body>
+<%
+Date time = new Date();
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+String sessionId = session.getId();
+Long creTime = session.getCreationTime();
+time.setTime(creTime);
+String cre = sdf.format(time);
+Long modTime = session.getLastAccessedTime();
+time.setTime(modTime);
+String mod = sdf.format(time);
+%>
+sessionId : <%=sessionId %><br>
+creTime : <%=cre %><br>
+modTime : <%=mod %><br>
+</body>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# JSON으로 주고
+xhr.setRequestHeader('Content-Type','application/json'); // 위에서 셋팅
+
+var param = {
+	biTitle : document.getElementById('biTitle').value,
+	biContent : document.getElementById('biContent').value,
+	uiNum : document.getElementById('uiNum').value
+}
+param = JSON.stringify(param);
+xhr.send(param)
+
+# JSON으로 받기
+var board = JSON.parse(xhr.responseText);
+var tds = document.querySelectorAll('[data-col]');
+for(var td of tds){
+var col = td.getAttribute('data-col');
+td.innerHTML = board[col];
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# JSTL
+니가 보낸 a값 : <%=a %><br>
+니가 보낸 a값 : ${param.a}<br>
+
+<c:set var="str" value="abc1"/>
+<c:if test="${str eq 'abc' }">
+	str은 abc네
+</c:if>
+<c:if test="${str ne 'abc' }">
+	str은 abc가 아니네
+</c:if>
+
+ <%
+ pageContext.setAttribute("test", "너너너");
+ %>
+ <c:set var="test" value="나나나" />
+ ${test}<br>
+
+<c:forEach var="user" items="${list}">
+	<tr>
+		<td>${user.uiNum }</td>
+		<td>${user.uiId }</td>
+		<td>${user.uiName }</td>
+	</tr>
+</c:forEach>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# CheckBox(확인좀..)
+<form method = "post" action = "/bdi-web/review/user/sign-up_ok.jsp">
+	<tr>
+		<th>hobby</th>
+		<td>	
+		<input type = "checkbox" name = "hobby" value = "study">공부
+		<input type = "checkbox" name = "hobby" value = "game">게임
+		<input type = "checkbox" name = "hobby" value = "movie">영화
+		<input type = "checkbox" name = "hobby" value = "music">음악
+		</td>
+	</tr>
+</form>
+* ok페이지
+	<%
+		request.setCharacterEncoding("utf-8");
+		String hobbies[] = request.getParameterValues("genre");
+		String hobby = "";
+	
+			for(int i=0; i<hobbies.length; i++) {
+				hobby += hobbies[i] + ",";
+			}
+			hobby = hobby.substring(0, hobby.length()-1);
+		out.println(hobby);
+	%>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+## CheckBox2(ys_ajax)
+게임<input type="checkbox" name="hobby" value="게임"><br>
+축구<input type="checkbox" name="hobby" value="축구"><br>
+영화<input type="checkbox" name="hobby" value="영화"><br>
+음악<input type="checkbox" name="hobby" value="음악"><br>
+<script>
+var hobby = "축구";
+document.querySelector('input[name=hobby][value=축구]').checked = true; // 딸랑 input[value=축구]를 쓰는 것 보다는 이차원배열쓰는게 정확도가 더높다.
+/* var hobby = "축구";  // 복잡한 방법. 정확도가 높음.
+var inputs = document.querySelectorAll('input');
+for(var input of inputs){
+	if(input.name=='hobby' && input.value==hobby){
+		input.checked = true;
+	}
+}
+ */
+</script>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+## CheckBox3(sp-prac)
+<div class="search">
+	<label for="uiName">이름</label> 
+	<input type="checkbox" name="search" value="ui_name" id="uiName"> 
+	<label for="uiId">ID</label> <input type="checkbox" name="search" value="ui_id" id="uiId"> 
+	<label for="uiNum">번호</label> <input type="checkbox" name="search" value="ui_num" id="uiNum"> 
+	<input type="text" id="searchStr"> <button>검색</button>
+</div>
+
+window.onload=function(){
+	getUserList('');
+	var btn = document.querySelector('button');
+	btn.onclick = function(){
+		var checks = document.querySelectorAll('[name=search]:checked');
+		if(checks.length==0){
+			alert('검색대상을 1개라도 선택해주세요~');
+			return;
+		}
+		var searchStr = document.querySelector('#searchStr');
+		if(searchStr.value.trim().length<1){
+			alert('검색어를 입력해주세요.');
+			return;
+		}
+		var search = '';
+		for(var i=0;i<checks.length;i++){
+			search += 'search=' + checks[i].value + '&';
+		}
+		search += 'searchStr=' + searchStr.value;
+		getUserList(search);
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# Select Box
+	<form>
+		<select name="search">
+			<option value="ui_name">이름</option>
+			<option value="ui_id">아이디</option>
+			<option value="ui_age">나이</option>
+		</select> : <input type="text" name="searchStr">
+		<button>검색</button>
+		</select>
+	</form>
+
+<%
+	String search = request.getParameter("search");
+	String searchStr = request.getParameter("searchStr");
+	String sql = "select * from user_info ";
+	if (search != null) {
+		if ("ui_name".equals(search)) {
+			sql += " where ui_name like ? ";
+		} else if ("ui_id".equals(search)) {
+			sql += " where ui_id like ? ";
+		} else if ("ui_age".equals(search)) {
+			sql += " where ui_age like ? ";
+		}
+	}
+	sql += " order by ui_num desc";
+	Connection con = DBCon.getCon();
+	PreparedStatement ps = con.prepareStatement(sql);
+	if (search != null) {
+		if ("ui_name".equals(search) || "ui_id".equals(search) || "ui_age".equals(search)) { 
+			ps.setString(1, "%" + searchStr + "%");
+		}
+	}
+	ResultSet rs = ps.executeQuery();
+	while (rs.next()) {
+%>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+## SelectBox2(ys_ajax)
+	<select id="sido"></select>
+	<input type="text" id="selectSido">
+	<button onclick="selectedSido()">선택</button>
+<script>
+function selectedSido(){
+	sido.value = document.querySelector('#selectSido').value
+}
+window.onload = function(){
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/test');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				var sidos = JSON.parse(xhr.responseText);
+				console.log(sidos);
+				var sido = document.querySelector('#sido'); // id가 sido인것
+				var html ='<option value="">선택</option>';
+				for(var s of sidos){
+					html += '<option value="' + s.sName + '">' + s.sName + '</option>';
+				}
+			sido.innerHTML = html;	
+			}
+		}
+	}
+	xhr.send();
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# Select Box3
+<form>
+	<select name = "search">
+		<option value = "1">제목</option>
+		<option value = "2">작성자</option>
+		<option value = "3">내용</option>
+		<option value = "4">제목 + 작성자</option>
+		<option value = "5">제목 + 작성자 + 내용</option>
+	</select>
+	
+	<input type = "text" name = "searchStr"><button>검색	</button>
+</form>
+
+<%
+	String search = request.getParameter("search");
+	String searchStr = request.getParameter("searchStr");
+	String sql = "select*from board_info ";
+	if(search!=null){
+		if("1".equals(search)) {
+			sql += " where bi_title like ? ";
+		} else if("2".equals(search)) {
+			sql += " where bi_user like ? ";
+		} else if("3".equals(search)) {
+			sql += " where bi_content like ? ";
+		} else if("4".equals(search)) {
+			sql += " where bi_title like ? or bi_user like ? ";
+		} else if("5".equals(search)) {
+			sql += " where bi_title like ? or bi_user like ? or bi_content like ? ";
+		}
+	}
+	sql += " order by bi_num desc";
+	Connection con = DBCon.getCon();
+	PreparedStatement ps = con.prepareStatement(sql);
+	if(search != null) {
+			if("1".equals(search)||"2".equals(search)||"3".equals(search)){
+				ps.setString(1, "%" + searchStr + "%");
+			} else if("4".equals(search)) {
+				ps.setString(1, "%" + searchStr + "%");
+				ps.setString(2, "%" + searchStr + "%");
+			} else if("5".equals(search)) {
+				ps.setString(1, "%" + searchStr + "%");
+				ps.setString(2, "%" + searchStr + "%");
+				ps.setString(3, "%" + searchStr + "%");
+			}			
+	}
+		ResultSet rs = ps.executeQuery();
+		int i = 0;
+		while(rs.next()) {
+			final String biNum = rs.getString("bi_num");
+			i++;
+%>		
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# Onkey(ys_ajax)
+<div id = "rDiv">
+	<div id = "inputDiv">
+		<label for="id">아이디</label>
+		<input type="text" id="id" onkeyup="findId(this)">
+	</div>
+	<div id="buttons">
+		<button id ="findIdBtn">찾기</button>
+	</div>
+	<ul id="ulId">
+	</ul>
+</div>
+<script>
+function findId(f){
+	var xhr = new XMLHttpRequest();
+	var url = '/onkey/text?';
+	if(f.value.trim().length>0){
+		url += 'id=' +f.value.trim();
+	}
+	xhr.open('GET',url);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==xhr.DONE){
+			var html = '';
+			if(xhr.status==200){
+				var idList = JSON.parse(xhr.responseText);
+				for(var id of idList){
+					html += '<li>' + id + '</li>';
+				}
+			}
+			document.querySelector('#ulId').innerHTML = html;
+		}
+	}
+	xhr.send();
+}
+</script>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#Progress bar(ys_mvn-test)
+	<input type="text" id="ftId"><br>
+	<input type="text" id="ftName"><br>
+	<input type="file" id="ftFile"><br>
+	<button onclick="upload()">업로드</button>
+
+	<progress id="pro" value="0" max="100"></progress>
+	<div id="rDiv"></div>
+
+	<script>
+		function upload() {
+			var ftFile = document.querySelector('#ftFile');
+			console.log(ftFile.files[0]);
+			var pro = document.querySelector('#pro');
+			var rDiv = document.querySelector('#rDiv');
+			var formData = new FormData();
+			formData.append('ftId',document.querySelector('#ftId').value);
+			formData.append('ftName',document.querySelector('#ftName').value);
+			formData.append('ftFile',ftFile.files[0]);
+			
+			var xhr = new XMLHttpRequest();
+			xhr.upload.addEventListener('progress',function(evt){
+				var per = evt.loaded/evt.total*100;
+				pro.value = per;
+				rDiv.innerHTML = Math.floor(per) +'%';
+			});
+			
+			xhr.open('POST','/file');
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState==xhr.DONE){
+					if(xhr.status==200){
+					}
+				}
+			}
+			xhr.send(formData);
+		}
+	</script>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# 파일전송(ys_mav-test)
+<form method="post" action="/file" enctype="multipart/form-data">
+	파일 : <input type="file" name="ftFile"><br>
+	아이디 : <input type="text" name="ftId"><br>
+	이름 : <input type="text" name="ftName"><br>
+	<button>파일전송</button>
+</form>
+
+
+# 파일전송2(ys_mav-test)
+
+<body>
+<div class="container">
+	제목 : <input type="text" id="pbTitle"><br>
+	내용 : <textarea id="pbContent"></textarea><br>
+	유저 : <input type="number" id="creusr"><br>
+	이미지1 : <input type="file" id="pnImg1"><br>
+	이미지2 : <input type="file" id="pnImg2"><br>
+	<button onclick="submit()">등록</button>
+<script>
+function submit(){
+	var formData = makeFormData();
+	var conf = {
+			method:'POST',
+			url:'/ptboard/insert',
+			func:function(res){
+				console.log(res);
+			},
+			data : formData
+	}
+	send(conf);
+}
+</script>
+</div>
+</body>
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<button>클릭</button>
+
+<script>
+function click(){
+	alert(1);
+}
+var btn = document.querySelector('button');
+btn.onclick = click; // 그냥 대입만한것! click()은 호출한것! 잘 구분하자
+</script>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# (ys_ajax)
+<body>
+<div class="container">
+	<table border="1">
+		<tr>
+			<th data-col="sNum">번홍</th>
+			<th data-col="sName">시도</th>
+		</tr>
+		<tbody id = "tBody">
+		</tbody>
+	</table>
+</div>
+<script>
+window.onload = function(){
+ var ths = document.querySelectorAll('table tr>th[data-col]');
+ var cols = [];
+ 
+ for(var idx in ths){
+	 var th = ths[idx];
+	 if(ths.hasOwnProperty(idx)){ // hasOwnProperty : html도 상속개념이있음. 이것은 자기영역의 것만 갖고오라는 명령.
+	 cols.push(th.getAttribute('data-col'));
+	 }
+ }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# Jquery로 ajax활용(prc-papago)
+$(document).ready(function(){
+	$('button').on('click',function(){
+		var param = {
+			uiId : $('#uiId').val(),
+			uiPwd : $('#uiPwd').val()
+		}
+		param = JSON.stringify(param);
+		$.ajax({
+			url:'/login',
+			method:'POST',
+			data:param,
+			beforeSend: function(xhr){
+				xhr.setRequestHeader('x-ajax', 'true');
+			},
+			contentType:'application/json',
+			success : function(res){
+				if(res.msg){
+					alert(res.msg);
+					location.href = '/views/papago/papago';
+				} 
+			},
+			error:function(res){
+				console.log(res);
+			}
+		})
+	})
+})
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# Socket
+<script>
+function qs(id){
+	return document.querySelector(id);
+}
+var ws;
+window.onload = function(){
+	document.querySelector('button').onclick = function(){
+		var url ='ws://localhost/ws/chat'; 
+		ws = new WebSocket(url);
+		ws.onopen = function(evt){
+			if(evt && evt.isTrusted){
+				qs('#open').style.display = 'none';
+				qs('#rDiv').style.display = '';
+				qs('#tarea').style.display = '';
+				qs('#send').onclick = function(){
+					var msg = document.querySelector('.msg').value;
+					document.querySelector('#tarea').innerHTML += '                                      ' + msg + '\r\n';
+					console.log(msg);
+					ws.send(msg);
+				}
+			}
+		}
+		ws.onmessage = function(evt){
+			console.log(evt);
+			
+			var str = evt.data + '\r\n';
+			document.querySelector('#tarea').innerHTML += str;
+		}
+	} 
+}
+</script>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	<table border="1" data-id="all">
+		<tr>
+			<th data-order="ps_num asc">기록번호▼</th>
+			<th data-order="ps.ui_num desc">번역요청자번호▲</th>
+			<th data-order="ps.ui_num desc">번역요청자ID▲</th>
+			<th data-order="pi_num desc">번역번호▲</th>
+			<th data-order="ps.credat desc">번역일자▲</th>
+		</tr>
+		<tbody id="tBody">
+		</tbody>
+	</table>
+		<table border="1" data-id="credat" style="display: none">
+		<tr>
+			<th>일자</th>
+			<th>번역횟수</th>
+		</tr>
+		<tbody id="tBody2">
+		</tbody>
+	</table>
+
+
+<script>
+	$(document).ready(function(){
+		var cmd = '';
+		$('button[data-target]').on('click',function(){
+			$('table[data-id]').css('display','none')
+			$('table[data-id=' + this.getAttribute('data-target')+']').css('display','');
+			cmd = this.getAttribute('data-target');
+			console.log(cmd);
+			if(cmd == 'credat'){
+				credatLoad();
+			} else if(cmd == 'all'){
+				dataLoad();
+			}
+			
+		})
+		$('th[data-order]').on('click',function(){
+			var text = this.innerText;
+			var symbol	= text.substring(text.length-1, text.length);
+			var param;
+			var str = this.getAttribute('data-order');
+			if(symbol=='▼'){
+				this.innerText = text.substring(0,text.length-1) + '▲';
+				param = 'order=' + str.replace("desc", "asc");
+			} else if(symbol=='▲'){
+				this.innerText = text.substring(0,text.length-1) + '▼';
+				param = 'order=' + str.replace("asc", "desc");
+			}
+			dataLoad(param);
+			
+		})
+			dataLoad();
+	})
+</script>
