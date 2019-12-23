@@ -1,9 +1,13 @@
-JSP : 자바와 html을 같이 쓰고싶어서
+# HTML
 eltag : 긴 JSP를 줄여쓰기위해 등장. request처럼 날라오는 것만 받아서 태그에서 사용.  ${ }
-JSTL : 태그를 보조해주기 위해 등장. eltag에 연관이 많다. JSP에서는 못씀.
+JSTL : 태그와 eltag를 보조해주기 위해 등장. eltag에 연관이 많다. JSP에서는 못씀.
 
 자바스크립트 : 자바와 완전 다른 언어. 일반적인 계산과 더불어 태그의 속성에 영향을 미침.
 JQuery : 자바스크립트를 보조하기 위해 등장. 태그의 속성에 영향을 미치기 위해 $( ) 사용.
+
+# 컴파일
+JSP : 자바와 html을 같이 쓰고싶어서
+
 
 String rootPath = request.getContextPath();
 String search = request.getParameter("search");
@@ -72,6 +76,15 @@ $('table[data-id]').css('display','none')
 $('table[data-id=' + this.getAttribute('data-target')+']').css('display','');
 document.querySelector('input[name=hobby][value=축구]').checked = true;
 var checks = document.querySelectorAll('[name=search]:checked');
+
+for
+if(options[i].value==page){
+options[i].selected = true;
+}
+
+if(page){
+	document.querySelector('#page').value = page;
+} // select 클릭할때 지정값 정하는 방법
 
 if(document.querySelector('#source').value == 'no' || document.querySelector('#target').value == 'no')
 
