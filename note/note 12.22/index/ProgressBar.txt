@@ -1,0 +1,39 @@
+* 10 = 0.01 초
+
+* window.onload = function() {
+	var pro = document.querySelector('#pro');
+	var i = 1;
+	var sInt = setInterval(function() {
+		pro.value = i++;
+		if(i===1001){
+			clearInterval(sInt); // 꽉차면 정지시켜버림
+		}
+	}, 10);
+}
+
+* window.onload = function() {
+	var pro = document.querySelector('#pro');
+	var rDiv = document.querySelector('#rDiv');
+	var i = 1;
+	var sInt = setInterval(function() {
+		rDiv.innerHTML = (i/parseInt(pro.max))*100+'%';
+		pro.value = i++;
+			if(i===1001){
+			clearInterval(sInt);
+			}
+		}, 1);
+
+* 자바스크립트에서 펑션은 아래 그대로 쓰면 재선언한것을 따르기 때문에 같은 펑션명으로 onload하려면 배열형태로 담아야함. 그러면 각각의 다른 값으로 출력할 수 있음.
+하지만 window에서 제공해주는 기능이있음.
+var f1 = function(){
+	alert(1);
+}
+var f2 = function(){
+	alert(2);
+}
+위에 것들을 아래처럼 출력가능하다.
+window.addEventListner('load',f1); // EventListner('load',f1) // load 이벤트를 항상 듣길 기다리고 있음. 
+window.addEventListner('load',f2);
+
+* xhr.upload.addEventListener('progress',function(evt)){ } // 따라서 얘때문에 얼마만큼 upload 했다는 것을 알려줌.
+

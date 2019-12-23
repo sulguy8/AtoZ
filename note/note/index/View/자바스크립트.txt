@@ -1,0 +1,71 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<body>
+	<input type="number" id="num1">X<input type="number" id="num2">
+	<div id="div1"></div>
+	<button onclick="changeDiv()">수정</button>
+		<script>
+			var arr = [1,2,3]; 
+			arr.push(4);
+			console.log(arr);	
+		</script>
+</body>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<script>
+	var ani1 = {
+		name : "°­¾ÆAo"
+		
+	}
+	var animals = [ani1,{
+		name:"°i¾cAI"
+	}]; 
+	
+	/* alert(animals[0].name); */
+	alert(animals[1]['name']);
+</script>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<div id = "div1">div1</div>
+<div id = "div2">div2</div>
+<div id = "div3">div3</div>
+
+<script>
+var contents = {
+	div1:'Ci·I¿i',
+	div2:'CICICI',
+	div3:'CaCaCa'
+}
+	
+	var divs = document.querySelectorAll('div');
+	
+	
+	for(var abc of divs){ 
+		abc.innerText = contents[abc.innerText]
+	}
+/* var divs = document.querySelectorAll('div');
+for(var i =0;i<divs.length;i++){
+	var div = divs[i];
+	div.innerText = contents[div.innerText];
+} */
+</script>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+이름 : <input type="text" id="name"><br>
+나이 : <input type="text" id="age"><br>
+주소 : <input type="text" id="addr"><br>
+<script>
+var userInfo = {
+	name : '홍길동',
+	age : 33,
+	addr : '서울시 강서구 등촌동'
+}
+var inputs = document.querySelectorAll('input');
+for(var input of inputs){
+	if(input.id){
+	input.value = userInfo[input.id];
+	}
+}
+</script>

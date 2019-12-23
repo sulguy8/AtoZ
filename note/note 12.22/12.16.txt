@@ -1,0 +1,116 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+1. pom.xml에 Socket 추가하기
+		<dependency>
+			<groupId>javax.websocket</groupId>
+			<artifactId>javax.websocket-api</artifactId>
+			<version>1.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+2. ServletConfig // 주소를 리턴해줌. hs와 servletcontext
+
+3. SocketTest 컨트롤러 만들기
+* @OnOpen 	// 클라이언트에서 해당서버에 연결을 맺었을때 발생하는 이벤트 // jsp 페이지의 var ws = new WebSocket(url);에서 연결됨.
+		// 여기서 들어오는 Session에 대한 ssList를 추가하고 ss.getBasicRemote().sendText("Hello");를 jsp에 msg로 날림
+* @OnMessage 	// 클라이언트부터 메세지가 들어왔을 때
+		// 현재 세션과 리스트에 저장되어있는 세션과 비교하여 다르다면 ss.getBasicRemote().sendText(str);를 jsp에 msg로 날림
+* @OnClose 	// 단톡방에 누군가 나가면 그 누군가는 받지 못해야함. 그래서 해주는게 close
+		// 특정한 세션이 끊기면 ssList.remove를 해줘서 옛날 2번방에 들어왔던 내용들이 방금들어온 2번방의 값에 적응되지 않도록 지워준다.
+* @OnError 	// 중간에 전화가 고장나거나 기지국이 잘못된 경우. 서비스할땐 꼭 추가할 것.
+
+4. 화면 만들기
+	var url = 'ws://localhost/ws/chat';
+
+	ws = new WebSocket(url); 			// socket을 찾아감
+
+		ws.onopen = function(evt){		// @OnOpen으로 이동
+			if(evt && evt.isTrusted) {
+				qs('#send').onclick = function(){
+					var msg = document.querySelector('.msg').value;
+					document.querySelector('#tarea').innerHTML += 
+					ws.send(msg);	// @OnMessage로 이동
+				}			
+			}
+
+	ws.onmessage = function(evt){ 		// @OnMessage에서 받아온 것들.
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# 만약 HttpSession을 사용하고 싶다면?
+1. HandInterceptor 만들기 		// 여기서 들어오는 세션에게 HttpSession으로 절대값을 가져옴. (WebSocketSession은 가변적이었음)
+public class HandInterceptor extends HttpSessionHandshakeInterceptor {
+	@Override
+	public boolean beforeHandshake(
+		ServerHttpRequest request,
+		ServerHttpResponse response,
+		WebSocketHandler wsHandler,
+		Map<String,Object> attributes) throws Exception {
+		
+		ServletServerHttpRequest sshr = (ServletServerHttpRequest)request;
+		HttpServletRequest req = sshr.getServletRequest();
+		attributes.put("session", req.getSession());				// 여기서 전역으로 영향을 끼치는 Session을 생성했으니
+		
+		return super.beforeHandshake(request, response, wsHandler, attributes);  	// 여기서는 다시 부모의 값, 즉 아무것도 없는 상태로 return 시킴.
+	}
+}
+
+2. WebSocketTest 컨트롤러 만들기 	// 여기서 세션값들을 받아서 console에 찍어줌.
+public class WebSocketTest extends TextWebSocketHandler {	
+	@Override
+	public void afterConnectionEstablished(WebSocketSession session) {
+		Map<String,Object> attrs = session.getAttributes();
+		HttpSession hs = (HttpSession) attrs.get("sssion");
+		log.info("webSession=>{}", session.getId());
+		log.info("HttpSession=>{}", hs.getId());
+	}
+}
+
+3. servlet-context.xml에 추가하여 mapping 시키기
+	<beans:bean id="wst" class="com.ys.sp.socket.WebSocketTest"/>
+	
+	<websocket:handlers allowed-origins="*">
+		<websocket:mapping handler="wst" path="/wst"/>
+		<websocket:handshake-interceptors>
+			<beans:bean class="com.ys.sp.interceptor.HandInterceptor"/>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+* @ServerEndpoint("/ws/chat") // url 패턴과 비슷. ws://localhost/ws/chat 이 주소가 됨(http://localhost/ws/chat 이거랑 다르다는 이야기)
+
+* 연결하고나서 서버에서 메세지 보내는 방법. 지금까지 이게 불가능했었음
+
+	public void open(Session ss) {
+		log.info(ss.getId()); 		// 이게 Event
+		try {
+			ss.getBasicRemote().sendText("Hello"); // 이게 Message Event
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+ 
+
+
+
+* remove를 해줘야 새로고침할 때 이전에 있던 세션들이 남아있어서 중복오류가 뜨는 것을 막을 수 있다.
+	public void close(Session ss)	{
+		ssList.remove(ss);
+		log.info(ss.getId());
+	}
+
+
+
+네이티브 앱 키
+f1e3b7c660c264a50f5d3fa30a1c0252
+REST API 키
+767aa6a80210ffef7481599fc07b2acb
+JavaScript 키
+b85851085750cb2d6d68432ed0595259
+Admin 키
+203d614d0e4c7743329f5ebbae618f9f
