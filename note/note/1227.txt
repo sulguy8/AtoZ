@@ -1,0 +1,222 @@
+el태그는 jsp에서 제공하는 것.
+스크립트리(<%)는 지역변수 따라서 메서드안에 메서드를 정의할 수 없기때문에 있는 메서드만 쓸수 있고 선언은 할 수있다.
+디클레이션(<!)는 전역변수라고 생각하면됨. 
+
+
+<a href="/tests">테스트리스트</a>
+여기서 /tests(절대경로)와 test(상대경로)의 차이는 알것!
+절대경로는 http://localhost 생략
+상대경로는 http://localhost/~~~~~/~~~/~~/ 현재 jsp파일이 있는 곳까지 생략.
+
+
+단위 테스트(unit-test)
+: 뷰부터 다오까지 한꺼번에 테스트하면 힘듬.
+부분부분 테스트케이스를 작성해야함.
+다오, 서비스 ,컨트롤러, 뷰 하나하나 유닛으로. 그래야 에러를 찾기 쉬움.
+
+단위와 단위를 묶어서 테스트하는 경우도있음. 플로어 테스트라고도 함.
+
+모듈테스트는 유닛테스트와 조금다름. 
+테스트 시나리오 일련의 일들을 시나리오를 쭉 쓰고 한 모듈에대해 상세페이지가 생기는데. 오늘배우는 거
+
+TEST CASE ID // 시나리오 1
+작성자 // 
+작성일
+테스트 절차 
+DATA
+
+
+통합테스트는 일반 테스트뿐만아니라 관리자계정까지 해당시스템 전체를 테스트해야함. 어디에서 오류가 날지 몰라서 이 기간때는 집에못감.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# bom vs dom
+1. DOM (Document Object Model) API
+
+  ㅇ 응용 프로그램(자바스크립트 등)이 웹 페이지 내 모든 요소에 접근할 수 있는 표준 API 모델
+     - 웹브라우저의 제작사별,버젼별,플랫폼,언어 차이에 의존하지 않고,
+     - 웹페이지에 객체지향적 접근이 가능하도록,
+     - 표준적인 프로퍼티(Property) 및 메소드(Method)를 통해 접근/제어하는 기반 모델
+
+
+* DOM 이벤트                                        
+
+  ※ ☞ 표준 DOM 이벤트 참조
+     - 마우스 이벤트     : click, dblclick, mousemove, mouseover 등
+     - 키보드 이벤트     : keydown, keyup, keypress 등
+     - 폼 이벤트         : submit, reset, change, focus, blur 등
+     - 문서(document)/창(window) 이벤트 : load, resize, scroll, unload 등
+
+
+1. BOM (브라우저 객체 모델)
+
+  ㅇ 웹 프로그래머가 웹 브라우저의 기능 요소들을 직접 관리/제어할 수 있도록, 
+     - 특별한 객체들을 미리 구조화시켜 모아놓은 것 
+
+* BOM 주요 기능/제어 요소들
+
+  ㅇ 웹 브라우저의 버튼,URL 주소 입력 창,타이틀 바,윈도우 크기 등의 제어
+     - 즉, 웹 브라우저 윈도우 및 웹 페이지의 일부분을 제어
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# div나누기 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# jsp include
+
+<jsp:include page="/WEB-INF/front/include/${param.page}"></jsp:include>
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# 유효성 테스트
+	if($('#tiName').val().trim().length<2){
+ 		alert('아이디는 2글자 이상입니다.');
+ 		return false;
+ 	} 
+ 	if ($('#tiAddr').val().trim().length<10){
+ 		alert('주소는 10글자 이상입니다.');
+ 		return false;
+ 	} 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# 모바일 전용 UI설계 고려사항
+1. 이동성 : 편하게 사용할 수 있는 ui를 구성
+2. 컨트롤 : 메타포를 이용한 아이콘 디자인이나 터치 영역을 고려한 크기가 중요
+3. 해상도 : 화면이 작기때문에 원하는 정보만 제공하고 조작의 편리성을 고려한 레이아웃이 중요
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+* 호출순서!
+1. $(document).ready(function(){})
+2. window.onload
+3. on 메서드
+
+$('#pagination').html(html);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<div name="test~~">반갑다
+<button>클릭</button>
+</div>
+
+$(document).ready(function(){
+	$('div[name],button[name]').on('click',function(){
+		var page = this.getAttribute('name');
+		alert(page);
+	})
+})
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		<tr>
+			<th><input type="checkbox" name='allCheck' id='allCheck' onClick='allChk(this)'></th>
+			<th>번호</th>
+			<th>이름</th>
+			<th>주소</th>
+			<th>비고</th>
+		</tr>
+
+			for(var list of res.list){
+				html += '<tr>';
+				html += '<td><input type="checkbox" class="chkbox" name="chkbox" value="' + list.tiNum + '"></td>'
+				html += '<td id="'+list.tiNum+'">' + list.tiNum +'</td>';
+				html += '<td>' + list.tiName +'</td>';
+				html += '<td>' + list.tiAddr +'</td>';
+				html += '<td>' + list.tiEtc +'</td>';
+				html += '</tr>'
+			}
+
+function allChk(obj){
+	var states = obj.checked;
+		if(states){
+			$('.chkbox').attr('checked', true);
+		} else{
+			$('.chkbox').attr('checked', false);
+		}
+			
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function setEvent(){
+	$('a[data-page]').on('click',function(){
+		goPage(this.getAttribute('data-page'));
+	})
+	$('td[id]').on('click',function(){
+		var tiNum = this.innerText;
+		location.href='/?page=test-view&tiNum=' + tiNum;
+	})
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	$(document).ready(function(){
+		$.ajax({
+			url:'/test',
+			method:'GET',
+			data:'tiNum=${param.tiNum}',
+			success:function(res){
+				console.log();
+				$('#tiName').val(res.list[0].tiName);
+				$('#tiAddr').val(res.list[0].tiAddr);
+				$('#tiEtc').val(res.list[0].tiEtc);
+			}		
+		})
+	})
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 	 		
+			$.ajax({
+ 	 			url:'/tests',
+ 	 			method:'PUT',
+ 	 			data: JSON.stringify(param),
+ 	 			beforeSend : function(xhr){
+ 	 				xhr.setRequestHeader('Content-type','application/json;charset=UTF-8');
+ 	 			},
+ 	 			success:function(res){
+ 	 				if(res){
+ 	 					alert('입력 성공!');
+ 	 				} else{
+ 	 					alert('입력 실패!');
+ 	 				}
+ 	 			}
+ 	 		})
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ 			if($('#tiName').val().trim().length<2){
+ 				alert('아이디는 2글자 이상입니다.');
+ 				return false;
+ 			} 
+ 			if ($('#tiAddr').val().trim().length<10){
+ 				alert('주소는 10글자 이상입니다.');
+ 				return false;
+ 			} 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item" data-page="main"><a class="nav-link" href="/">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item" data-page="login"><a class="nav-link">로그인</a>
+					</li>
+					<li class="nav-item" data-page="join"><a class="nav-link">회원가입</a>
+					</li>
+					<li class="nav-item" data-page="test-list"><a class="nav-link">리스트</a>
+					</li>
+					<li class="nav-item" data-page="test-blog"><a class="nav-link">블로그</a>
+					</li>
+				</ul>
+
+
+		$(document).ready(function(){
+			var pPage = '${param.page}';
+			if(!pPage){
+				pPage = 'main';
+			}
+			$('li[data-page]').removeClass('active');
+			$('li[data-page=' + pPage + ']').addClass('active');
+			$('li[data-page],button[data-page]').on('click',function(){
+				var page = this.getAttribute('data-page');
+				location.href='/?page=' + page;
+			})
+		})
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
