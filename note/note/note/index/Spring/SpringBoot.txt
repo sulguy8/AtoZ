@@ -1,0 +1,17 @@
+@ConfigurationProperties(prefix="spring.datasource.hikari") // properties의 "spring.datasource.hikari로 시작되는 것을 싹다 가져옴
+
+@Bean // 요거를 쓰면 내가 직접만든 매서드(@Resource,@Service,@Repository등등..)가 아니더라도 자동으로 메모리 생성해줌.
+public DataSourceTransactionManager txManager() { // 얘한테 트랜젝션 시키는것
+	return new DataSourceTransactionManager(getDS());
+}
+
+* spring boot는 spring과 달리 tomcat이 embeded되어있음. 그래서 서버 버튼으로 켜는 대신에 메인메소드가 있는 곳에서 자바실행시켜서 서버를 킴
+
+* spring boot 서버킬때 기본 db가 설정되어있다면 꺼야함. 
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
+
+* spring boot에 jackson내장되어있음. 따라서 데이터 바인딩이 알아서 됨.
+
+* spring boot가 어떤 원리로 실행되는지 알것
+@RestController에서
+@response body 기본생략됨. return이 body로 태워나감

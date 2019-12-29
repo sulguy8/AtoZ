@@ -1,0 +1,37 @@
+# 우리가 지금까지 배웠던 것들!
+eclipse
+java 1.8
+tomcat 8.5
+framework spring 4.3x
+
+형상관리자 
+1. github
+2. gitlab
+
+* 운영서버에다가 아랫것들 깔아서 사용
+AWS의 ec2(redhat8버전)
+open.jdk 1.8
+maven 3.4.5
+git 2.x
+tomcat 8.5의 manager
+
+* ssh로 putty와 win scp로 작업
+
+* jenkins를 통해서 gitlab과 tomcat 8.5의 manager를 연결시켜서 webhook으로 gitlab을 연동시킴. 편하게 작업
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# Git Index
+
+bdi-web		JSP 
+board 		JSP, JSTL
+ys_ajax		AJAX, onkey
+mvn_test		AJAX, Maven
+ys-mav-test	AJAX, Maven, File, Progress
+sp-prac		Spring(3.1.1), BootStrap
+sb-test		SpringBoot(2.2.1)
+sb-mybatis	SpringBoot(2.2.1), Mybatis(Oracle)
+sp-bdi		Spring(3.1.1), Mybatis(Oracle) 
+jgd		Spring(4.3.18), Mybatis(Oracle)
+ys-papago	Spring(4.3.18), Mybatis(Oracle)
+prc-papago	Spring(4.3.18), Mybatis(MariaDB)
+sb-mybatis-1	SpringBoot(2.2.2), Mybatis(MariaDB), Include, AOP, Transaction, SHA Util

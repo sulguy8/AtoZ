@@ -1,0 +1,61 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+1. CentOS, VirtualBox 설치
+
+2. VirtualBox 설정하고 CentOS 실행
+
+3. root사용자로 로그인 (안했을 때는 su - root)
+
+4. 처음에 cd /로 root 폴더로 이동하고 cd와 ll을 활용해서 network-scripts까지 들어온 이후(tap누르면 간편하게 할 수 있음)
+
+~는 root폴더, 
+컨트롤+c // 페이지 나가기
+:q!(나가기), :wq!(작성후 나가기)
+
+5. [root@localhost network-scripts]#에서 dhclient > ip addr > yum install net-tools > yum install wget -y
+
+6. 복붙(마우스우클릭)하기 위해 virtualbox의 포트포워딩에서 putty port와 일치시키는 작업
+
+7. putty로  tomcat, java 설치하기
+Tomcat : tomcat 검색후 링크복사 > ll로 리스트 띄워서 tar -xvf 입력 후 파일명 우클릭(압축 푸는과정) 
+Java : yum install java-1.8.0-openjdk
+
+8. 방화벽 해제하고 ./startup.sh // Tomcat started. 뜨면 끝! 브라우저 localhost:836/ 들어가서 되는지 테스트
+
+9. cmd에서 ipconfig /flushdns 확인자 캐시를 플러시해주기
+
+10. 메이븐 설치 // yum install maven -y
+
+11. 깃 설치 // yum install git -y
+
+12. 깃 파일 복사하기 // https://github.com/sulguy8/sp-bdi.git
+
+13. 해당 깃폴더 들어가서 리눅스로 전달할 war파일 만들기 // mvn clean install
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# 
+1. 스프링 프로젝트를 만들고 서버를 통해서 home에 잘 접속이 되는지 확인할 것.
+
+2. pom.xml에 필요한 것들을 넣고 해당 프로젝트 update 할 것.
+
+3. web.xml을 확인하고 listener와 init-param타는 것들을 확인할것
+	a. root-context.xml : DBCon과 작성과 더불어 mybatis셋팅, 맵핑에 관련되어있는 xml 만들기.
+	b. servlet-context.xml : ViewsController에서 했던 것들. <context : component-scan base-package="경로 잘 지정해주기"> 
+
+4. com.sp.bdi에 Controller, Service, DAO, VO 작성하고 ARC로 테스트해보기
+
+5. Filter(생성하고 web.xml에 filter가 잘 추가됐는지 확인!) 작성하기. 화면할때는 filter꺼놓고 할것. 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# 화면 구현
+res 만들고 테스트해보기(파일 대소문자 가릴것.)
+6. head, header만들기
+7. web.xml에서 prelude
+8. res확인해보기
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+

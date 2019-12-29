@@ -1,0 +1,186 @@
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		<tr>
+			<th><input type="checkbox" name='allCheck' id='allCheck' onClick='allChk(this)'></th>
+			<th>번호</th>
+			<th>이름</th>
+			<th>주소</th>
+			<th>비고</th>
+		</tr>
+
+			for(var list of res.list){
+				html += '<tr>';
+				html += '<td><input type="checkbox" class="chkbox" name="chkbox" value="' + list.tiNum + '"></td>'
+				html += '<td id="'+list.tiNum+'">' + list.tiNum +'</td>';
+				html += '<td>' + list.tiName +'</td>';
+				html += '<td>' + list.tiAddr +'</td>';
+				html += '<td>' + list.tiEtc +'</td>';
+				html += '</tr>'
+			}
+
+function allChk(obj){
+	var states = obj.checked;
+		if(states){
+			$('.chkbox').attr('checked', true);
+		} else{
+			$('.chkbox').attr('checked', false);
+		}
+			
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function setEvent(){
+	$('a[data-page]').on('click',function(){
+		goPage(this.getAttribute('data-page'));
+	})
+	$('td[id]').on('click',function(){
+		var tiNum = this.innerText;
+		location.href='/?page=test-view&tiNum=' + tiNum;
+	})
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	$(document).ready(function(){
+		$.ajax({
+			url:'/test',
+			method:'GET',
+			data:'tiNum=${param.tiNum}',
+			success:function(res){
+				console.log();
+				$('#tiName').val(res.list[0].tiName);
+				$('#tiAddr').val(res.list[0].tiAddr);
+				$('#tiEtc').val(res.list[0].tiEtc);
+			}		
+		})
+	})
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 	 		
+			$.ajax({
+ 	 			url:'/tests',
+ 	 			method:'PUT',
+ 	 			data: JSON.stringify(param),
+ 	 			beforeSend : function(xhr){
+ 	 				xhr.setRequestHeader('Content-type','application/json;charset=UTF-8');
+ 	 			},
+ 	 			success:function(res){
+ 	 				if(res){
+ 	 					alert('입력 성공!');
+ 	 				} else{
+ 	 					alert('입력 실패!');
+ 	 				}
+ 	 			}
+ 	 		})
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ 			if($('#tiName').val().trim().length<2){
+ 				alert('아이디는 2글자 이상입니다.');
+ 				return false;
+ 			} 
+ 			if ($('#tiAddr').val().trim().length<10){
+ 				alert('주소는 10글자 이상입니다.');
+ 				return false;
+ 			} 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item" data-page="main"><a class="nav-link" href="/">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item" data-page="login"><a class="nav-link">로그인</a>
+					</li>
+					<li class="nav-item" data-page="join"><a class="nav-link">회원가입</a>
+					</li>
+					<li class="nav-item" data-page="test-list"><a class="nav-link">리스트</a>
+					</li>
+					<li class="nav-item" data-page="test-blog"><a class="nav-link">블로그</a>
+					</li>
+				</ul>
+
+
+		$(document).ready(function(){
+			var pPage = '${param.page}';
+			if(!pPage){
+				pPage = 'main';
+			}
+			$('li[data-page]').removeClass('active');
+			$('li[data-page=' + pPage + ']').addClass('active');
+			$('li[data-page],button[data-page]').on('click',function(){
+				var page = this.getAttribute('data-page');
+				location.href='/?page=' + page;
+			})
+		})
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+* onClick 이벤트에서 getAttribute
+<div name="test~~">반갑다
+<button>클릭</button>
+</div>
+
+$(document).ready(function(){
+	$('div[name],button[name]').on('click',function(){
+		var page = this.getAttribute('name');
+		alert(page);
+	})
+})
+
+* bootstrapTable
+success
+$('#table').bootstrapTable("destroy");
+$('#table').bootstrapTable({
+	data: res.list
+});
+
+
+* $('input[value='+ name +']').attr('checked',true); 는 아래와 같다
+<input type="radio" name="name" value="우길동" checked = true>
+** 이해하려면 property와 attribute의 차이를 이해하고 있어야 함.
+*** <c:if test="${name =='이길동'}">checked</c:if> // 옛날 태그에 접근하는 방식.
+
+* produces="application/text;charset=utf-8" // 리스폰스를 이렇게 쓰겠다.
+
+* <script>
+	var name ='${name}'
+	alert(name);
+</script>  // 브라우저 단에서 만들어져서 들어가기 때문에 컨트롤러에있는 name이 나옴.
+
+* jquery 사용할때 1.x(옛버전 브라우저), 2.x(쓰지마!), 3.x(퍼포먼스에 집중)가 있음
+
+* 브라우저는 순서대로 호출한다. 따라서 제이쿼리 다음에다가 ajax를 호출해야함.
+
+* $(); // jquery();의 축소판. 단순한 펑션이라고 생각하면됨.
+$('#btn') // length를 가지고 있음. 단일 셀럭터가 아님. querySelectorAll처럼 써야함.
+
+* window.onload{}
+* window.addEventListener('load',function){}
+* $(document).ready(function(){
+	alert('다큐먼트가 준비가 됐구나~~');
+  });
+**(document).ready(func1); 로 줄여쓸 수 있음.
+*** window.onload{} // (마지막것만 실행)와 $(document).ready(function() // (있는거 전부다 실행)는 차이가 있다.
+
+* jquery에 이벤트 주는 방법
+	$(document).ready(function(){
+		$('#btn').on('click',function(){
+			alert('날 눌렀군~');
+		})
+	}); // 1번째는 어떤이벤트(click)인지 , 다음 2번째는 그 이벤트때 이걸(alert) 실행해라
+
+* alert($('#text').val()); 	// 겟터 역할
+  alert($('#text').val(abc)); 	// 셋터 역할
+
+* 같은 이벤트를 여러번 실행하고 싶을때?
+$(document).ready(function(){
+	$('button').on('click',function()){
+		alert(this.innerText); // 해당 이벤트를 눌렀을때 그 값(this)로 해라. ex) 5개의 버튼중에3번누르면 3이뜸. Jquery의 장점
+		var param = {
+			uiId : $('#uiId').val(),
+			uiPwd : $('#uiPwd').val()
+	}
+	param = JSON.stringify(param);
+	alert(param);
+	})
+})
