@@ -34,4 +34,4 @@ sp-bdi		Spring(3.1.1), Mybatis(Oracle)
 jgd		Spring(4.3.18), Mybatis(Oracle)
 ys-papago	Spring(4.3.18), Mybatis(Oracle)
 prc-papago	Spring(4.3.18), Mybatis(MariaDB)
-sb-mybatis-1	SpringBoot(2.2.2), Mybatis(MariaDB), Include, AOP, Transaction, SHA Util
+sb-mybatis-1	SpringBoot(2.2.2), Mybatis(MariaDB), Include, AOP, Transaction, SHA Util, File Upload, Infinity scroll
