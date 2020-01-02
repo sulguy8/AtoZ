@@ -1,9 +1,0 @@
-* <beans:ref bean ="sessionInterceptor"/> 원래 SessionInterceptor.java이기때문에 대문자 S로 시작해야하지만 @component 뒤에 ("~~") 없기때문에 소문자가 가능
-
-* 필터와 aop는 역할은 비슷한데 개념은 살짝 다름. aop가 필터와 객체사이에 살짝?걸쳐있는정도
-
-* 예전처럼 jspf에다가 할 수 도있는데 세션이 만료가 되어있어도 백엔드에 접근이 가능하기 때문에(uiNum을 읽을 수 없음) interceptor를 사용해야 한다.
-
-* servlet-context에다가 추가해줄 것.			
-	<mvc:exclude-mapping path="/views/user/login"/>
-	<mvc:exclude-mapping path="/login"/>

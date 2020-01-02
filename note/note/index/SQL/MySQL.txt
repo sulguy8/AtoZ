@@ -1,0 +1,120 @@
+* CREATE TABLE `test_info`(
+ti_num INT(11) UNSIGNED  not NULL AUTO_INCREMENT,
+`ti_name` VARCHAR(100) NOT NULL,
+`ti_addr` VARCHAR(200) NOT NULL,
+`ti_etc` VARCHAR(1000) NULL DEFAULT NULL,
+PRIMARY KEY(`ti_num`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+
+ALTER TABLE test_info
+ADD COLUMN(ti_updcnt INT(11) UNSIGNED DEFAULT 0);
+
+* CREATE TABLE user_info(
+ui_num INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+) // INT(11) // 
+     NOT NULL AUTO_INCREMENT PRIMARY KEY // 얘는 시퀀스가 없지만 테이블이 시퀀스를 들고다님. 인서트할때마다 자동 +1 , 트랜잭션과 무관함. 무조건 AUTO_INCREMENT 일때 PRIMARY KEY이어야 함.
+
+* ui_name VARCHAR(10) NOT NULL, // 10은 자릿수. 한글 10자리가 들어감
+
+CREATE TABLE user_info(
+ui_num INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+ui_name VARCHAR(10) NOT NULL,
+ui_id VARCHAR(20) NOT NULL,
+ui_pwd VARCHAR(20) NOT NULL,
+credat CHAR(8) NOT NULL,
+cretim CHAR(6) NOT NULL,
+moddat CHAR(8) NOT NULL,
+modtim CHAR(6) NOT NULL,
+active CHAR(1) DEFAULT '1'
+);
+
+create table papago_stats(
+ps_num INT(11) NOT NULL AUTO_INCREMENT PRIMARY key,
+ui_num INT(11) not null,
+pi_num INT(11) not null,
+credat CHAR(6) not null
+);
+
+create table papago_info(
+pi_num INT(11) NULL AUTO_INCREMENT PRIMARY KEY,
+pi_source CHAR(6) not NULL,
+pi_target CHAR(6) not NULL,
+pi_text VARCHAR(300) not NULL,
+pi_result VARCHAR(1000) not NULL,
+pi_cnt INT(11) DEFAULT 1
+);
+
+INSERT INTO user_info (ui_name,ui_id,ui_pwd,credat,cretim,moddat,modtim) 
+VALUES('조용수',
+'sulguy8',
+'123123', 
+date_format(NOW(), '%Y%m%d'),
+date_format(NOW(), '%H%i%S'),
+date_format(NOW(), '%Y%m%d'),
+date_format(NOW(),'%H%i%S'));
+
+CREATE table test_info(
+ti_num INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ti_name VARCHAR(100) NOT NULL,
+ti_age VARCHAR(200) NOT NULL,
+ti_etc VARCHAR(1000)
+);
+
+
+http://localhost/tests?page.page=20
+
+
+DELETE FROM test_info
+WHERE ti_num BETWEEN 980 AND 989; // ~이상 ~~ 이하
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# Delimiter
+
+delimiter 
+$$
+
+CREATE PROCEDURE proc_insert_test_info()
+BEGIN
+INSERT INTO test_info(ti_name, ti_addr, ti_etc)
+VALUES('hong','seoul','bigo');
+END
+
+$$
+delimiter ;  // $$ 사이의 문장의 ;무시하고 한문장으로 본다. F9로 전체 실행.
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+delimiter 
+$$
+
+CREATE OR replace PROCEDURE proc_insert_test_info()
+BEGIN
+#INSERT INTO test_info(ti_name, ti_addr, ti_etc)
+#VALUES('hong','seoul','bigo');
+DECLARE i INT DEFAULT 1;
+
+ex_for: loop
+	SET i = i+1;
+	SELECT i;
+
+	if i=10 then
+	leave ex_for;
+	END if;
+
+END loop ex_for;
+END
+$$
+delimiter ;
+
+
+CALL proc_insert_test_info();
+
+LIMIT 20, 10; // 1부터 시작
+for (int i=0 ; i<10; i--){
+	if(page/i
+}

@@ -1,0 +1,133 @@
+* 호출순서!
+1. $(document).ready(function(){})
+2. window.onload
+3. on 메서드
+
+$('#pagination').html(html);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<div name="test~~">반갑다
+<button>클릭</button>
+</div>
+
+$(document).ready(function(){
+	$('div[name],button[name]').on('click',function(){
+		var page = this.getAttribute('name');
+		alert(page);
+	})
+})
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		<tr>
+			<th><input type="checkbox" name='allCheck' id='allCheck' onClick='allChk(this)'></th>
+			<th>번호</th>
+			<th>이름</th>
+			<th>주소</th>
+			<th>비고</th>
+		</tr>
+
+			for(var list of res.list){
+				html += '<tr>';
+				html += '<td><input type="checkbox" class="chkbox" name="chkbox" value="' + list.tiNum + '"></td>'
+				html += '<td id="'+list.tiNum+'">' + list.tiNum +'</td>';
+				html += '<td>' + list.tiName +'</td>';
+				html += '<td>' + list.tiAddr +'</td>';
+				html += '<td>' + list.tiEtc +'</td>';
+				html += '</tr>'
+			}
+
+function allChk(obj){
+	var states = obj.checked;
+		if(states){
+			$('.chkbox').attr('checked', true);
+		} else{
+			$('.chkbox').attr('checked', false);
+		}
+			
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function setEvent(){
+	$('a[data-page]').on('click',function(){
+		goPage(this.getAttribute('data-page'));
+	})
+	$('td[id]').on('click',function(){
+		var tiNum = this.innerText;
+		location.href='/?page=test-view&tiNum=' + tiNum;
+	})
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	$(document).ready(function(){
+		$.ajax({
+			url:'/test',
+			method:'GET',
+			data:'tiNum=${param.tiNum}',
+			success:function(res){
+				console.log();
+				$('#tiName').val(res.list[0].tiName);
+				$('#tiAddr').val(res.list[0].tiAddr);
+				$('#tiEtc').val(res.list[0].tiEtc);
+			}		
+		})
+	})
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 	 		
+			$.ajax({
+ 	 			url:'/tests',
+ 	 			method:'PUT',
+ 	 			data: JSON.stringify(param),
+ 	 			beforeSend : function(xhr){
+ 	 				xhr.setRequestHeader('Content-type','application/json;charset=UTF-8');
+ 	 			},
+ 	 			success:function(res){
+ 	 				if(res){
+ 	 					alert('입력 성공!');
+ 	 				} else{
+ 	 					alert('입력 실패!');
+ 	 				}
+ 	 			}
+ 	 		})
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ 			if($('#tiName').val().trim().length<2){
+ 				alert('아이디는 2글자 이상입니다.');
+ 				return false;
+ 			} 
+ 			if ($('#tiAddr').val().trim().length<10){
+ 				alert('주소는 10글자 이상입니다.');
+ 				return false;
+ 			} 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item" data-page="main"><a class="nav-link" href="/">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item" data-page="login"><a class="nav-link">로그인</a>
+					</li>
+					<li class="nav-item" data-page="join"><a class="nav-link">회원가입</a>
+					</li>
+					<li class="nav-item" data-page="test-list"><a class="nav-link">리스트</a>
+					</li>
+					<li class="nav-item" data-page="test-blog"><a class="nav-link">블로그</a>
+					</li>
+				</ul>
+
+
+		$(document).ready(function(){
+			var pPage = '${param.page}';
+			if(!pPage){
+				pPage = 'main';
+			}
+			$('li[data-page]').removeClass('active');
+			$('li[data-page=' + pPage + ']').addClass('active');
+			$('li[data-page],button[data-page]').on('click',function(){
+				var page = this.getAttribute('data-page');
+				location.href='/?page=' + page;
+			})
+		})
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

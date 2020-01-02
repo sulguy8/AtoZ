@@ -1,0 +1,126 @@
+* @Controller 에서 @PostMapping일때 @Controller는 JSON형태를 쓸수 없어서 payload형태가 아닌 jsp에서 body형태로 태워서 보내야 한다.
+
+* @Autowired는 spring아니면 안먹음. 하지만 @Resource는 javax것이기 때문에 스프링 프레임워크와 관계없이 범용적으로 사용가능하다.
+
+*
+	@GetMapping("tests")
+	public String getTestInfoList(@ModelAttribute TestInfoVO test, HttpServletRequest request) {
+		request.setAttribute("rMap",tiService.selectTestInfoList(test));
+		return "/views/test/list";
+	}
+
+	@GetMapping("tests")
+	public String getTestInfoList(@ModelAttribute TestInfoVO test, Model m) {    // 둘다 가능하지만 스프링에선 이렇게 쓰는 것이 더 자연스럽다.
+		m.addAttribute("rMap",tiService.selectTestInfoList(test));
+		return "/views/test/list";
+
+
+* springboot 프로젝트만들때 webapp폴더와 WEB-INF폴더를 만들어줘야 jsp페이지들을 사용할 수 있다. (webapp과 WEB-INF는 정해져있는것이기 때문에 다른이름은 안됨!)
+
+*
+spring.datasource.hikari.auto-commit=false
+spring.datasource.hikari.pool-name=hikaricp
+spring.datasource.hikari.maximum-pool-size=5 // 5명까지 늘어날 수 있음.
+spring.datasource.hikari.minimum-idle=3 // 상담원 3명
+spring.datasource.hikari.idle-timeout=30000 // 30초
+
+* 쓰레드는 밥먹으면서 티비보는 것.
+t1.start(); // start()가 실행될때 run()메서드가 실행됨.
+
+* @PathVariable url의 파라미터값을 가져온다. 
+	@GetMapping("/horse/{name}/{speed}")
+	public int getWhich(@PathVariable("name") String name1, @PathVariable("speed") String name2) { 
+		log.info("name=>{}", name);
+		return 1;
+	}
+
+* @RequestParam이랑 @PathVariable는 비슷하지만 쓰이는 용도가 다르다. 패쓰베리어블은 rest의 성격이 더 강함.
+
+* async:false, 
+  success : finction(res){
+     white : res;	
+  } 이렇게 ajax를 설정하면 영역 밖에서도 success안의 white변수를 밖에서도 쓸 수 있다.
+
+* 자바스크립트는 펑션을 처음부터 다 머리에 넣어놓고
+  변수는 나중에 생성한다.
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/bootstrap-reboot.min.css" />
+<link rel="stylesheet" href="/css/bootstrap-grid.min.css" />
+<style>
+.rain {
+	width:1000px;
+	height:50px;
+	margin:0 auto;
+	position:relative;
+	background:lightBlue;
+}
+.horse{
+	width:50px;
+	height:50px;
+	padding:0;
+	margin:0;
+	position:absolute;
+	background:brown;
+	text-align:center;
+	color:white;
+}
+
+</style>
+</head>
+<body>
+<div class="init">
+말 갯수 : <input type="text" id="hCnt">
+<button id="startBtn">게임 시작</button>
+</div>
+<div class="game">
+</div>
+<div id="result">
+
+</div>
+<script>
+var winner = 0;
+function startGame(){
+	var cnt = document.querySelector('#hCnt').value;
+	for(let i=0;i<cnt;i++){
+		let el = document.querySelector('#h'+i);
+		let sum = 1;
+		let si = setInterval(()=>{
+			let left = Math.floor(Math.random()*10)+1;
+			sum += left;
+			el.style.left = sum +'px';
+			if(sum>=950){
+				el.style.left = 950 + 'px';
+				clearInterval(si);
+				document.querySelector('#result').innerHTML += el.innerText + ':' + (winner++) + '등<br>';
+			}
+		},100);
+	}
+}
+
+window.onload = function(){
+	document.querySelector('#startBtn').onclick = function(){
+		var cnt = document.querySelector('#hCnt').value;
+		document.querySelector('.init').style.display='none';
+		var html = '';
+		for(var i=0;i<cnt;i++){
+			html += '<div id="rain' + i + '" class="rain">';
+			html += '<div id="h' + i + '" class="horse"><b>말' + i + '</b></div>';
+			html += '</div>';			
+		}
+		html +='<button onclick="startGame()">말달리자</button>';
+		document.querySelector('.game').innerHTML = html;
+	}
+}
+</script>
+</body>
+</html>
+
+
+입력값 : 말 몇마리
+
+리턴해야 하는 값 : 
