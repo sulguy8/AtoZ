@@ -1,0 +1,132 @@
+https://blog.naver.com/spdlqjdudghl
+
+https://beomy.tistory.com/43  - mvp 패턴
+
+https://www.data.go.kr/
+
+
+* chage -l user_001 // 유저 정보보기
+* find -user 1001 -exec rm -r { } \;   // 파일 내용중에서 UID를 찾아서 관련된 파일을 모두 삭제
+* groupadd db_zone 	// 그룹 아이디 만들기
+** grep db_zone /etc/group // 만들고 확인!
+*** groupadd -g 2017 nt_zone // 그룹아이디 주기
+**** gpasswd -a sno_2017001 db_zone // sno_2017001을 db_zone에 그룹추가
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+* a <-(alt+"-") 10 은 a = 10
+* ctrl + shift + r // 전체실행
+* install.packages("ggplot2") // 설치한 패키지 불러오기
+* tips=read.csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv') //  read.으로 변수 불러오기
+* str(tips)
+
+* lib
+
+* 'data.frame':	244 obs. of  7 variables:
+  data.frame // 데이터 형식
+  244 obs. // 관측된 것들
+  7 variables // 7개의 변수
+
+* summary(tips) // 요약
+
+* install된거 메모리올리기
+  library(dplyr) 
+  library(ggplot2)
+
+* 그래프 실행
+tips%>%ggplot(aes(size)) + geom_histogram()
+tips%>%ggplot(aes(total_bill, tip)) + geom_point()
+tips%>%ggplot(aes(total_bill, tip)) + geom_point(aes(col=day))
+tips%>%ggplot(aes(total_bill, tip)) + geom_point(aes(col=day, pch=sex), size=3)
+
+* 함수
+log(10) + 5 // 로그함수
+sqrt(25) // 제곱근
+max(5,3,2) // 가장큰 값
+min()
+abs(-10)
+factorial(5)
+sin(pi/2), cos(), tan()
+
+* 데이터타입
+숫자형 1, 2, 3, -4, 12.8
+문자형 'TOM', "JANE"
+논리형 TRUE, FALSE
+특수값 null, na(missing value), NaN, Inf, -Int
+
+* 벡터 // 1차원 배열 데이터 ex) 몸무게 30, 32, 38
+ 	  2차원 배열 데이터 x, y로 row와 col로 구성
+
+* w <- c(1,2,3,"a","b","C") // 전부다 문자열로 바뀜
+
+* v2 <- c(1,2,5, 50:90) // 1,2,5 찍고 50~90까지
+
+* v3 <- seq(1,101,3) // 1부터 3씩 더하면서 101번까지 찍고 seq해라
+
+* 반복문
+  v4 <- rep(1:5, times=3)
+  v5 <-  rep(c(1,5,9), times=3)
+
+* 2차원으로 바꾸기
+  score <- c(90,85,60)
+  names(score) <- c("A","B","C")
+
+* v1[10] // 벡터값의 10번째방
+
+* 배열 방으로 보는 방법
+d <- c(1,4,3,7,8)
+d[c(1,3,5)]
+d[1:3]
+d[seq(1,5,2)]
+d[-2]
+d[-c(3:5)]
+score
+
+* 벡터에 적용 가능한 함수 찾아보기
+
+* sort(d, decreasing = TRUE)
+
+## 리스트 : 서로 다른 자료형들의 값들을 1차원 배열에 저장하고 다룰 수 있다
+  my.info <- list(name='Tom','Jerry', age=60, status=TRUE, score=ds)
+  my.info[[5]]
+
+## 팩터 : 문자형 데이터가 저장된 벡터의 일종. 성별이나 혈액형, 선호 정당 등과 같이 저장할 문자값들이 fix되어있을때 팩터를 사용. 레벨이 있음
+** 팩터의 선언
+bt <- c('A','B','C','O','AB','A')  // 만약에 여기다 E를 넣으면 오류남.
+bt.new <-  factor(bt)
+** 팩터값 레벨 조회
+levels(bt.new)
+** 팩터값 조회
+bt.new
+
+## 매트릭스 : 2차원 데이터라고도 함.(1차원은 벡터) 키,몸무게,나이 등 여러 주제의 데이터. 벡터들의 모임이라 할 수 있다. *** 모든 셀의 데이터타입이 같다!
+* 행은 관측값(observation), 열은 변수(variable)라고 함
+
+* z <- matrix(1:20, nrow=4, ncol=5) // 1~20까지 열단위로 먼저 들어감.
+** z2 <- matrix(1:20, nrow=4, ncol=5, byrow=T) // 행단위로 먼저 들어감.
+
+* 이해할 것!
+x <-1:4
+y <- 5:8
+z <- matrix(1:20, nrow=4, ncol=5)
+
+m1 <- cbind(x,y)
+
+z[2,4] // 조회방법
+z[1:2,] // 1행과 2행만 다 나와라
+z[,c(1,4)] // 1열과 4열만 다 나와라
+
+* 매트릭스 이름 정하기
+rownames(z) <- c('a','b','c','d')
+colnames(z) <- c('e','f','g','h','i')
+m2 <- rbind(x,y)
+z['a','i']
+colnames(z)[3]
+
+## 데이터 프레임 : *** 자료형이 다른 컬럼으로 구성되어있다
+* 데이터 프레임 만드는 방법
+city <- c("seoul","tokyo","washington")
+rank <- c(1,3,2)
+city.info <- data.frame(city,rank)
+city.info
