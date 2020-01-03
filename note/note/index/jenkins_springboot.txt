@@ -1,0 +1,1376 @@
+Using username "ec2-user".
+Authenticating with public key "imported-openssh-key"
+Passphrase for key "imported-openssh-key":
+Last login: Mon Dec 23 04:40:46 2019 from 211.118.162.122
+[ec2-user@ip-172-31-39-243 ~]$ sudo su
+[root@ip-172-31-39-243 ec2-user]# ll
+total 8
+-rwxrwxr-x. 1 root root 139 Dec 23 05:27 param.sh
+-rwxrwxr-x. 1 root root  48 Dec 23 04:51 test.sh
+[root@ip-172-31-39-243 ec2-user]# /
+bash: /: Is a directory
+[root@ip-172-31-39-243 ec2-user]# cd /
+[root@ip-172-31-39-243 /]# ll
+total 2000016
+lrwxrwxrwx.  1 root root          7 Aug 12  2018 bin -> usr/bin
+dr-xr-xr-x.  6 root root       4096 Dec 18 07:08 boot
+drwxr-xr-x.  2 root root          6 Apr 26  2019 data
+drwxr-xr-x. 18 root root       2720 Dec 18 07:07 dev
+drwxr-xr-x. 86 root root       8192 Dec 19 06:15 etc
+drwxr-xr-x.  3 root root         24 Dec 18 07:30 gitrepo
+drwxr-xr-x.  4 root root         72 Dec 19 05:21 home
+lrwxrwxrwx.  1 root root          7 Aug 12  2018 lib -> usr/lib
+lrwxrwxrwx.  1 root root          9 Aug 12  2018 lib64 -> usr/lib64
+drwxr-xr-x.  2 root root          6 Aug 12  2018 media
+drwxr-xr-x.  2 root root          6 Aug 12  2018 mnt
+-rw-------.  1 root root 2048000000 Dec 18 07:17 newswap
+drwxr-xr-x.  2 root root          6 Aug 12  2018 opt
+dr-xr-xr-x. 98 root root          0 Dec 18 07:07 proc
+dr-xr-x---.  4 root root        197 Dec 20 00:47 root
+drwxr-xr-x. 23 root root        680 Dec 19 07:17 run
+lrwxrwxrwx.  1 root root          8 Aug 12  2018 sbin -> usr/sbin
+drwxr-xr-x.  2 root root          6 Aug 12  2018 srv
+dr-xr-xr-x. 13 root root          0 Dec 18 07:07 sys
+drwxr-xr-x.  3 root root         29 Dec 23 05:31 test
+drwxrwxrwt.  5 root root        134 Dec 31 05:35 tmp
+drwxr-xr-x. 12 root root        144 Apr 26  2019 usr
+drwxr-xr-x. 20 root root        278 Dec 18 07:07 var
+[root@ip-172-31-39-243 /]# cd jenkins
+bash: cd: jenkins: No such file or directory
+[root@ip-172-31-39-243 /]# ll
+total 2000016
+lrwxrwxrwx.  1 root root          7 Aug 12  2018 bin -> usr/bin
+dr-xr-xr-x.  6 root root       4096 Dec 18 07:08 boot
+drwxr-xr-x.  2 root root          6 Apr 26  2019 data
+drwxr-xr-x. 18 root root       2720 Dec 18 07:07 dev
+drwxr-xr-x. 86 root root       8192 Dec 19 06:15 etc
+drwxr-xr-x.  3 root root         24 Dec 18 07:30 gitrepo
+drwxr-xr-x.  4 root root         72 Dec 19 05:21 home
+lrwxrwxrwx.  1 root root          7 Aug 12  2018 lib -> usr/lib
+lrwxrwxrwx.  1 root root          9 Aug 12  2018 lib64 -> usr/lib64
+drwxr-xr-x.  2 root root          6 Aug 12  2018 media
+drwxr-xr-x.  2 root root          6 Aug 12  2018 mnt
+-rw-------.  1 root root 2048000000 Dec 18 07:17 newswap
+drwxr-xr-x.  2 root root          6 Aug 12  2018 opt
+dr-xr-xr-x. 98 root root          0 Dec 18 07:07 proc
+dr-xr-x---.  4 root root        197 Dec 20 00:47 root
+drwxr-xr-x. 23 root root        680 Dec 19 07:17 run
+lrwxrwxrwx.  1 root root          8 Aug 12  2018 sbin -> usr/sbin
+drwxr-xr-x.  2 root root          6 Aug 12  2018 srv
+dr-xr-xr-x. 13 root root          0 Dec 18 07:07 sys
+drwxr-xr-x.  3 root root         29 Dec 23 05:31 test
+drwxrwxrwt.  5 root root        134 Dec 31 05:35 tmp
+drwxr-xr-x. 12 root root        144 Apr 26  2019 usr
+drwxr-xr-x. 20 root root        278 Dec 18 07:07 var
+[root@ip-172-31-39-243 /]# cd var
+[root@ip-172-31-39-243 var]# cd lib
+[root@ip-172-31-39-243 lib]# cd jenkins
+[root@ip-172-31-39-243 jenkins]# ll
+total 108
+-rw-r--r--.  1 jenkins jenkins  477 Dec 19 06:22 com.cloudbees.hudson.plugins.fo                                                                                                                                                             lder.config.AbstractFolderConfiguration.xml
+-rw-r--r--.  1 jenkins jenkins  789 Dec 20 00:52 com.dabsquared.gitlabjenkins.co                                                                                                                                                             nnection.GitLabConnectionConfig.xml
+-rw-r--r--.  1 jenkins jenkins  366 Dec 20 00:52 com.dabsquared.gitlabjenkins.Gi                                                                                                                                                             tLabPushTrigger.xml
+-rw-r--r--.  1 jenkins jenkins 1642 Dec 20 00:52 config.xml
+-rw-r--r--.  1 jenkins jenkins 2269 Dec 20 00:35 credentials.xml
+drwxr-xr-x.  5 jenkins jenkins   36 Dec 20 03:37 fingerprints
+-rw-r--r--.  1 jenkins jenkins  156 Dec 20 00:52 hudson.model.UpdateCenter.xml
+drwxr-xr-x.  2 jenkins jenkins   33 Dec 19 06:39 hudson.plugins.deploy.DeployPub                                                                                                                                                             lisher.Migrator
+-rw-r--r--.  1 jenkins jenkins  375 Dec 19 06:26 hudson.plugins.git.GitTool.xml
+-rw-r--r--.  1 jenkins jenkins  173 Dec 19 06:26 hudson.plugins.gradle.Gradle.xm                                                                                                                                                             l
+-rw-r--r--.  1 jenkins jenkins  146 Dec 19 06:26 hudson.tasks.Ant.xml
+-rw-r--r--.  1 jenkins jenkins  330 Dec 19 06:26 hudson.tasks.Maven.xml
+-rw-------.  1 jenkins jenkins 1712 Dec 19 06:16 identity.key.enc
+-rw-r--r--.  1 jenkins jenkins    5 Dec 19 06:24 jenkins.install.InstallUtil.las                                                                                                                                                             tExecVersion
+-rw-r--r--.  1 jenkins jenkins    5 Dec 19 06:24 jenkins.install.UpgradeWizard.s                                                                                                                                                             tate
+-rw-r--r--.  1 jenkins jenkins  183 Dec 19 06:24 jenkins.model.JenkinsLocationCo                                                                                                                                                             nfiguration.xml
+-rw-r--r--.  1 jenkins jenkins  247 Dec 19 06:26 jenkins.mvn.GlobalMavenConfig.x                                                                                                                                                             ml
+-rw-r--r--.  1 jenkins jenkins  171 Dec 19 06:16 jenkins.telemetry.Correlator.xm                                                                                                                                                             l
+drwxr-xr-x.  3 jenkins jenkins   24 Dec 19 06:32 jobs
+drwxr-xr-x.  3 jenkins jenkins  109 Dec 19 06:49 logs
+-rw-r--r--.  1 jenkins jenkins  907 Dec 20 00:52 nodeMonitors.xml
+drwxr-xr-x.  2 jenkins jenkins    6 Dec 19 06:16 nodes
+-rw-r--r--.  1 jenkins jenkins  299 Dec 19 06:26 org.jenkinsci.plugins.docker.co                                                                                                                                                             mmons.tools.DockerTool.xml
+-rw-r--r--.  1 jenkins jenkins  255 Dec 19 06:26 org.jenkinsci.plugins.gitclient                                                                                                                                                             .JGitApacheTool.xml
+-rw-r--r--.  1 jenkins jenkins  243 Dec 19 06:26 org.jenkinsci.plugins.gitclient                                                                                                                                                             .JGitTool.xml
+drwxr-xr-x. 80 jenkins jenkins 8192 Dec 20 00:52 plugins
+-rw-r--r--.  1 jenkins jenkins  130 Dec 20 08:16 queue.xml
+-rw-r--r--.  1 jenkins jenkins  130 Dec 20 00:51 queue.xml.bak
+-rw-r--r--.  1 jenkins jenkins   64 Dec 19 06:16 secret.key
+-rw-r--r--.  1 jenkins jenkins    0 Dec 19 06:16 secret.key.not-so-secret
+drwx------.  4 jenkins jenkins 4096 Dec 19 06:45 secrets
+drwxr-xr-x.  2 jenkins jenkins  182 Dec 31 00:52 updates
+drwxr-xr-x.  2 jenkins jenkins   24 Dec 19 06:16 userContent
+drwxr-xr-x.  4 jenkins jenkins   97 Dec 19 06:49 users
+drwxr-xr-x.  2 jenkins jenkins    6 Dec 19 06:22 workflow-libs
+drwxr-xr-x.  4 jenkins jenkins   46 Dec 19 06:42 workspace
+[root@ip-172-31-39-243 jenkins]# cd sh
+bash: cd: sh: No such file or directory
+[root@ip-172-31-39-243 jenkins]# mkdir sh
+[root@ip-172-31-39-243 jenkins]# cd sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# ll
+total 4
+-rw-r--r--. 1 root root 966 Dec 31 07:31 proc.sh
+[root@ip-172-31-39-243 sh]# ll
+total 4
+-rw-r--r--. 1 root root 966 Dec 31 07:31 proc.sh
+[root@ip-172-31-39-243 sh]# chmod 775 proc.sh
+[root@ip-172-31-39-243 sh]# ll
+total 4
+-rwxrwxr-x. 1 root root 966 Dec 31 07:31 proc.sh
+[root@ip-172-31-39-243 sh]# ll
+total 4
+-rwxrwxr-x. 1 root root 966 Dec 31 07:31 proc.sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# free - m
+              total        used        free      shared  buff/cache   available
+Mem:         839608      682624       56336         680      100648       43632
+Swap:       1999996      331520     1668476
+[root@ip-172-31-39-243 sh]# ll
+total 4
+-rwxrwxr-x. 1 root root 965 Dec 31 07:52 proc.sh
+[root@ip-172-31-39-243 sh]# cd /
+[root@ip-172-31-39-243 /]# cd ~
+[root@ip-172-31-39-243 ~]# ps -ef | grep java
+root     18376 17738  0 08:11 pts/0    00:00:00 grep --color=auto java
+jenkins  25467     1  0 Dec19 ?        00:13:55 /etc/alternatives/java -Djava.aw                                                                                                                                                             t.headless=true -DJENKINS_HOME=/var/lib/jenkins -jar /usr/lib/jenkins/jenkins.wa                                                                                                                                                             r --logfile=/var/log/jenkins/jenkins.log --webroot=/var/cache/jenkins/war --http                                                                                                                                                             Port=8080 --debug=5 --handlerCountMax=100 --handlerCountMaxIdle=20
+root     27863     1  0 Dec20 ?        00:10:44 //bin/java -Djava.util.logging.c                                                                                                                                                             onfig.file=/home/tomcat8/conf/logging.properties -Djava.util.logging.manager=org                                                                                                                                                             .apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.prot                                                                                                                                                             ocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.securit                                                                                                                                                             y.SecurityListener.UMASK=0027 -Dignore.endorsed.dirs= -classpath /home/tomcat8/b                                                                                                                                                             in/bootstrap.jar:/home/tomcat8/bin/tomcat-juli.jar -Dcatalina.base=/home/tomcat8                                                                                                                                                              -Dcatalina.home=/home/tomcat8 -Djava.io.tmpdir=/home/tomcat8/temp org.apache.ca                                                                                                                                                             talina.startup.Bootstrap start
+[root@ip-172-31-39-243 ~]# cd /
+[root@ip-172-31-39-243 /]# ll
+total 2000016
+lrwxrwxrwx.  1 root root          7 Aug 12  2018 bin -> usr/bin
+dr-xr-xr-x.  6 root root       4096 Dec 18 07:08 boot
+drwxr-xr-x.  2 root root          6 Apr 26  2019 data
+drwxr-xr-x. 18 root root       2720 Dec 18 07:07 dev
+drwxr-xr-x. 86 root root       8192 Dec 19 06:15 etc
+drwxr-xr-x.  3 root root         24 Dec 18 07:30 gitrepo
+drwxr-xr-x.  4 root root         72 Dec 19 05:21 home
+lrwxrwxrwx.  1 root root          7 Aug 12  2018 lib -> usr/lib
+lrwxrwxrwx.  1 root root          9 Aug 12  2018 lib64 -> usr/lib64
+drwxr-xr-x.  2 root root          6 Aug 12  2018 media
+drwxr-xr-x.  2 root root          6 Aug 12  2018 mnt
+-rw-------.  1 root root 2048000000 Dec 18 07:17 newswap
+drwxr-xr-x.  2 root root          6 Aug 12  2018 opt
+dr-xr-xr-x. 98 root root          0 Dec 18 07:07 proc
+dr-xr-x---.  4 root root        197 Dec 20 00:47 root
+drwxr-xr-x. 23 root root        680 Dec 19 07:17 run
+lrwxrwxrwx.  1 root root          8 Aug 12  2018 sbin -> usr/sbin
+drwxr-xr-x.  2 root root          6 Aug 12  2018 srv
+dr-xr-xr-x. 13 root root          0 Dec 18 07:07 sys
+drwxr-xr-x.  3 root root         29 Dec 23 05:31 test
+drwxrwxrwt.  5 root root        156 Dec 31 08:10 tmp
+drwxr-xr-x. 12 root root        144 Apr 26  2019 usr
+drwxr-xr-x. 20 root root        278 Dec 18 07:07 var
+[root@ip-172-31-39-243 /]# ll
+total 2000016
+lrwxrwxrwx.  1 root root          7 Aug 12  2018 bin -> usr/bin
+dr-xr-xr-x.  6 root root       4096 Dec 18 07:08 boot
+drwxr-xr-x.  2 root root          6 Apr 26  2019 data
+drwxr-xr-x. 18 root root       2720 Dec 18 07:07 dev
+drwxr-xr-x. 86 root root       8192 Dec 19 06:15 etc
+drwxr-xr-x.  3 root root         24 Dec 18 07:30 gitrepo
+drwxr-xr-x.  4 root root         72 Dec 19 05:21 home
+lrwxrwxrwx.  1 root root          7 Aug 12  2018 lib -> usr/lib
+lrwxrwxrwx.  1 root root          9 Aug 12  2018 lib64 -> usr/lib64
+drwxr-xr-x.  2 root root          6 Aug 12  2018 media
+drwxr-xr-x.  2 root root          6 Aug 12  2018 mnt
+-rw-------.  1 root root 2048000000 Dec 18 07:17 newswap
+drwxr-xr-x.  2 root root          6 Aug 12  2018 opt
+dr-xr-xr-x. 98 root root          0 Dec 18 07:07 proc
+dr-xr-x---.  4 root root        197 Dec 20 00:47 root
+drwxr-xr-x. 23 root root        680 Dec 19 07:17 run
+lrwxrwxrwx.  1 root root          8 Aug 12  2018 sbin -> usr/sbin
+drwxr-xr-x.  2 root root          6 Aug 12  2018 srv
+dr-xr-xr-x. 13 root root          0 Dec 18 07:07 sys
+drwxr-xr-x.  3 root root         29 Dec 23 05:31 test
+drwxrwxrwt.  5 root root        156 Dec 31 08:10 tmp
+drwxr-xr-x. 12 root root        144 Apr 26  2019 usr
+drwxr-xr-x. 20 root root        278 Dec 18 07:07 var
+[root@ip-172-31-39-243 /]# cd bin
+[root@ip-172-31-39-243 bin]# ll
+total 66624
+-rwxr-xr-x. 1 root root   65936 Jan 11  2019 '['
+-rwxr-xr-x. 1 root root      29 Jan 14  2019  alias
+lrwxrwxrwx. 1 root root      30 Dec 18 07:14  appletviewer -> /etc/alternatives/                                                                                                                                                             appletviewer
+lrwxrwxrwx. 1 root root       6 Nov  7  2018  apropos -> whatis
+-rwxr-xr-x. 1 root root   46376 Jan 11  2019  arch
+-rwxr-xr-x. 1 root root   38640 May 27  2019  aserver
+-rwxr-xr-x. 1 root root   22160 Jan  9  2019  aulast
+-rwxr-xr-x. 1 root root   13904 Jan  9  2019  aulastlog
+-rwxr-xr-x. 1 root root   13392 Jan  9  2019  ausyscall
+-rwxr-xr-x. 1 root root   36040 Feb 25  2019  authselect
+-rwxr-xr-x. 1 root root   39336 Jan  9  2019  auvirt
+lrwxrwxrwx. 1 root root       4 Aug 12  2018  awk -> gawk
+-rwxr-xr-x. 1 root root   70992 Jan 11  2019  b2sum
+-rwxr-xr-x. 1 root root   51856 Jan 11  2019  base32
+-rwxr-xr-x. 1 root root   51848 Jan 11  2019  base64
+-rwxr-xr-x. 1 root root   47688 Jan 11  2019  basename
+-rwxr-xr-x. 1 root root 1219272 Jan 14  2019  bash
+lrwxrwxrwx. 1 root root      10 Jan 14  2019  bashbug -> bashbug-64
+-rwxr-xr-x. 1 root root    7331 Jan 14  2019  bashbug-64
+-rwxr-xr-x. 1 root root   51576 Aug 23  2018  bdftopcf
+-rwxr-xr-x. 1 root root      26 Jan 14  2019  bg
+-rwxr-xr-x. 1 root root   23285 Jan 11  2019  bond2team
+-rwxr-xr-x. 1 root root   57112 Apr  9  2019  bootctl
+-rwxr-xr-x. 1 root root  767288 Oct 10  2018  brotli
+-rwxr-xr-x. 1 root root    1478 Dec 13  2018  build-classpath
+-rwxr-xr-x. 1 root root     313 Dec 13  2018  build-classpath-directory
+-rwxr-xr-x. 1 root root    1507 Dec 13  2018  build-jar-repository
+-rwxr-xr-x. 1 root root   97664 Apr  9  2019  busctl
+-rwxr-xr-x. 1 root root   75664 Dec  6  2018  cairo-sphinx
+-rwxr-xr-x. 1 root root   71080 Dec 11  2018  cal
+-rwxr-xr-x. 1 root root    1644 Aug 13  2018  ca-legacy
+lrwxrwxrwx. 1 root root       3 Jan 16  2019  captoinfo -> tic
+-rwxr-xr-x. 1 root root   51856 Jan 11  2019  cat
+-rwxr-xr-x. 1 root root    3283 Apr  1  2019  catchsegv
+-rwxr-xr-x. 1 root root   43904 Nov  7  2018  catman
+-rwxr-xr-x. 1 root root      26 Jan 14  2019  cd
+-rwxr-xr-x. 1 root root   12352 Mar 13  2019  centrino-decode
+-rwxr-xr-x. 1 root root   17232 Aug 12  2018  chacl
+-rwsr-xr-x. 1 root root   90208 Dec 18  2018  chage
+-rwxr-xr-x. 1 root root     400 Aug 12  2018  chardetect
+-rwxr-xr-x. 1 root root   17528 Dec 17  2018  chattr
+-rwxr-xr-x. 1 root root   86864 Jan 11  2019  chcon
+-rwxr-xr-x. 1 root root    3264 Dec 13  2018  check-binary-files
+-rwxr-xr-x. 1 root root  432704 Dec 16  2018  checkmodule
+-rwxr-xr-x. 1 root root  496608 Dec 16  2018  checkpolicy
+-rwxr-xr-x. 1 root root    9064 Aug 24  2018  checksctp
+-rwxr-xr-x. 1 root root   81440 Jan 11  2019  chgrp
+-rwxr-xr-x. 1 root root   49208 Dec 11  2018  chmem
+-rwxr-xr-x. 1 root root   76904 Jan 11  2019  chmod
+-rwxr-xr-x. 1 root root   86000 Jan 11  2019  chown
+-rwxr-xr-x. 1 root root   95952 Aug 13  2018  chronyc
+-rwxr-xr-x. 1 root root   39896 Dec 11  2018  chrt
+-rwxr-xr-x. 1 root root   14272 Dec 10  2018  chvt
+-rwxr-xr-x. 1 root root   47248 Jan 11  2019  cksum
+-rwxr-xr-x. 1 root root   13156 Dec 13  2018  clean-binary-files
+-rwxr-xr-x. 1 root root   14288 Jan 16  2019  clear
+lrwxrwxrwx. 1 root root      24 Dec 18 07:14  clhsdb -> /etc/alternatives/clhsdb
+-rwxr-xr-x. 1 root root     406 Jan 23  2019  cloud-init
+-rwxr-xr-x. 1 root root    1781 Jan 23  2019  cloud-init-per
+-rwxr-xr-x. 1 root root   59152 Aug 13  2018  cmp
+-rwxr-xr-x. 1 root root   31144 Dec 11  2018  col
+-rwxr-xr-x. 1 root root   17952 Dec 11  2018  colcrt
+-rwxr-xr-x. 1 root root   26992 Dec 11  2018  colrm
+-rwxr-xr-x. 1 root root   53312 Dec 11  2018  column
+-rwxr-xr-x. 1 root root   54032 Jan 11  2019  comm
+-rwxr-xr-x. 1 root root      31 Jan 14  2019  command
+-rwxr-xr-x. 1 root root   13344 Nov 20  2018  consolehelper
+-rwxr-xr-x. 1 root root   51864 Apr  9  2019  coredumpctl
+-rwxr-xr-x. 1 root root  187392 Jan 11  2019  cp
+-rwxr-xr-x. 1 root root  180776 Aug 12  2018  cpio
+-rwxr-xr-x. 1 root root   67152 Mar 13  2019  cpupower
+-rwxr-xr-x. 1 root root    4595 Dec 13  2018  create-jar-links
+-rwxr-xr-x. 1 root root   54464 Oct  2  2018  cronnext
+-rwsr-xr-x. 1 root root   65832 Oct  2  2018  crontab
+-rwxr-xr-x. 1 root root   66048 Jan 11  2019  csplit
+-rwxr-xr-x. 1 root root   25560 Aug 12  2018  csslint-0.6
+-rwxr-xr-x. 1 root root  262224 Jan 11  2019  curl
+-rwxr-xr-x. 1 root root   61760 Jan 11  2019  cut
+-rwxr-xr-x. 1 root root  278448 Dec 11  2018  cvtsudoers
+-rwxr-xr-x. 1 root root  122072 Jan 11  2019  date
+-rwxr-xr-x. 1 root root   13880 Jan 29  2019  db_archive
+-rwxr-xr-x. 1 root root   18424 Jan 29  2019  db_checkpoint
+-rwxr-xr-x. 1 root root   18408 Jan 29  2019  db_deadlock
+-rwxr-xr-x. 1 root root   18440 Jan 29  2019  db_dump
+-rwxr-xr-x. 1 root root   83584 Jan 29  2019  db_dump185
+-rwxr-xr-x. 1 root root   22088 Jan 29  2019  db_hotbackup
+-rwxr-xr-x. 1 root root   30840 Jan 29  2019  db_load
+-rwxr-xr-x. 1 root root   18448 Jan 29  2019  db_log_verify
+-rwxr-xr-x. 1 root root   39496 Jan 29  2019  db_printlog
+-rwxr-xr-x. 1 root root   18016 Jan 29  2019  db_recover
+-rwxr-xr-x. 1 root root   18424 Jan 29  2019  db_replicate
+-rwxr-xr-x. 1 root root   18408 Jan 29  2019  db_stat
+-rwxr-xr-x. 1 root root   26248 Jan 29  2019  db_tuner
+-rwxr-xr-x. 1 root root   13880 Jan 29  2019  db_upgrade
+-rwxr-xr-x. 1 root root  112152 Aug 12  2018  dbus-binding-tool
+-rwxr-xr-x. 1 root root   17480 Oct 24  2018  dbus-cleanup-sockets
+-rwxr-xr-x. 1 root root  259464 Oct 24  2018  dbus-daemon
+-rwxr-xr-x. 1 root root   30720 Oct 24  2018  dbus-monitor
+-rwxr-xr-x. 1 root root   17440 Oct 24  2018  dbus-run-session
+-rwxr-xr-x. 1 root root   30680 Oct 24  2018  dbus-send
+-rwxr-xr-x. 1 root root   27064 Oct 24  2018  dbus-test-tool
+-rwxr-xr-x. 1 root root   17928 Oct 24  2018  dbus-update-activation-environment
+-rwxr-xr-x. 1 root root   13376 Oct 24  2018  dbus-uuidgen
+-rwxr-xr-x. 1 root root   18400 Jan 29  2019  db_verify
+-rwxr-xr-x. 1 root root   93440 Jan 11  2019  dd
+-rwxr-xr-x. 1 root root   14272 Dec 10  2018  deallocvt
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  debuginfo-install -> /usr/libexec/                                                                                                                                                             dnf-utils
+-rwxr-xr-x. 1 root root  114408 Jan 11  2019  df
+-rwxr-xr-x. 1 root root  176488 Aug 13  2018  diff
+-rwxr-xr-x. 1 root root   80488 Aug 13  2018  diff3
+-rwxr-xr-x. 1 root root    1238 Dec 13  2018  diff-jars
+-rwxr-xr-x. 1 root root  166448 Jan 11  2019  dir
+-rwxr-xr-x. 1 root root   60536 Jan 11  2019  dircolors
+-rwxr-xr-x. 1 root root  601712 Aug 12  2018  dirmngr
+-rwxr-xr-x. 1 root root  125192 Aug 12  2018  dirmngr-client
+-rwxr-xr-x. 1 root root   42720 Jan 11  2019  dirname
+-rwxr-xr-x. 1 root root   83640 Dec 11  2018  dmesg
+lrwxrwxrwx. 1 root root       5 Feb 14  2019  dnf -> dnf-3
+-rwxr-xr-x. 1 root root    1954 Feb 14  2019  dnf-3
+lrwxrwxrwx. 1 root root       8 Aug 12  2018  dnsdomainname -> hostname
+lrwxrwxrwx. 1 root root       8 Aug 12  2018  domainname -> hostname
+-rwxr-xr-x. 1 root root   70221 Jan 15  2019  dracut
+-rwxr-xr-x. 1 root root  129048 Jan 11  2019  du
+-rwxr-xr-x. 1 root root  179496 Dec 10  2018  dumpkeys
+-rwxr-xr-x. 1 root root     246 Oct 25  2018  easy_install-3.6
+-rwxr-xr-x. 1 root root   45936 Jan 11  2019  echo
+-rwxr-xr-x. 1 root root      28 Aug 12  2018  egrep
+-rwxr-xr-x. 1 root root   61752 Dec 11  2018  eject
+-rwxr-xr-x. 1 root root    2980 Aug 12  2018  encguess
+-rwxr-xr-x. 1 root root   50032 Jan 11  2019  env
+-rwxr-xr-x. 1 root root   48432 Aug 12  2018  envsubst
+-rwxr-xr-x. 1 root root  237728 Dec  5  2018  eqn
+-rwxr-xr-x. 1 root root   48208 Oct 29  2018  evmctl
+lrwxrwxrwx. 1 root root       2 Dec  6  2018  ex -> vi
+-rwxr-xr-x. 1 root root   51976 Jan 11  2019  expand
+-rwxr-xr-x. 1 root root   60568 Jan 11  2019  expr
+lrwxrwxrwx. 1 root root      26 Dec 18 07:14  extcheck -> /etc/alternatives/extc                                                                                                                                                             heck
+-rwxr-xr-x. 1 root root  101624 Jan 11  2019  factor
+-rwxr-xr-x. 1 root root   31096 Dec 11  2018  fallocate
+-rwxr-xr-x. 1 root root   41832 Jan 11  2019  false
+-rwxr-xr-x. 1 root root      26 Jan 14  2019  fc
+-rwxr-xr-x. 1 root root     132 Nov 30  2018  fc-cache
+-rwxr-xr-x. 1 root root   21600 Nov 30  2018  fc-cache-64
+-rwxr-xr-x. 1 root root   17512 Nov 30  2018  fc-cat
+-rwxr-xr-x. 1 root root   13384 Nov 30  2018  fc-conflist
+-rwxr-xr-x. 1 root root   13384 Nov 30  2018  fc-list
+-rwxr-xr-x. 1 root root   17480 Nov 30  2018  fc-match
+-rwxr-xr-x. 1 root root   13392 Nov 30  2018  fc-pattern
+-rwxr-xr-x. 1 root root   13376 Nov 30  2018  fc-query
+-rwxr-xr-x. 1 root root   13384 Nov 30  2018  fc-scan
+-rwxr-xr-x. 1 root root   17480 Nov 30  2018  fc-validate
+-rwxr-xr-x. 1 root root      26 Jan 14  2019  fg
+-rwxr-xr-x. 1 root root   14280 Dec 10  2018  fgconsole
+-rwxr-xr-x. 1 root root      28 Aug 12  2018  fgrep
+-rwxr-xr-x. 1 root root   26424 Nov  5  2018  file
+-rwxr-xr-x. 1 root root   35264 Dec 11  2018  fincore
+-rwxr-xr-x. 1 root root  261992 Nov  5  2018  find
+-rwxr-xr-x. 1 root root     696 Dec 13  2018  find-jar
+-rwxr-xr-x. 1 root root   70392 Dec 11  2018  findmnt
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  find-repos-of-install -> /usr/libe                                                                                                                                                             xec/dnf-utils
+-rwxr-xr-x. 1 root root   17984 Aug 12  2018  fipscheck
+-rwxr-xr-x. 1 root root     557 Dec 17  2018  fips-finish-install
+-rwxr-xr-x. 1 root root   17968 Aug 12  2018  fipshmac
+-rwxr-xr-x. 1 root root    2967 Dec 17  2018  fips-mode-setup
+-rwxr-xr-x. 1 root root   36208 Dec 11  2018  flock
+-rwxr-xr-x. 1 root root   55560 Jan 11  2019  fmt
+-rwxr-xr-x. 1 root root   51376 Jan 11  2019  fold
+-rwxr-xr-x. 1 root root   43848 Aug 23  2018  fonttosfnt
+-rwxr-xr-x. 1 root root   22496 Aug 12  2018  free
+-rwxr-xr-x. 1 root root   22208 Aug 12  2018  fribidi
+-rwxr-xr-x. 1 root root  231160 Aug 12  2018  g13
+-rwxr-xr-x. 1 root root   21648 Jan 14  2019  gapplication
+-rwxr-xr-x. 1 root root  695816 Aug 12  2018  gawk
+-rwxr-xr-x. 1 root root   23816 Sep 28  2018  gdbm_dump
+-rwxr-xr-x. 1 root root   28176 Sep 28  2018  gdbm_load
+-rwxr-xr-x. 1 root root  119768 Sep 28  2018  gdbmtool
+-rwxr-xr-x. 1 root root   50600 Jan 14  2019  gdbus
+-rwxr-xr-x. 1 root root   22184 Sep  4 14:23  gdk-pixbuf-query-loaders-64
+-rwxr-xr-x. 1 root root   28272 Sep  4 14:23  gdk-pixbuf-thumbnailer
+-rwxr-xr-x. 1 root root   32152 Apr  1  2019  gencat
+-rwxr-xr-x. 1 root root   13304 Aug 12  2018  genl-ctrl-list
+lrwxrwxrwx. 1 root root       3 Dec  5  2018  geqn -> eqn
+-rwxr-xr-x. 1 root root   37536 Apr  1  2019  getconf
+-rwxr-xr-x. 1 root root   43648 Apr  1  2019  getent
+-rwxr-xr-x. 1 root root   27992 Aug 12  2018  getfacl
+-rwxr-xr-x. 1 root root   14280 Dec 10  2018  getkeycodes
+-rwxr-xr-x. 1 root root   22096 Dec 11  2018  getopt
+-rwxr-xr-x. 1 root root      31 Jan 14  2019  getopts
+-rwxr-xr-x. 1 root root   48408 Aug 12  2018  gettext
+-rwxr-xr-x. 1 root root    4629 Aug 12  2018  gettext.sh
+-rwxr-xr-x. 1 root root   94640 Jan 14  2019  gio
+-rwxr-xr-x. 1 root root   17920 Jan 14  2019  gio-querymodules-64
+-rwxr-xr-x. 1 root root 3098552 Jun 12  2019  git
+lrwxrwxrwx. 1 root root       3 Jun 12  2019  git-receive-pack -> git
+-rwxr-xr-x. 1 root root 1716944 Jun 12  2019  git-shell
+lrwxrwxrwx. 1 root root       3 Jun 12  2019  git-upload-archive -> git
+lrwxrwxrwx. 1 root root       3 Jun 12  2019  git-upload-pack -> git
+-rwxr-xr-x. 1 root root   51104 Jan 14  2019  glib-compile-schemas
+lrwxrwxrwx. 1 root root       4 Dec  5  2018  gneqn -> neqn
+lrwxrwxrwx. 1 root root       5 Dec  5  2018  gnroff -> nroff
+-rwsr-xr-x. 1 root root   98536 Dec 18  2018  gpasswd
+-rwxr-xr-x. 1 root root 1105696 Aug 12  2018  gpg
+lrwxrwxrwx. 1 root root       3 Aug 12  2018  gpg2 -> gpg
+-rwxr-xr-x. 1 root root  437600 Aug 12  2018  gpg-agent
+-rwxr-xr-x. 1 root root  182320 Aug 12  2018  gpgconf
+-rwxr-xr-x. 1 root root  177296 Aug 12  2018  gpg-connect-agent
+-rwxr-xr-x. 1 root root   34560 Aug 12  2018  gpg-error
+-rwxr-xr-x. 1 root root   30136 Aug 12  2018  gpgparsemail
+-rwxr-xr-x. 1 root root  543144 Aug 12  2018  gpgsm
+-rwxr-xr-x. 1 root root   93440 Aug 12  2018  gpgsplit
+-rwxr-xr-x. 1 root root  478664 Aug 12  2018  gpgv
+lrwxrwxrwx. 1 root root       4 Aug 12  2018  gpgv2 -> gpgv
+-rwxr-xr-x. 1 root root    3447 Aug 12  2018  gpg-zip
+lrwxrwxrwx. 1 root root       3 Dec  5  2018  gpic -> pic
+-rwxr-xr-x. 1 root root   16864 Mar 13  2019  gpio-event-mon
+-rwxr-xr-x. 1 root root   16864 Mar 13  2019  gpio-hammer
+-rwxr-xr-x. 1 root root   30424 Sep  5  2018  gr2fonttest
+-rwxr-xr-x. 1 root root  193768 Aug 12  2018  grep
+-rwxr-xr-x. 1 root root  127920 Dec  5  2018  groff
+-rwxr-xr-x. 1 root root  195728 Dec  5  2018  grops
+-rwxr-xr-x. 1 root root  145304 Dec  5  2018  grotty
+-rwxr-xr-x. 1 root root   47672 Jan 11  2019  groups
+-rwxr-xr-x. 1 root root   21428 Aug 12  2018  growpart
+-rwxr-xr-x. 1 root root  440944 Dec 19  2018  grub2-editenv
+-rwxr-xr-x. 1 root root  895640 Dec 19  2018  grub2-file
+-rwxr-xr-x. 1 root root 1123232 Dec 19  2018  grub2-fstest
+-rwxr-xr-x. 1 root root  276328 Dec 19  2018  grub2-glue-efi
+-rwxr-xr-x. 1 root root    1668 Dec 19  2018  grub2-kbdcomp
+-rwxr-xr-x. 1 root root  254816 Dec 19  2018  grub2-menulst2cfg
+-rwxr-xr-x. 1 root root  305744 Dec 19  2018  grub2-mkfont
+-rwxr-xr-x. 1 root root  423592 Dec 19  2018  grub2-mkimage
+-rwxr-xr-x. 1 root root  278424 Dec 19  2018  grub2-mklayout
+-rwxr-xr-x. 1 root root  475496 Dec 19  2018  grub2-mknetdir
+-rwxr-xr-x. 1 root root  284984 Dec 19  2018  grub2-mkpasswd-pbkdf2
+-rwxr-xr-x. 1 root root  276120 Dec 19  2018  grub2-mkrelpath
+-rwxr-xr-x. 1 root root 1103048 Dec 19  2018  grub2-mkrescue
+-rwxr-xr-x. 1 root root  578352 Dec 19  2018  grub2-mkstandalone
+-rwxr-xr-x. 1 root root  309632 Dec 19  2018  grub2-script-check
+-rwxr-xr-x. 1 root root  831440 Dec 19  2018  grub2-syslinux2cfg
+-rwxr-xr-x. 1 root root   30024 Jan 14  2019  gsettings
+lrwxrwxrwx. 1 root root       6 Dec  5  2018  gsoelim -> soelim
+lrwxrwxrwx. 1 root root       3 Aug 12  2018  gtar -> tar
+lrwxrwxrwx. 1 root root       3 Dec  5  2018  gtbl -> tbl
+-rwxr-xr-x. 1 root root   17520 Dec 10  2018  gtk-query-immodules-2.0-64
+-rwxr-xr-x. 1 root root   40184 Aug 15 13:19  gtk-update-icon-cache
+lrwxrwxrwx. 1 root root       5 Dec  5  2018  gtroff -> troff
+-rwxr-xr-x. 1 root root    2345 Aug 12  2018  gunzip
+-rwxr-xr-x. 1 root root    6375 Aug 12  2018  gzexe
+-rwxr-xr-x. 1 root root  108800 Aug 12  2018  gzip
+-rwxr-xr-x. 1 root root      28 Jan 14  2019  hash
+-rwxr-xr-x. 1 root root   56816 Jan 11  2019  head
+-rwxr-xr-x. 1 root root   62336 Dec 11  2018  hexdump
+-rwxr-xr-x. 1 root root   42272 Jan 11  2019  hostid
+-rwxr-xr-x. 1 root root   21408 Aug 12  2018  hostname
+-rwxr-xr-x. 1 root root   26080 Apr  9  2019  hostnamectl
+lrwxrwxrwx. 1 root root      22 Dec 18 07:14  hsdb -> /etc/alternatives/hsdb
+lrwxrwxrwx. 1 root root       7 Dec 11  2018  i386 -> setarch
+-rwxr-xr-x. 1 root root   80760 Apr  1  2019  iconv
+-rwxr-xr-x. 1 root root   56752 Jan 11  2019  id
+-rwxr-xr-x. 1 root root   13352 Aug 12  2018  idiag-socket-details
+lrwxrwxrwx. 1 root root      22 Dec 18 07:14  idlj -> /etc/alternatives/idlj
+-rwxr-xr-x. 1 root root   25072 Mar 13  2019  iio_event_monitor
+-rwxr-xr-x. 1 root root   29168 Mar 13  2019  iio_generic_buffer
+-rwxr-xr-x. 1 root root  271352 Oct  9  2018  info
+-rwxr-xr-x. 1 root root   63528 Jan 16  2019  infocmp
+lrwxrwxrwx. 1 root root       3 Jan 16  2019  infotocap -> tic
+-rwxr-xr-x. 1 root root     434 Dec 11  2018  insights-client
+-rwxr-xr-x. 1 root root     442 Dec 11  2018  insights-client-run
+-rwxr-xr-x. 1 root root  200024 Jan 11  2019  install
+-rwxr-xr-x. 1 root root   31112 Dec 11  2018  ionice
+-rwxr-xr-x. 1 root root   47864 Aug 12  2018  ipcalc
+-rwxr-xr-x. 1 root root   31656 Dec 11  2018  ipcmk
+-rwxr-xr-x. 1 root root   31136 Dec 11  2018  ipcrm
+-rwxr-xr-x. 1 root root   57280 Dec 11  2018  ipcs
+-rwxr-xr-x. 1 root root   26992 Dec 11  2018  isosize
+lrwxrwxrwx. 1 root root      21 Dec 18 07:14  jar -> /etc/alternatives/jar
+lrwxrwxrwx. 1 root root      27 Dec 18 07:14  jarsigner -> /etc/alternatives/jar                                                                                                                                                             signer
+lrwxrwxrwx. 1 root root      22 Dec 18 07:14  java -> /etc/alternatives/java
+lrwxrwxrwx. 1 root root      23 Dec 18 07:14  javac -> /etc/alternatives/javac
+lrwxrwxrwx. 1 root root      25 Dec 18 07:14  javadoc -> /etc/alternatives/javad                                                                                                                                                             oc
+lrwxrwxrwx. 1 root root      23 Dec 18 07:14  javah -> /etc/alternatives/javah
+lrwxrwxrwx. 1 root root      23 Dec 18 07:14  javap -> /etc/alternatives/javap
+lrwxrwxrwx. 1 root root      22 Dec 18 07:14  jcmd -> /etc/alternatives/jcmd
+lrwxrwxrwx. 1 root root      26 Dec 18 07:14  jconsole -> /etc/alternatives/jcon                                                                                                                                                             sole
+lrwxrwxrwx. 1 root root      21 Dec 18 07:14  jdb -> /etc/alternatives/jdb
+lrwxrwxrwx. 1 root root      23 Dec 18 07:14  jdeps -> /etc/alternatives/jdeps
+lrwxrwxrwx. 1 root root      22 Dec 18 07:14  jhat -> /etc/alternatives/jhat
+lrwxrwxrwx. 1 root root      23 Dec 18 07:14  jinfo -> /etc/alternatives/jinfo
+lrwxrwxrwx. 1 root root      21 Dec 18 07:14  jjs -> /etc/alternatives/jjs
+lrwxrwxrwx. 1 root root      22 Dec 18 07:14  jmap -> /etc/alternatives/jmap
+-rwxr-xr-x. 1 root root      28 Jan 14  2019  jobs
+-rwxr-xr-x. 1 root root   66056 Jan 11  2019  join
+-rwxr-xr-x. 1 root root   85272 Apr  9  2019  journalctl
+lrwxrwxrwx. 1 root root      21 Dec 18 07:14  jps -> /etc/alternatives/jps
+lrwxrwxrwx. 1 root root      28 Dec 18 07:14  jrunscript -> /etc/alternatives/jr                                                                                                                                                             unscript
+lrwxrwxrwx. 1 root root      27 Dec 18 07:14  jsadebugd -> /etc/alternatives/jsa                                                                                                                                                             debugd
+lrwxrwxrwx. 1 root root      14 Aug 12  2018  jsondiff -> ./jsondiff-3.6
+lrwxrwxrwx. 1 root root      14 Aug 12  2018  jsondiff-3 -> ./jsondiff-3.6
+-rwxr-xr-x. 1 root root    1033 Aug 12  2018  jsondiff-3.6
+lrwxrwxrwx. 1 root root      15 Aug 12  2018  jsonpatch -> ./jsonpatch-3.6
+lrwxrwxrwx. 1 root root      15 Aug 12  2018  jsonpatch-3 -> ./jsonpatch-3.6
+-rwxr-xr-x. 1 root root    3676 Aug 12  2018  jsonpatch-3.6
+lrwxrwxrwx. 1 root root      17 Aug 12  2018  jsonpointer -> ./jsonpointer-3.6
+lrwxrwxrwx. 1 root root      17 Aug 12  2018  jsonpointer-3 -> ./jsonpointer-3.6
+-rwxr-xr-x. 1 root root    1356 Aug 12  2018  jsonpointer-3.6
+-rwxr-xr-x. 1 root root     409 Aug 12  2018  jsonschema-3
+lrwxrwxrwx. 1 root root      24 Dec 18 07:14  jstack -> /etc/alternatives/jstack
+lrwxrwxrwx. 1 root root      23 Dec 18 07:14  jstat -> /etc/alternatives/jstat
+lrwxrwxrwx. 1 root root      24 Dec 18 07:14  jstatd -> /etc/alternatives/jstatd
+-rwxr-xr-x. 1 root root   18392 Dec 10  2018  kbdinfo
+-rwxr-xr-x. 1 root root   14280 Dec 10  2018  kbd_mode
+-rwxr-xr-x. 1 root root   17936 Dec 10  2018  kbdrate
+-rwxr-xr-x. 1 root root  178856 Aug 12  2018  kbxutil
+-rwxr-xr-x. 1 root root   26267 Feb 22  2019  kdumpctl
+-rwxr-xr-x. 1 root root    4511 Jun 22  2018  kernel-install
+lrwxrwxrwx. 1 root root      25 Dec 18 07:14  keytool -> /etc/alternatives/keyto                                                                                                                                                             ol
+-rwxr-xr-x. 1 root root   40832 Dec 11  2018  kill
+-rwxr-xr-x. 1 root root  332304 Apr  3  2019  kmod
+-rwxr-xr-x. 1 root root   57974 Mar 13  2019  kvm_stat
+-rwxr-xr-x. 1 root root   52640 Dec 11  2018  last
+lrwxrwxrwx. 1 root root       4 Dec 11  2018  lastb -> last
+-rwxr-xr-x. 1 root root   23848 Dec 18  2018  lastlog
+-rwxr-xr-x. 1 root root   22008 Nov 30  2018  lchfn
+-rwxr-xr-x. 1 root root   17920 Nov 30  2018  lchsh
+-rwxr-xr-x. 1 root root    5441 Apr  1  2019  ldd
+-rwxr-xr-x. 1 root root  189064 Aug 12  2018  less
+-rwxr-xr-x. 1 root root   13504 Aug 12  2018  lessecho
+-rwxr-xr-x. 1 root root   23328 Aug 12  2018  lesskey
+-rwxr-xr-x. 1 root root    3143 Aug 12  2018  lesspipe.sh
+-rwxr-xr-x. 1 root root   99936 Nov  7  2018  lexgrog
+-rwxr-xr-x. 1 root root   42272 Jan 11  2019  link
+lrwxrwxrwx. 1 root root       7 Dec 11  2018  linux32 -> setarch
+lrwxrwxrwx. 1 root root       7 Dec 11  2018  linux64 -> setarch
+-rwxr-xr-x. 1 root root    5993 Aug 12  2018  linux-boot-prober
+-rwxr-xr-x. 1 root root   92904 Jan 11  2019  ln
+-rwxr-xr-x. 1 root root  222384 Dec 10  2018  loadkeys
+-rwxr-xr-x. 1 root root   33192 Dec 10  2018  loadunimap
+-rwxr-xr-x. 1 root root   67560 Apr  1  2019  locale
+-rwxr-xr-x. 1 root root   34880 Apr  9  2019  localectl
+-rwxr-xr-x. 1 root root  351160 Apr  1  2019  localedef
+-rwxr-xr-x. 1 root root   53024 Dec 11  2018  logger
+-rwxr-xr-x. 1 root root   44616 Dec 11  2018  login
+-rwxr-xr-x. 1 root root   76656 Apr  9  2019  loginctl
+-rwxr-xr-x. 1 root root   42272 Jan 11  2019  logname
+-rwxr-xr-x. 1 root root   17920 Dec 11  2018  look
+-rwxr-xr-x. 1 root root  166448 Jan 11  2019  ls
+-rwxr-xr-x. 1 root root   13432 Dec 17  2018  lsattr
+-rwxr-xr-x. 1 root root   91656 Dec 11  2018  lsblk
+-rwxr-xr-x. 1 root root   82544 Dec 11  2018  lscpu
+-rwxr-xr-x. 1 root root   16968 Mar 13  2019  lsgpio
+-rwxr-xr-x. 1 root root   20976 Mar 13  2019  lsiio
+-rwxr-xr-x. 1 root root    8232 Jan 15  2019  lsinitrd
+-rwxr-xr-x. 1 root root   78976 Dec 11  2018  lsipc
+-rwxr-xr-x. 1 root root   40240 Dec 11  2018  lslocks
+-rwxr-xr-x. 1 root root   69800 Dec 11  2018  lslogins
+-rwxr-xr-x. 1 root root   48648 Dec 11  2018  lsmem
+-rwxr-xr-x. 1 root root   52720 Dec 11  2018  lsns
+-rwxr-xr-x. 1 root root   88568 Aug 12  2018  lsscsi
+-rwxr-xr-x. 1 root root   21448 Aug 12  2018  lua
+-rwxr-xr-x. 1 root root  164008 Aug 12  2018  luac
+-rwxr-xr-x. 1 root root   33984 Apr  1  2019  makedb
+-rwxr-xr-x. 1 root root     610 Dec 14  2018  make-dummy-cert
+-rwxr-xr-x. 1 root root  119512 Nov  7  2018  man
+-rwxr-xr-x. 1 root root  143432 Nov  7  2018  mandb
+-rwxr-xr-x. 1 root root   35696 Nov  7  2018  manpath
+-rwxr-xr-x. 1 root root   28088 Dec 10  2018  mapscrn
+-rwxr-xr-x. 1 root root   36240 Dec 11  2018  mcookie
+-rwxr-xr-x. 1 root root   56440 Jan 11  2019  md5sum
+-rwxr-xr-x. 1 root root   13808 Dec 11  2018  mesg
+lrwxrwxrwx. 1 root root      22 Aug 12  2018  miniterm-3.6.py -> /usr/bin/minite                                                                                                                                                             rm.py-3
+-rwxr-xr-x. 1 root root   33887 Aug 12  2018  miniterm-3.py
+-rwxr-xr-x. 1 root root  106256 Jan 11  2019  mkdir
+-rwxr-xr-x. 1 root root   85440 Jan 11  2019  mkfifo
+-rwxr-xr-x. 1 root root      65 Aug 23  2018  mkfontdir
+-rwxr-xr-x. 1 root root   44408 Aug 23  2018  mkfontscale
+-rwxr-xr-x. 1 root root    6585 Jan 15  2019  mkinitrd
+-rwxr-xr-x. 1 root root   89968 Jan 11  2019  mknod
+-rwxr-xr-x. 1 root root   58664 Jan 11  2019  mktemp
+-rwxr-xr-x. 1 root root   17904 Jan 27  2019  modulemd-validator-v1
+-rwxr-xr-x. 1 root root   47080 Dec 11  2018  more
+-rwsr-xr-x. 1 root root   52576 Dec 11  2018  mount
+-rwxr-xr-x. 1 root root   17944 Dec 11  2018  mountpoint
+-rwxr-xr-x. 1 root root   25880 Aug 12  2018  msgattrib
+-rwxr-xr-x. 1 root root   25848 Aug 12  2018  msgcat
+-rwxr-xr-x. 1 root root   26336 Aug 12  2018  msgcmp
+-rwxr-xr-x. 1 root root   25848 Aug 12  2018  msgcomm
+-rwxr-xr-x. 1 root root   21752 Aug 12  2018  msgconv
+-rwxr-xr-x. 1 root root   21752 Aug 12  2018  msgen
+-rwxr-xr-x. 1 root root   21760 Aug 12  2018  msgexec
+-rwxr-xr-x. 1 root root   34880 Aug 12  2018  msgfilter
+-rwxr-xr-x. 1 root root   91384 Aug 12  2018  msgfmt
+-rwxr-xr-x. 1 root root   44000 Aug 12  2018  msggrep
+-rwxr-xr-x. 1 root root   68824 Aug 12  2018  msginit
+-rwxr-xr-x. 1 root root   72632 Aug 12  2018  msgmerge
+-rwxr-xr-x. 1 root root   35920 Aug 12  2018  msgunfmt
+-rwxr-xr-x. 1 root root   25856 Aug 12  2018  msguniq
+-rwxr-xr-x. 1 root root  184528 Jan 11  2019  mv
+lrwxrwxrwx. 1 root root      21 Dec 18 07:29  mvn -> /etc/alternatives/mvn
+lrwxrwxrwx. 1 root root      26 Dec 18 07:29  mvnDebug -> /etc/alternatives/mvnD                                                                                                                                                             ebug
+-rwxr-xr-x. 1 root root   35712 Dec 11  2018  namei
+lrwxrwxrwx. 1 root root      30 Dec 18 07:14  native2ascii -> /etc/alternatives/                                                                                                                                                             native2ascii
+-rwxr-xr-x. 1 root root   25736 Sep 28  2018  ndptool
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  needs-restarting -> /usr/libexec/d                                                                                                                                                             nf-utils
+-rwxr-xr-x. 1 root root     908 Dec  5  2018  neqn
+-rwxr-xr-x. 1 root root  180280 Sep 26  2018  netstat
+-rwxr-xr-x. 1 root root   51552 Dec 18  2018  newgidmap
+-rwsr-xr-x. 1 root root   52864 Dec 18  2018  newgrp
+-rwxr-xr-x. 1 root root   47432 Dec 18  2018  newuidmap
+-rwxr-xr-x. 1 root root   17824 Aug 12  2018  nf-ct-add
+-rwxr-xr-x. 1 root root   17848 Aug 12  2018  nf-ct-list
+-rwxr-xr-x. 1 root root   18240 Aug 12  2018  nf-exp-add
+-rwxr-xr-x. 1 root root   18016 Aug 12  2018  nf-exp-delete
+-rwxr-xr-x. 1 root root   17856 Aug 12  2018  nf-exp-list
+-rwxr-xr-x. 1 root root   13144 Aug 12  2018  nf-log
+-rwxr-xr-x. 1 root root   13144 Aug 12  2018  nf-monitor
+-rwxr-xr-x. 1 root root   17232 Aug 12  2018  nf-queue
+-rwxr-xr-x. 1 root root   48392 Aug 12  2018  ngettext
+-rwxr-xr-x. 1 root root   46360 Jan 11  2019  nice
+lrwxrwxrwx. 1 root root       8 Aug 12  2018  nisdomainname -> hostname
+-rwxr-xr-x. 1 root root   56048 Jan 11  2019  nl
+-rwxr-xr-x. 1 root root   13608 Aug 12  2018  nl-addr-add
+-rwxr-xr-x. 1 root root   17744 Aug 12  2018  nl-addr-delete
+-rwxr-xr-x. 1 root root   17768 Aug 12  2018  nl-addr-list
+-rwxr-xr-x. 1 root root   17680 Aug 12  2018  nl-class-add
+-rwxr-xr-x. 1 root root   13488 Aug 12  2018  nl-class-delete
+-rwxr-xr-x. 1 root root   13328 Aug 12  2018  nl-classid-lookup
+-rwxr-xr-x. 1 root root   13448 Aug 12  2018  nl-class-list
+-rwxr-xr-x. 1 root root   17744 Aug 12  2018  nl-cls-add
+-rwxr-xr-x. 1 root root   17664 Aug 12  2018  nl-cls-delete
+-rwxr-xr-x. 1 root root   13512 Aug 12  2018  nl-cls-list
+-rwxr-xr-x. 1 root root   13352 Aug 12  2018  nl-fib-lookup
+-rwxr-xr-x. 1 root root   13112 Aug 12  2018  nl-link-enslave
+-rwxr-xr-x. 1 root root   13112 Aug 12  2018  nl-link-ifindex2name
+-rwxr-xr-x. 1 root root   13512 Aug 12  2018  nl-link-list
+-rwxr-xr-x. 1 root root   13112 Aug 12  2018  nl-link-name2ifindex
+-rwxr-xr-x. 1 root root   13112 Aug 12  2018  nl-link-release
+-rwxr-xr-x. 1 root root   13576 Aug 12  2018  nl-link-set
+-rwxr-xr-x. 1 root root   13360 Aug 12  2018  nl-link-stats
+-rwxr-xr-x. 1 root root   13128 Aug 12  2018  nl-list-caches
+-rwxr-xr-x. 1 root root   13112 Aug 12  2018  nl-list-sockets
+-rwxr-xr-x. 1 root root   13248 Aug 12  2018  nl-monitor
+-rwxr-xr-x. 1 root root   13488 Aug 12  2018  nl-neigh-add
+-rwxr-xr-x. 1 root root   13528 Aug 12  2018  nl-neigh-delete
+-rwxr-xr-x. 1 root root   13440 Aug 12  2018  nl-neigh-list
+-rwxr-xr-x. 1 root root   13264 Aug 12  2018  nl-neightbl-list
+-rwxr-xr-x. 1 root root   13360 Aug 12  2018  nl-pktloc-lookup
+-rwxr-xr-x. 1 root root   13520 Aug 12  2018  nl-qdisc-add
+-rwxr-xr-x. 1 root root   13496 Aug 12  2018  nl-qdisc-delete
+-rwxr-xr-x. 1 root root   17616 Aug 12  2018  nl-qdisc-list
+-rwxr-xr-x. 1 root root   17768 Aug 12  2018  nl-route-add
+-rwxr-xr-x. 1 root root   17840 Aug 12  2018  nl-route-delete
+-rwxr-xr-x. 1 root root   13128 Aug 12  2018  nl-route-get
+-rwxr-xr-x. 1 root root   17792 Aug 12  2018  nl-route-list
+-rwxr-xr-x. 1 root root   13304 Aug 12  2018  nl-rule-list
+-rwxr-xr-x. 1 root root   13432 Aug 12  2018  nl-tctree-list
+-rwxr-xr-x. 1 root root   13104 Aug 12  2018  nl-util-addr
+-rwxr-xr-x. 1 root root 1265880 Feb  8  2019  nmcli
+-rwxr-xr-x. 1 root root   21360 Feb  8  2019  nm-online
+-rwxr-xr-x. 1 root root  722608 Feb  8  2019  nmtui
+lrwxrwxrwx. 1 root root       5 Feb  8  2019  nmtui-connect -> nmtui
+lrwxrwxrwx. 1 root root       5 Feb  8  2019  nmtui-edit -> nmtui
+lrwxrwxrwx. 1 root root       5 Feb  8  2019  nmtui-hostname -> nmtui
+-rwxr-xr-x. 1 root root   48552 Jan 11  2019  nohup
+-rwxr-xr-x. 1 root root   47280 Jan 11  2019  nproc
+-rwxr-xr-x. 1 root root    3312 Dec  5  2018  nroff
+-rwxr-xr-x. 1 root root   35904 Dec 11  2018  nsenter
+-rwxr-xr-x. 1 root root   77456 Jan 11  2019  numfmt
+-rwxr-xr-x. 1 root root   88760 Jan 11  2019  od
+lrwxrwxrwx. 1 root root       6 Dec 10  2018  open -> openvt
+-rwxr-xr-x. 1 root root  777520 Dec 14  2018  openssl
+-rwxr-xr-x. 1 root root   23328 Dec 10  2018  openvt
+lrwxrwxrwx. 1 root root      22 Dec 18 07:14  orbd -> /etc/alternatives/orbd
+-rwxr-xr-x. 1 root root    5915 Aug 12  2018  os-prober
+-rwxr-xr-x. 1 root root   41984 Mar 29  2019  p11-kit
+lrwxrwxrwx. 1 root root      25 Dec 18 07:14  pack200 -> /etc/alternatives/pack2                                                                                                                                                             00
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  package-cleanup -> /usr/libexec/dn                                                                                                                                                             f-utils
+-rwxr-xr-x. 1 root root   17896 Aug 20 07:54  pango-list
+-rwxr-xr-x. 1 root root   81944 Aug 20 07:54  pango-view
+-rwsr-xr-x. 1 root root   34512 Aug 12  2018  passwd
+-rwxr-xr-x. 1 root root   46400 Jan 11  2019  paste
+-rwxr-xr-x. 1 root root   46360 Jan 11  2019  pathchk
+-rwxr-xr-x. 1 root root    4634 Aug 12  2018  pchrt
+-rwxr-xr-x. 2 root root   14328 Dec  6  2018  perl
+-rwxr-xr-x. 2 root root   14328 Dec  6  2018  perl5.26.3
+-rwxr-xr-x. 1 root root     118 Aug 12  2018  perldoc
+-rwxr-xr-x. 1 root root    2183 Jan 29  2019  pflags
+-rwxr-xr-x. 1 root root   30736 Aug 12  2018  pgrep
+-rwxr-xr-x. 1 root root  300896 Dec  5  2018  pic
+-rwxr-xr-x. 1 root root    8271 Aug 12  2018  piconv
+-rwxr-xr-x. 1 root root   17960 Aug 12  2018  pidof
+-rwxr-xr-x. 2 root root  126224 Aug 12  2018  pigz
+-rwxr-xr-x. 1 root root    2404 Aug 12  2018  pinentry
+-rwxr-xr-x. 1 root root   78864 Aug 12  2018  pinentry-curses
+-rwxr-xr-x. 1 root root   68744 Aug 12  2018  ping
+-rwxr-xr-x. 1 root root   51400 Jan 11  2019  pinky
+-rwxr-xr-x. 1 root root   17504 Jan 22  2019  pkaction
+-rwxr-xr-x. 1 root root   25712 Jan 22  2019  pkcheck
+-rwsr-xr-x. 1 root root   29816 Jan 22  2019  pkexec
+-rwxr-xr-x. 1 root root   40576 Aug 12  2018  pkgconf
+lrwxrwxrwx. 1 root root       7 Aug 12  2018  pkg-config -> pkgconf
+-rwxr-xr-x. 1 root root   30736 Aug 12  2018  pkill
+-rwxr-xr-x. 1 root root   26016 Aug 12  2018  pkla-admin-identities
+-rwxr-xr-x. 1 root root   34272 Aug 12  2018  pkla-check-authorization
+-rwxr-xr-x. 1 root root   17464 Jan 22  2019  pkttyagent
+-rwxr-xr-x. 1 root root   27504 Apr  1  2019  pldd
+-rwxr-xr-x. 1 root root   34448 Aug 12  2018  pmap
+-rwxr-xr-x. 1 root root   15034 Aug 12  2018  pod2man
+-rwxr-xr-x. 1 root root   10803 Aug 12  2018  pod2text
+-rwxr-xr-x. 1 root root    3948 Aug 12  2018  pod2usage
+lrwxrwxrwx. 1 root root      28 Dec 18 07:14  policytool -> /etc/alternatives/po                                                                                                                                                             licytool
+-rwxr-xr-x. 1 root root  244456 Dec  5  2018  post-grohtml
+-rwxr-xr-x. 1 root root   12352 Mar 13  2019  powernow-k8-decode
+-rwxr-xr-x. 1 root root   97712 Jan 11  2019  pr
+-rwxr-xr-x. 1 root root   59032 Dec  5  2018  preconv
+-rwxr-xr-x. 1 root root  133688 Dec  5  2018  pre-grohtml
+-rwxr-xr-x. 1 root root   41840 Jan 11  2019  printenv
+-rwxr-xr-x. 1 root root   66760 Jan 11  2019  printf
+-rwxr-xr-x. 1 root root   39872 Dec 11  2018  prlimit
+-rwxr-xr-x. 1 root root  141240 Aug 12  2018  ps
+lrwxrwxrwx. 1 root root       9 Dec 10  2018  psfaddtable -> psfxtable
+lrwxrwxrwx. 1 root root       9 Dec 10  2018  psfgettable -> psfxtable
+lrwxrwxrwx. 1 root root       9 Dec 10  2018  psfstriptable -> psfxtable
+-rwxr-xr-x. 1 root root   23000 Dec 10  2018  psfxtable
+-rwxr-xr-x. 1 root root    4585 Aug 12  2018  ptaskset
+-rwxr-xr-x. 1 root root   89792 Jan 11  2019  ptx
+-rwxr-xr-x. 1 root root   46840 Jan 11  2019  pwd
+-rwxr-xr-x. 1 root root   13856 Aug 12  2018  pwdx
+-rwxr-xr-x. 1 root root   13336 Oct 22  2018  pwmake
+-rwxr-xr-x. 1 root root   13344 Oct 22  2018  pwscore
+-rwxr-xr-x. 1 root root      89 Apr  3  2019  pydoc3.6
+-rwxr-xr-x. 1 root root     404 Nov 15  2018  pyinotify
+-rwxr-xr-x. 1 root root     384 Aug 12  2018  pyjwt
+-rwxr-xr-x. 1 root root     446 Apr  3  2019  pyvenv-3.6
+-rwxr-xr-x. 1 root root  326608 Feb 26  2019  qemu-ga
+-rwxr-xr-x. 1 root root   17960 Dec 11  2018  raw
+-rwxr-xr-x. 1 root root     428 Mar  6  2019  rct
+-rwxr-xr-x. 1 root root      28 Jan 14  2019  read
+-rwxr-xr-x. 1 root root   59312 Jan 11  2019  readlink
+-rwxr-xr-x. 1 root root   63904 Jan 11  2019  realpath
+-rwxr-xr-x. 1 root root    1752 Dec 13  2018  rebuild-jar-repository
+-rwxr-xr-x. 1 root root   18024 Aug 12  2018  recode-sr-latin
+-rwxr-xr-x. 1 root root     448 Dec 11  2018  redhat-access-insights
+-rwxr-xr-x. 1 root root   17960 Dec 11  2018  rename
+-rwxr-xr-x. 1 root root     725 Dec 14  2018  renew-dummy-cert
+-rwxr-xr-x. 1 root root   17928 Dec 11  2018  renice
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  repoclosure -> /usr/libexec/dnf-ut                                                                                                                                                             ils
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  repodiff -> /usr/libexec/dnf-utils
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  repo-graph -> /usr/libexec/dnf-uti                                                                                                                                                             ls
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  repomanage -> /usr/libexec/dnf-uti                                                                                                                                                             ls
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  repoquery -> /usr/libexec/dnf-util                                                                                                                                                             s
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  reposync -> /usr/libexec/dnf-utils
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  repotrack -> /usr/libexec/dnf-util                                                                                                                                                             s
+-rwxr-xr-x. 1 root root   39161 Sep 28  2018  rescan-scsi-bus.sh
+lrwxrwxrwx. 1 root root       4 Jan 16  2019  reset -> tset
+-rwxr-xr-x. 1 root root   23072 Dec 10  2018  resizecons
+-rwxr-xr-x. 1 root root  193352 Apr  9  2019  resolvectl
+-rwxr-xr-x. 1 root root   13816 Dec 11  2018  rev
+lrwxrwxrwx. 1 root root      13 Feb  4  2019  rhn_register -> consolehelper
+-rwxr-xr-x. 1 root root   22240 Mar  6  2019  rhsmcertd
+-rwxr-xr-x. 1 root root     442 Mar  6  2019  rhsm-debug
+-rwxr-xr-x. 1 root root    2639 Mar 27  2019  rhui-set-release
+-rwxr-xr-x. 1 root root   88584 Jan 11  2019  rm
+-rwxr-xr-x. 1 root root   57616 Jan 11  2019  rmdir
+lrwxrwxrwx. 1 root root      22 Dec 18 07:14  rmic -> /etc/alternatives/rmic
+lrwxrwxrwx. 1 root root      22 Dec 18 07:14  rmid -> /etc/alternatives/rmid
+lrwxrwxrwx. 1 root root      29 Dec 18 07:14  rmiregistry -> /etc/alternatives/r                                                                                                                                                             miregistry
+-rwxr-xr-x. 1 root root   19248 Dec 21  2018  rngtest
+-rwxr-xr-x. 1 root root   22496 Dec 20  2018  rpm
+-rwxr-xr-x. 1 root root   17456 Dec 20  2018  rpm2archive
+-rwxr-xr-x. 1 root root   13352 Dec 20  2018  rpm2cpio
+-rwxr-xr-x. 1 root root   18512 Dec 20  2018  rpmdb
+-rwxr-xr-x. 1 root root   18424 Dec 20  2018  rpmkeys
+lrwxrwxrwx. 1 root root       3 Dec 20  2018  rpmquery -> rpm
+lrwxrwxrwx. 1 root root       3 Dec 20  2018  rpmverify -> rpm
+-rwxr-xr-x. 1 root root  536960 Oct  4  2018  rsync
+-rwxr-xr-x. 1 root root    6098 Dec 17  2018  rsyslog-recover-qi.pl
+-rwxr-xr-x. 1 root root   46392 Jan 11  2019  runcon
+-rwxr-xr-x. 1 root root    2089 Aug 12  2018  run-parts
+lrwxrwxrwx. 1 root root       2 Dec  6  2018  rvi -> vi
+lrwxrwxrwx. 1 root root       2 Dec  6  2018  rview -> vi
+lrwxrwxrwx. 1 root root       3 Jul 23 13:28  rvim -> vim
+lrwxrwxrwx. 1 root root      27 Dec 18 07:14  schemagen -> /etc/alternatives/sch                                                                                                                                                             emagen
+-rwxr-xr-x. 1 root root  106328 Nov 26  2018  scp
+-rwxr-xr-x. 1 root root   39504 Dec 11  2018  script
+-rwxr-xr-x. 1 root root   31112 Dec 11  2018  scriptreplay
+-rwxr-xr-x. 1 root root    8585 Sep 28  2018  scsi_logging_level
+-rwxr-xr-x. 1 root root    3602 Sep 28  2018  scsi_mandat
+-rwxr-xr-x. 1 root root    1327 Sep 28  2018  scsi_readcap
+-rwxr-xr-x. 1 root root    1121 Sep 28  2018  scsi_ready
+lrwxrwxrwx. 1 root root      18 Sep 28  2018  scsi-rescan -> rescan-scsi-bus.sh
+-rwxr-xr-x. 1 root root    3857 Sep 28  2018  scsi_satl
+-rwxr-xr-x. 1 root root    1285 Sep 28  2018  scsi_start
+-rwxr-xr-x. 1 root root    1474 Sep 28  2018  scsi_stop
+-rwxr-xr-x. 1 root root     936 Sep 28  2018  scsi_temperature
+-rwxr-xr-x. 1 root root   47456 Aug 24  2018  sctp_darn
+-rwxr-xr-x. 1 root root   25824 Aug 24  2018  sctp_status
+-rwxr-xr-x. 1 root root   38176 Aug 24  2018  sctp_test
+-rwxr-xr-x. 1 root root   62752 Aug 13  2018  sdiff
+-rwxr-xr-x. 1 root root   26792 Dec 14  2018  secon
+-rwxr-xr-x. 1 root root   21448 Aug 12  2018  secret-tool
+-rwxr-xr-x. 1 root root  127424 Aug 12  2018  sed
+-rwxr-xr-x. 1 root root  271240 Dec 16  2018  sedismod
+-rwxr-xr-x. 1 root root  194248 Dec 16  2018  sedispol
+-rwxr-xr-x. 1 root root   13384 Dec 14  2018  semodule_expand
+-rwxr-xr-x. 1 root root   13384 Dec 14  2018  semodule_link
+-rwxr-xr-x. 1 root root   17808 Dec 14  2018  semodule_package
+-rwxr-xr-x. 1 root root   13392 Dec 14  2018  semodule_unpackage
+-rwxr-xr-x. 1 root root   65376 Jan 11  2019  seq
+lrwxrwxrwx. 1 root root      27 Dec 18 07:14  serialver -> /etc/alternatives/ser                                                                                                                                                             ialver
+lrwxrwxrwx. 1 root root      28 Dec 18 07:14  servertool -> /etc/alternatives/se                                                                                                                                                             rvertool
+-rwxr-xr-x. 1 root root   22328 Dec 11  2018  setarch
+-rwxr-xr-x. 1 root root   41544 Aug 12  2018  setfacl
+-rwxr-xr-x. 1 root root   51016 Dec 10  2018  setfont
+-rwxr-xr-x. 1 root root   14288 Dec 10  2018  setkeycodes
+-rwxr-xr-x. 1 root root   18016 Dec 10  2018  setleds
+-rwxr-xr-x. 1 root root   13952 Dec 10  2018  setmetamode
+-rwxr-xr-x. 1 root root   43472 Dec 11  2018  setpriv
+-rwxr-xr-x. 1 root root   17904 Dec 11  2018  setsid
+-rwxr-xr-x. 1 root root   47624 Dec 11  2018  setterm
+-rwxr-xr-x. 1 root root   18480 Dec 10  2018  setvtrgb
+-rwxr-xr-x. 1 root root  167552 Nov 26  2018  sftp
+lrwxrwxrwx. 1 root root       6 Dec 18  2018  sg -> newgrp
+-rwxr-xr-x. 1 root root   17648 Sep 28  2018  sg_bg_ctl
+-rwxr-xr-x. 1 root root   22176 Sep 28  2018  sg_compare_and_write
+-rwxr-xr-x. 1 root root   22496 Sep 28  2018  sg_copy_results
+-rwxr-xr-x. 1 root root   46344 Sep 28  2018  sg_dd
+-rwxr-xr-x. 1 root root   22008 Sep 28  2018  sg_decode_sense
+-rwxr-xr-x. 1 root root   13328 Sep 28  2018  sg_emc_trespass
+-rwxr-xr-x. 1 root root   34864 Sep 28  2018  sg_format
+-rwxr-xr-x. 1 root root   34896 Sep 28  2018  sg_get_config
+-rwxr-xr-x. 1 root root   22136 Sep 28  2018  sg_get_lba_status
+-rwxr-xr-x. 1 root root   17744 Sep 28  2018  sg_ident
+-rwxr-xr-x. 1 root root   77336 Sep 28  2018  sginfo
+-rwxr-xr-x. 1 root root  121848 Sep 28  2018  sg_inq
+-rwxr-xr-x. 1 root root  154312 Sep 28  2018  sg_logs
+-rwxr-xr-x. 1 root root   26152 Sep 28  2018  sg_luns
+-rwxr-xr-x. 1 root root   17488 Sep 28  2018  sg_map
+-rwxr-xr-x. 1 root root   26168 Sep 28  2018  sg_map26
+-rwxr-xr-x. 1 root root   34032 Sep 28  2018  sgm_dd
+-rwxr-xr-x. 1 root root   45632 Sep 28  2018  sg_modes
+-rwxr-xr-x. 1 root root   30544 Sep 28  2018  sg_opcodes
+-rwxr-xr-x. 1 root root   38624 Sep 28  2018  sgp_dd
+-rwxr-xr-x. 1 root root   35648 Sep 28  2018  sg_persist
+-rwxr-xr-x. 1 root root   13544 Sep 28  2018  sg_prevent
+-rwxr-xr-x. 1 root root   26160 Sep 28  2018  sg_raw
+-rwxr-xr-x. 1 root root   22016 Sep 28  2018  sg_rbuf
+-rwxr-xr-x. 1 root root   17440 Sep 28  2018  sg_rdac
+-rwxr-xr-x. 1 root root   25696 Sep 28  2018  sg_read
+-rwxr-xr-x. 1 root root   36312 Sep 28  2018  sg_read_attr
+-rwxr-xr-x. 1 root root   13584 Sep 28  2018  sg_read_block_limits
+-rwxr-xr-x. 1 root root   22248 Sep 28  2018  sg_read_buffer
+-rwxr-xr-x. 1 root root   22064 Sep 28  2018  sg_readcap
+-rwxr-xr-x. 1 root root   17848 Sep 28  2018  sg_read_long
+-rwxr-xr-x. 1 root root   17800 Sep 28  2018  sg_reassign
+-rwxr-xr-x. 1 root root   17800 Sep 28  2018  sg_referrals
+-rwxr-xr-x. 1 root root   21920 Sep 28  2018  sg_rep_zones
+-rwxr-xr-x. 1 root root   17880 Sep 28  2018  sg_requests
+-rwxr-xr-x. 1 root root   17832 Sep 28  2018  sg_reset
+-rwxr-xr-x. 1 root root   17736 Sep 28  2018  sg_reset_wp
+-rwxr-xr-x. 1 root root   13536 Sep 28  2018  sg_rmsn
+-rwxr-xr-x. 1 root root   17728 Sep 28  2018  sg_rtpg
+-rwxr-xr-x. 1 root root   21936 Sep 28  2018  sg_safte
+-rwxr-xr-x. 1 root root   26360 Sep 28  2018  sg_sanitize
+-rwxr-xr-x. 1 root root   17904 Sep 28  2018  sg_sat_identify
+-rwxr-xr-x. 1 root root   18168 Sep 28  2018  sg_sat_phy_event
+-rwxr-xr-x. 1 root root   17880 Sep 28  2018  sg_sat_read_gplog
+-rwxr-xr-x. 1 root root   17840 Sep 28  2018  sg_sat_set_features
+-rwxr-xr-x. 1 root root   17592 Sep 28  2018  sg_scan
+-rwxr-xr-x. 1 root root   18048 Sep 28  2018  sg_seek
+-rwxr-xr-x. 1 root root   26584 Sep 28  2018  sg_senddiag
+-rwxr-xr-x. 1 root root  121776 Sep 28  2018  sg_ses
+-rwxr-xr-x. 1 root root   30888 Sep 28  2018  sg_ses_microcode
+-rwxr-xr-x. 1 root root   22136 Sep 28  2018  sg_start
+-rwxr-xr-x. 1 root root   21968 Sep 28  2018  sg_stpg
+-rwxr-xr-x. 1 root root   21936 Sep 28  2018  sg_stream_ctl
+-rwxr-xr-x. 1 root root   17800 Sep 28  2018  sg_sync
+-rwxr-xr-x. 1 root root   17824 Sep 28  2018  sg_test_rwbuf
+-rwxr-xr-x. 1 root root   22024 Sep 28  2018  sg_timestamp
+-rwxr-xr-x. 1 root root   17840 Sep 28  2018  sg_turs
+-rwxr-xr-x. 1 root root   26096 Sep 28  2018  sg_unmap
+-rwxr-xr-x. 1 root root   22136 Sep 28  2018  sg_verify
+-rwxr-xr-x. 1 root root  112392 Sep 28  2018  sg_vpd
+-rwxr-xr-x. 1 root root   22528 Sep 28  2018  sg_write_buffer
+-rwxr-xr-x. 1 root root   17912 Sep 28  2018  sg_write_long
+-rwxr-xr-x. 1 root root   26264 Sep 28  2018  sg_write_same
+-rwxr-xr-x. 1 root root   22056 Sep 28  2018  sg_write_verify
+-rwxr-xr-x. 1 root root   55752 Sep 28  2018  sg_write_x
+-rwxr-xr-x. 1 root root   21960 Sep 28  2018  sg_wr_mode
+-rwxr-xr-x. 1 root root   42264 Sep 28  2018  sg_xcopy
+-rwxr-xr-x. 1 root root   17872 Sep 28  2018  sg_zone
+lrwxrwxrwx. 1 root root       4 Jan 14  2019  sh -> bash
+-rwxr-xr-x. 5 root root   34184 Aug 12  2018  sha1hmac
+-rwxr-xr-x. 1 root root   56440 Jan 11  2019  sha1sum
+-rwxr-xr-x. 5 root root   34184 Aug 12  2018  sha224hmac
+-rwxr-xr-x. 1 root root   56504 Jan 11  2019  sha224sum
+-rwxr-xr-x. 5 root root   34184 Aug 12  2018  sha256hmac
+-rwxr-xr-x. 1 root root   56504 Jan 11  2019  sha256sum
+-rwxr-xr-x. 5 root root   34184 Aug 12  2018  sha384hmac
+-rwxr-xr-x. 1 root root   56488 Jan 11  2019  sha384sum
+-rwxr-xr-x. 5 root root   34184 Aug 12  2018  sha512hmac
+-rwxr-xr-x. 1 root root   56488 Jan 11  2019  sha512sum
+-rwxr-xr-x. 1 root root    2463 Dec 13  2018  shade-jar
+-rwxr-xr-x. 1 root root   23920 Dec 10  2018  showconsolefont
+-rwxr-xr-x. 1 root root   18400 Dec 10  2018  showkey
+-rwxr-xr-x. 1 root root   78160 Jan 11  2019  shred
+-rwxr-xr-x. 1 root root   73504 Jan 11  2019  shuf
+-rwxr-xr-x. 1 root root   31024 Aug 12  2018  skill
+-rwxr-xr-x. 1 root root   22544 Aug 12  2018  slabtop
+-rwxr-xr-x. 1 root root   48528 Jan 11  2019  sleep
+-rwxr-xr-x. 1 root root   31024 Aug 12  2018  snice
+-rwxr-xr-x. 1 root root   43576 Dec  5  2018  soelim
+-rwxr-xr-x. 1 root root  148008 Jan 11  2019  sort
+-rwxr-xr-x. 1 root root    4281 Apr  1  2019  sotruss
+-rwxr-xr-x. 1 root root   72592 Jan 11  2019  split
+-rwxr-xr-x. 1 root root   36248 Apr  1  2019  sprof
+-rwxr-xr-x. 1 root root  802080 Nov 26  2018  ssh
+-rwxr-xr-x. 1 root root  377600 Nov 26  2018  ssh-add
+-rwxr-xr-x. 1 root root  356648 Nov 26  2018  ssh-agent
+-rwxr-xr-x. 1 root root   10658 Nov 26  2018  ssh-copy-id
+-rwxr-xr-x. 1 root root  464368 Nov 26  2018  ssh-keygen
+-rwxr-xr-x. 1 root root  462704 Nov 26  2018  ssh-keyscan
+-rwxr-xr-x. 1 root root   31272 Apr 18  2019  sss_ssh_authorizedkeys
+-rwxr-xr-x. 1 root root   31264 Apr 18  2019  sss_ssh_knownhostsproxy
+-rwxr-xr-x. 1 root root  106816 Jan 11  2019  stat
+-rwxr-xr-x. 1 root root   64720 Jan 11  2019  stdbuf
+-rwxr-xr-x. 1 root root   90976 Jan 11  2019  stty
+-rwsr-xr-x. 1 root root   52784 Dec 11  2018  su
+lrwxrwxrwx. 1 root root      22 Mar  6  2019  subscription-manager -> /usr/bin/c                                                                                                                                                             onsolehelper
+---s--x--x. 1 root root  166056 Dec 11  2018  sudo
+lrwxrwxrwx. 1 root root       4 Dec 11  2018  sudoedit -> sudo
+---x--x--x. 1 root root   64992 Dec 11  2018  sudoreplay
+-rwxr-xr-x. 1 root root   56416 Jan 11  2019  sum
+-rwxr-xr-x. 1 root root   46376 Jan 11  2019  sync
+-rwxr-xr-x. 1 root root  266120 Apr  9  2019  systemctl
+-rwxr-xr-x. 1 root root 2253360 Apr  9  2019  systemd-analyze
+-rwxr-xr-x. 1 root root   13288 Apr  9  2019  systemd-ask-password
+-rwxr-xr-x. 1 root root   17368 Apr  9  2019  systemd-cat
+-rwxr-xr-x. 1 root root   17960 Apr  9  2019  systemd-cgls
+-rwxr-xr-x. 1 root root   37840 Apr  9  2019  systemd-cgtop
+-rwxr-xr-x. 1 root root   26720 Apr  9  2019  systemd-delta
+-rwxr-xr-x. 1 root root   13048 Apr  9  2019  systemd-detect-virt
+-rwxr-xr-x. 1 root root   17368 Apr  9  2019  systemd-escape
+-rwxr-xr-x. 1 root root   45408 Apr  9  2019  systemd-firstboot
+-rwxr-xr-x. 1 root root   36576 Apr  9  2019  systemd-hwdb
+-rwxr-xr-x. 1 root root   17384 Apr  9  2019  systemd-inhibit
+-rwxr-xr-x. 1 root root   27664 Apr  9  2019  systemd-machine-id-setup
+-rwxr-xr-x. 1 root root   62392 Apr  9  2019  systemd-mount
+-rwxr-xr-x. 1 root root   17368 Apr  9  2019  systemd-notify
+-rwxr-xr-x. 1 root root   17368 Apr  9  2019  systemd-path
+lrwxrwxrwx. 1 root root      10 Apr  9  2019  systemd-resolve -> resolvectl
+-rwxr-xr-x. 1 root root   58232 Apr  9  2019  systemd-run
+-rwxr-xr-x. 1 root root   26752 Apr  9  2019  systemd-socket-activate
+-rwxr-xr-x. 1 root root   17384 Apr  9  2019  systemd-stdio-bridge
+-rwxr-xr-x. 1 root root   65248 Apr  9  2019  systemd-sysusers
+-rwxr-xr-x. 1 root root   91576 Apr  9  2019  systemd-tmpfiles
+-rwxr-xr-x. 1 root root   36112 Apr  9  2019  systemd-tty-ask-password-agent
+lrwxrwxrwx. 1 root root      13 Apr  9  2019  systemd-umount -> systemd-mount
+-rwxr-xr-x. 1 root root   17984 Jan 16  2019  tabs
+-rwxr-xr-x. 1 root root   53976 Jan 11  2019  tac
+-rwxr-xr-x. 1 root root   91184 Jan 11  2019  tail
+-rwxr-xr-x. 1 root root  489344 Aug 12  2018  tar
+-rwxr-xr-x. 1 root root   40368 Dec 11  2018  taskset
+-rwxr-xr-x. 1 root root  158320 Dec  5  2018  tbl
+-rwxr-xr-x. 1 root root  172136 Jan 11  2019  teamd
+-rwxr-xr-x. 1 root root   31824 Jan 11  2019  teamdctl
+-rwxr-xr-x. 1 root root   21696 Jan 11  2019  teamnl
+-rwxr-xr-x. 1 root root   52272 Jan 11  2019  tee
+-rwxr-xr-x. 1 root root   64640 Jan 11  2019  test
+-rwxr-xr-x. 1 root root   89512 Jan 16  2019  tic
+-rwxr-xr-x. 1 root root   47088 Apr  9  2019  timedatectl
+-rwxr-xr-x. 1 root root   52688 Jan 11  2019  timeout
+-rwxr-xr-x. 1 root root   18352 Aug 12  2018  tload
+-rwxr-xr-x. 1 root root   37624 Mar 13  2019  tmon
+lrwxrwxrwx. 1 root root      27 Dec 18 07:14  tnameserv -> /etc/alternatives/tna                                                                                                                                                             meserv
+-rwxr-xr-x. 1 root root   17568 Jan 16  2019  toe
+-rwxr-xr-x. 1 root root  125928 Aug 12  2018  top
+-rwxr-xr-x. 1 root root  109776 Jan 11  2019  touch
+-rwxr-xr-x. 1 root root   28088 Jan 16  2019  tput
+-rwxr-xr-x. 1 root root   59752 Jan 11  2019  tr
+-rwxr-xr-x. 1 root root   17304 Aug 12  2018  tracepath
+-rwxr-xr-x. 1 root root  824344 Dec  5  2018  troff
+-rwxr-xr-x. 1 root root   41832 Jan 11  2019  true
+-rwxr-xr-x. 1 root root   50904 Jan 11  2019  truncate
+-rwxr-xr-x. 1 root root  239200 Mar 29  2019  trust
+-rwxr-xr-x. 1 root root   27224 Jan 16  2019  tset
+-rwxr-xr-x. 1 root root   51880 Jan 11  2019  tsort
+-rwxr-xr-x. 1 root root  126856 Aug 12  2018  ttmkfdir
+-rwxr-xr-x. 1 root root   41840 Jan 11  2019  tty
+-rwxr-xr-x. 1 root root  113632 Mar 13  2019  turbostat
+-rwxr-xr-x. 1 root root      28 Jan 14  2019  type
+-rwxr-xr-x. 1 root root   15370 Apr  1  2019  tzselect
+-rwxr-xr-x. 1 root root   25624 Aug 23  2018  ucs2any
+-rwxr-xr-x. 1 root root  532480 Apr  9  2019  udevadm
+-rwxr-xr-x. 1 root root   22152 Dec 11  2018  ul
+-rwxr-xr-x. 1 root root      30 Jan 14  2019  ulimit
+-rwxr-xr-x. 1 root root      29 Jan 14  2019  umask
+-rwsr-xr-x. 1 root root   35352 Dec 11  2018  umount
+-rwxr-xr-x. 1 root root      31 Jan 14  2019  unalias
+-rwxr-xr-x. 1 root root   46376 Jan 11  2019  uname
+lrwxrwxrwx. 1 root root       7 Dec 11  2018  uname26 -> setarch
+-rwxr-xr-x. 1 root root   56080 Jan 11  2019  unexpand
+-rwxr-xr-x. 1 root root    2613 Dec 10  2018  unicode_start
+-rwxr-xr-x. 1 root root     363 Dec 10  2018  unicode_stop
+-rwxr-xr-x. 1 root root   61896 Jan 11  2019  uniq
+-rwxr-xr-x. 1 root root   42272 Jan 11  2019  unlink
+lrwxrwxrwx. 1 root root      27 Dec 18 07:14  unpack200 -> /etc/alternatives/unp                                                                                                                                                             ack200
+-rwxr-xr-x. 2 root root  126224 Aug 12  2018  unpigz
+-rwxr-xr-x. 1 root root   27344 Dec 11  2018  unshare
+lrwxrwxrwx. 1 root root      24 Apr 26  2019  unversioned-python -> /etc/alterna                                                                                                                                                             tives/python
+lrwxrwxrwx. 1 root root       2 Nov 22  2018  unxz -> xz
+-rwxr-xr-x. 1 root root    1268 Aug 13  2018  update-ca-trust
+-rwxr-xr-x. 1 root root    3503 Dec 17  2018  update-crypto-policies
+-rwxr-xr-x. 1 root root     313 Dec 10  2018  update-gtk-immodules
+-rwxr-xr-x. 1 root root   54960 Aug 12  2018  update-mime-database
+-rwxr-xr-x. 1 root root   13840 Aug 12  2018  uptime
+-rwxr-xr-x. 1 root root   46840 Jan 11  2019  users
+-rwxr-xr-x. 1 root root   13112 Aug 12  2018  usleep
+-rwxr-xr-x. 1 root root   30816 Dec 11  2018  utmpdump
+-rwxr-xr-x. 1 root root   17912 Dec 11  2018  uuidgen
+-rwxr-xr-x. 1 root root   39848 Dec 11  2018  uuidparse
+-rwxr-xr-x. 1 root root  166456 Jan 11  2019  vdir
+-rwxr-xr-x. 1 root root 1206080 Dec  6  2018  vi
+lrwxrwxrwx. 1 root root       2 Dec  6  2018  view -> vi
+-rwxr-xr-x. 1 root root 3525384 Jul 23 13:28  vim
+lrwxrwxrwx. 1 root root       3 Jul 23 13:28  vimdiff -> vim
+-rwxr-xr-x. 1 root root    2121 Jul 23 13:28  vimtutor
+-rwxr-xr-x. 1 root root   24856 Dec 10  2018  vlock
+-rwxr-xr-x. 1 root root   38888 Aug 12  2018  vmstat
+-rwxr-xr-x. 1 root root   22112 Aug 12  2018  w
+-rwxr-xr-x. 1 root root      28 Jan 14  2019  wait
+-rwxr-xr-x. 1 root root   35664 Dec 11  2018  wall
+-rwxr-xr-x. 1 root root   31088 Aug 12  2018  watch
+-rwxr-xr-x. 1 root root   17288 Aug 12  2018  watchgnupg
+-rwxr-xr-x. 1 root root   61904 Jan 11  2019  wc
+-rwxr-xr-x. 1 root root   39304 Dec 11  2018  wdctl
+-rwxr-xr-x. 1 root root  696912 Nov 26 12:26  wget
+-rwxr-xr-x. 1 root root   57216 Nov  7  2018  whatis
+-rwxr-xr-x. 1 root root   31400 Dec 11  2018  whereis
+-rwxr-xr-x. 1 root root   31816 Aug 12  2018  which
+-rwxr-xr-x. 1 root root   34184 Aug 12  2018  whiptail
+-rwxr-xr-x. 1 root root   65928 Jan 11  2019  who
+-rwxr-xr-x. 1 root root   42272 Jan 11  2019  whoami
+-rwxr-xr-x. 1 root root     246 Aug 24  2018  withsctp
+-rwxr-sr-x. 1 root tty    22544 Dec 11  2018  write
+lrwxrwxrwx. 1 root root      23 Dec 18 07:14  wsgen -> /etc/alternatives/wsgen
+lrwxrwxrwx. 1 root root      26 Dec 18 07:14  wsimport -> /etc/alternatives/wsim                                                                                                                                                             port
+lrwxrwxrwx. 1 root root       7 Dec 11  2018  x86_64 -> setarch
+-rwxr-xr-x. 1 root root     424 Aug 12  2018  x86_64-redhat-linux-gnu-pkg-config
+-rwxr-xr-x. 1 root root   29616 Mar 13  2019  x86_energy_perf_policy
+-rwxr-xr-x. 1 root root   90320 Nov  5  2018  xargs
+-rwxr-xr-x. 1 root root  288600 Aug 12  2018  xgettext
+lrwxrwxrwx. 1 root root      21 Dec 18 07:14  xjc -> /etc/alternatives/xjc
+-rwxr-xr-x. 1 root root   21336 Aug 12  2018  xmlcatalog
+-rwxr-xr-x. 1 root root   76064 Aug 12  2018  xmllint
+-rwxr-xr-x. 1 root root   35184 Aug 12  2018  xmlwf
+-rwxr--r--. 1 root root    1322 Aug 23  2018  xorg-x11-fonts-update-dirs
+-rwxr-xr-x. 1 root root   26488 Jul 23 13:28  xxd
+-rwxr-xr-x. 1 root root   91432 Nov 22  2018  xz
+lrwxrwxrwx. 1 root root       2 Nov 22  2018  xzcat -> xz
+lrwxrwxrwx. 1 root root       6 Nov 22  2018  xzcmp -> xzdiff
+-rwxr-xr-x. 1 root root   18376 Nov 22  2018  xzdec
+-rwxr-xr-x. 1 root root    6632 Nov 22  2018  xzdiff
+lrwxrwxrwx. 1 root root       6 Nov 22  2018  xzegrep -> xzgrep
+lrwxrwxrwx. 1 root root       6 Nov 22  2018  xzfgrep -> xzgrep
+-rwxr-xr-x. 1 root root    5628 Nov 22  2018  xzgrep
+-rwxr-xr-x. 1 root root    1802 Nov 22  2018  xzless
+-rwxr-xr-x. 1 root root    2161 Nov 22  2018  xzmore
+-rwxr-xr-x. 1 root root   43136 Jan 11  2019  yes
+lrwxrwxrwx. 1 root root       8 Aug 12  2018  ypdomainname -> hostname
+lrwxrwxrwx. 1 root root       5 Feb 14  2019  yum -> dnf-3
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  yum-builddep -> /usr/libexec/dnf-u                                                                                                                                                             tils
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  yum-config-manager -> /usr/libexec                                                                                                                                                             /dnf-utils
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  yum-debug-dump -> /usr/libexec/dnf                                                                                                                                                             -utils
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  yum-debug-restore -> /usr/libexec/                                                                                                                                                             dnf-utils
+lrwxrwxrwx. 1 root root      22 Jan  8  2019  yumdownloader -> /usr/libexec/dnf-                                                                                                                                                             utils
+-rwxr-xr-x. 1 root root    1983 Aug 12  2018  zcat
+-rwxr-xr-x. 1 root root    1677 Aug 12  2018  zcmp
+-rwxr-xr-x. 1 root root    5879 Aug 12  2018  zdiff
+-rwxr-xr-x. 1 root root      29 Aug 12  2018  zegrep
+-rwxr-xr-x. 1 root root      29 Aug 12  2018  zfgrep
+-rwxr-xr-x. 1 root root    2080 Aug 12  2018  zforce
+-rwxr-xr-x. 1 root root    7591 Aug 12  2018  zgrep
+-rwxr-xr-x. 1 root root    2205 Aug 12  2018  zless
+-rwxr-xr-x. 1 root root    1841 Aug 12  2018  zmore
+-rwxr-xr-x. 1 root root    4552 Aug 12  2018  znew
+lrwxrwxrwx. 1 root root       6 Dec  5  2018  zsoelim -> soelim
+[root@ip-172-31-39-243 bin]# cd ..
+[root@ip-172-31-39-243 /]# ll
+total 2000016
+lrwxrwxrwx.  1 root root          7 Aug 12  2018 bin -> usr/bin
+dr-xr-xr-x.  6 root root       4096 Dec 18 07:08 boot
+drwxr-xr-x.  2 root root          6 Apr 26  2019 data
+drwxr-xr-x. 18 root root       2720 Dec 18 07:07 dev
+drwxr-xr-x. 86 root root       8192 Dec 19 06:15 etc
+drwxr-xr-x.  3 root root         24 Dec 18 07:30 gitrepo
+drwxr-xr-x.  4 root root         72 Dec 19 05:21 home
+lrwxrwxrwx.  1 root root          7 Aug 12  2018 lib -> usr/lib
+lrwxrwxrwx.  1 root root          9 Aug 12  2018 lib64 -> usr/lib64
+drwxr-xr-x.  2 root root          6 Aug 12  2018 media
+drwxr-xr-x.  2 root root          6 Aug 12  2018 mnt
+-rw-------.  1 root root 2048000000 Dec 18 07:17 newswap
+drwxr-xr-x.  2 root root          6 Aug 12  2018 opt
+dr-xr-xr-x. 98 root root          0 Dec 18 07:07 proc
+dr-xr-x---.  4 root root        197 Dec 20 00:47 root
+drwxr-xr-x. 23 root root        680 Dec 19 07:17 run
+lrwxrwxrwx.  1 root root          8 Aug 12  2018 sbin -> usr/sbin
+drwxr-xr-x.  2 root root          6 Aug 12  2018 srv
+dr-xr-xr-x. 13 root root          0 Dec 18 07:07 sys
+drwxr-xr-x.  3 root root         29 Dec 23 05:31 test
+drwxrwxrwt.  5 root root        156 Dec 31 08:10 tmp
+drwxr-xr-x. 12 root root        144 Apr 26  2019 usr
+drwxr-xr-x. 20 root root        278 Dec 18 07:07 var
+[root@ip-172-31-39-243 /]# cd root
+[root@ip-172-31-39-243 ~]# ll
+total 16
+-rw-------. 1 root root 7539 Apr 26  2019 anaconda-ks.cfg
+-rw-------. 1 root root 7325 Apr 26  2019 original-ks.cfg
+[root@ip-172-31-39-243 ~]# cd ..
+[root@ip-172-31-39-243 /]# ll
+total 2000016
+lrwxrwxrwx.  1 root root          7 Aug 12  2018 bin -> usr/bin
+dr-xr-xr-x.  6 root root       4096 Dec 18 07:08 boot
+drwxr-xr-x.  2 root root          6 Apr 26  2019 data
+drwxr-xr-x. 18 root root       2720 Dec 18 07:07 dev
+drwxr-xr-x. 86 root root       8192 Dec 19 06:15 etc
+drwxr-xr-x.  3 root root         24 Dec 18 07:30 gitrepo
+drwxr-xr-x.  4 root root         72 Dec 19 05:21 home
+lrwxrwxrwx.  1 root root          7 Aug 12  2018 lib -> usr/lib
+lrwxrwxrwx.  1 root root          9 Aug 12  2018 lib64 -> usr/lib64
+drwxr-xr-x.  2 root root          6 Aug 12  2018 media
+drwxr-xr-x.  2 root root          6 Aug 12  2018 mnt
+-rw-------.  1 root root 2048000000 Dec 18 07:17 newswap
+drwxr-xr-x.  2 root root          6 Aug 12  2018 opt
+dr-xr-xr-x. 98 root root          0 Dec 18 07:07 proc
+dr-xr-x---.  4 root root        197 Dec 20 00:47 root
+drwxr-xr-x. 23 root root        680 Dec 19 07:17 run
+lrwxrwxrwx.  1 root root          8 Aug 12  2018 sbin -> usr/sbin
+drwxr-xr-x.  2 root root          6 Aug 12  2018 srv
+dr-xr-xr-x. 13 root root          0 Dec 18 07:07 sys
+drwxr-xr-x.  3 root root         29 Dec 23 05:31 test
+drwxrwxrwt.  5 root root        156 Dec 31 08:10 tmp
+drwxr-xr-x. 12 root root        144 Apr 26  2019 usr
+drwxr-xr-x. 20 root root        278 Dec 18 07:07 var
+[root@ip-172-31-39-243 /]# cd home
+[root@ip-172-31-39-243 home]# ll
+total 10068
+-rw-r--r--. 1 root     root     10305939 Dec  7 19:42 apache-tomcat-8.5.50.tar.g                                                                                                                                                             z
+drwx------. 3 ec2-user ec2-user      126 Dec 23 05:27 ec2-user
+drwxr-xr-x. 9 root     root          220 Dec 19 05:21 tomcat8
+[root@ip-172-31-39-243 home]# cd tomcat8/
+[root@ip-172-31-39-243 tomcat8]# ll
+total 128
+drwxr-x---. 2 root root  4096 Dec 19 05:21 bin
+-rw-r-----. 1 root root 19318 Dec  7 19:23 BUILDING.txt
+drwx------. 3 root root   254 Dec 20 00:47 conf
+-rw-r-----. 1 root root  5408 Dec  7 19:23 CONTRIBUTING.md
+drwxr-x---. 2 root root  4096 Dec 19 05:21 lib
+-rw-r-----. 1 root root 57011 Dec  7 19:23 LICENSE
+drwxr-x---. 2 root root  4096 Dec 31 07:52 logs
+-rw-r-----. 1 root root  1726 Dec  7 19:23 NOTICE
+-rw-r-----. 1 root root  3255 Dec  7 19:23 README.md
+-rw-r-----. 1 root root  7136 Dec  7 19:23 RELEASE-NOTES
+-rw-r-----. 1 root root 16262 Dec  7 19:23 RUNNING.txt
+drwxr-x---. 2 root root    30 Dec 19 05:21 temp
+drwxr-x---. 8 root root   133 Dec 31 07:52 webapps
+drwxr-x---. 3 root root    22 Dec 19 05:26 work
+[root@ip-172-31-39-243 tomcat8]# cd bin
+[root@ip-172-31-39-243 bin]# ll
+total 860
+-rw-r-----. 1 root root  35203 Dec  7 19:21 bootstrap.jar
+-rw-r-----. 1 root root  15953 Dec  7 19:21 catalina.bat
+-rwxr-x---. 1 root root  23792 Dec  7 19:21 catalina.sh
+-rw-r-----. 1 root root   1664 Dec  7 19:23 catalina-tasks.xml
+-rw-r-----. 1 root root   2123 Dec  7 19:21 ciphers.bat
+-rwxr-x---. 1 root root   1997 Dec  7 19:21 ciphers.sh
+-rw-r-----. 1 root root  25197 Dec  7 19:21 commons-daemon.jar
+-rw-r-----. 1 root root 206895 Dec  7 19:21 commons-daemon-native.tar.gz
+-rw-r-----. 1 root root   2040 Dec  7 19:21 configtest.bat
+-rwxr-x---. 1 root root   1922 Dec  7 19:21 configtest.sh
+-rwxr-x---. 1 root root   8675 Dec  7 19:21 daemon.sh
+-rw-r-----. 1 root root   2091 Dec  7 19:21 digest.bat
+-rwxr-x---. 1 root root   1965 Dec  7 19:21 digest.sh
+-rw-r-----. 1 root root   3460 Dec  7 19:21 setclasspath.bat
+-rwxr-x---. 1 root root   3708 Dec  7 19:21 setclasspath.sh
+-rw-r-----. 1 root root   2020 Dec  7 19:21 shutdown.bat
+-rwxr-x---. 1 root root   1902 Dec  7 19:21 shutdown.sh
+-rw-r-----. 1 root root   2022 Dec  7 19:21 startup.bat
+-rwxr-x---. 1 root root   1904 Dec  7 19:21 startup.sh
+-rw-r-----. 1 root root  49903 Dec  7 19:21 tomcat-juli.jar
+-rw-r-----. 1 root root 419428 Dec  7 19:21 tomcat-native.tar.gz
+-rw-r-----. 1 root root   4574 Dec  7 19:21 tool-wrapper.bat
+-rwxr-x---. 1 root root   5540 Dec  7 19:21 tool-wrapper.sh
+-rw-r-----. 1 root root   2026 Dec  7 19:21 version.bat
+-rwxr-x---. 1 root root   1908 Dec  7 19:21 version.sh
+[root@ip-172-31-39-243 bin]# ./shutdown.sh
+Using CATALINA_BASE:   /home/tomcat8
+Using CATALINA_HOME:   /home/tomcat8
+Using CATALINA_TMPDIR: /home/tomcat8/temp
+Using JRE_HOME:        /
+Using CLASSPATH:       /home/tomcat8/bin/bootstrap.jar:/home/tomcat8/bin/tomcat-                                                                                                                                                             juli.jar
+[root@ip-172-31-39-243 bin]# ps -ef | grep java
+root     18516 17738  0 08:14 pts/0    00:00:00 grep --color=auto java
+jenkins  25467     1  0 Dec19 ?        00:13:55 /etc/alternatives/java -Djava.aw                                                                                                                                                             t.headless=true -DJENKINS_HOME=/var/lib/jenkins -jar /usr/lib/jenkins/jenkins.wa                                                                                                                                                             r --logfile=/var/log/jenkins/jenkins.log --webroot=/var/cache/jenkins/war --http                                                                                                                                                             Port=8080 --debug=5 --handlerCountMax=100 --handlerCountMaxIdle=20
+[root@ip-172-31-39-243 bin]# cd /
+[root@ip-172-31-39-243 /]# ll
+total 2000016
+lrwxrwxrwx.  1 root root          7 Aug 12  2018 bin -> usr/bin
+dr-xr-xr-x.  6 root root       4096 Dec 18 07:08 boot
+drwxr-xr-x.  2 root root          6 Apr 26  2019 data
+drwxr-xr-x. 18 root root       2720 Dec 18 07:07 dev
+drwxr-xr-x. 86 root root       8192 Dec 19 06:15 etc
+drwxr-xr-x.  3 root root         24 Dec 18 07:30 gitrepo
+drwxr-xr-x.  4 root root         72 Dec 19 05:21 home
+lrwxrwxrwx.  1 root root          7 Aug 12  2018 lib -> usr/lib
+lrwxrwxrwx.  1 root root          9 Aug 12  2018 lib64 -> usr/lib64
+drwxr-xr-x.  2 root root          6 Aug 12  2018 media
+drwxr-xr-x.  2 root root          6 Aug 12  2018 mnt
+-rw-------.  1 root root 2048000000 Dec 18 07:17 newswap
+drwxr-xr-x.  2 root root          6 Aug 12  2018 opt
+dr-xr-xr-x. 97 root root          0 Dec 18 07:07 proc
+dr-xr-x---.  4 root root        197 Dec 20 00:47 root
+drwxr-xr-x. 23 root root        680 Dec 19 07:17 run
+lrwxrwxrwx.  1 root root          8 Aug 12  2018 sbin -> usr/sbin
+drwxr-xr-x.  2 root root          6 Aug 12  2018 srv
+dr-xr-xr-x. 13 root root          0 Dec 18 07:07 sys
+drwxr-xr-x.  3 root root         29 Dec 23 05:31 test
+drwxrwxrwt.  5 root root        156 Dec 31 08:16 tmp
+drwxr-xr-x. 12 root root        144 Apr 26  2019 usr
+drwxr-xr-x. 20 root root        278 Dec 18 07:07 var
+[root@ip-172-31-39-243 /]# cd var
+[root@ip-172-31-39-243 var]# ll
+total 8
+drwxr-xr-x.  2 root root    6 Aug 12  2018 adm
+drwxr-xr-x. 10 root root  117 Dec 19 01:35 cache
+drwxr-xr-x.  2 root root    6 Feb 22  2019 crash
+drwxr-xr-x.  3 root root   18 Apr 26  2019 db
+drwxr-xr-x.  3 root root   18 Apr 26  2019 empty
+drwxr-xr-x.  2 root root    6 Aug 12  2018 ftp
+drwxr-xr-x.  2 root root    6 Aug 12  2018 games
+drwxr-xr-x.  2 root root    6 Aug 12  2018 gopher
+drwxr-xr-x.  3 root root   18 Apr 26  2019 kerberos
+drwxr-xr-x. 31 root root 4096 Dec 19 06:15 lib
+drwxr-xr-x.  2 root root    6 Aug 12  2018 local
+lrwxrwxrwx.  1 root root   11 Apr 26  2019 lock -> ../run/lock
+drwxr-xr-x. 12 root root 4096 Dec 29 03:47 log
+lrwxrwxrwx.  1 root root   10 Aug 12  2018 mail -> spool/mail
+drwxr-xr-x.  2 root root    6 Aug 12  2018 nis
+drwxr-xr-x.  2 root root    6 Aug 12  2018 opt
+drwxr-xr-x.  2 root root    6 Aug 12  2018 preserve
+lrwxrwxrwx.  1 root root    6 Apr 26  2019 run -> ../run
+drwxr-xr-x.  8 root root   83 Apr 26  2019 spool
+drwxrwxrwt.  4 root root  103 Dec 19 06:15 tmp
+drwxr-xr-x.  2 root root    6 Aug 12  2018 yp
+[root@ip-172-31-39-243 var]# cd lib
+[root@ip-172-31-39-243 lib]# ll
+total 8
+drwxr-xr-x.  2 root    root     258 Dec 18 07:29 alternatives
+drwxr-xr-x.  3 root    root     209 Apr 26  2019 authselect
+drwxr-xr-x.  2 chrony  chrony    19 Dec 31 08:00 chrony
+drwxr-xr-x.  8 root    root     105 Dec 18 07:07 cloud
+drwxr-xr-x.  2 root    root      24 Apr 26  2019 dbus
+drwxr-xr-x.  2 root    root       6 Dec 17  2018 dhclient
+drwxr-xr-x.  2 root    root      80 Dec 19 06:15 dnf
+drwxr-xr-x.  2 root    root       6 Aug 12  2018 games
+drwxr-xr-x.  2 root    root       6 Jan 15  2019 initramfs
+drwxr-xr-x.  2 root    root       6 Apr 26  2019 insights
+drwxr-xr-x. 19 jenkins jenkins 4096 Dec 31 08:15 jenkins
+drwxr-xr-x.  2 root    root      30 Dec 31 03:26 logrotate
+drwxr-xr-x.  2 root    root       6 Aug 12  2018 misc
+drwx------.  2 root    root     122 Dec 31 07:48 NetworkManager
+drwxr-xr-x.  2 root    root       6 Aug 12  2018 os-prober
+drwxr-x---.  3 root    polkitd   28 Apr 26  2019 polkit-1
+drwx------.  2 root    root       6 Apr 26  2019 portables
+drwx------.  2 root    root       6 Apr 26  2019 private
+drwxr-x---.  6 root    root      71 Apr 26  2019 rhsm
+drwxr-xr-x.  2 root    root    4096 Dec 18 07:07 rpm
+drwxr-xr-x.  2 root    root       6 Dec 18 07:14 rpm-state
+drwx------.  2 root    root      29 Dec 31 08:08 rsyslog
+drwxr-xr-x.  5 root    root      46 Apr 26  2019 selinux
+drwxr-xr-x.  9 root    root     105 Apr 26  2019 sss
+drwxr-xr-x.  5 root    root      70 Dec 18 07:07 systemd
+drwx------.  2 tss     tss        6 Aug 12  2018 tpm
+drwxr-xr-x.  2 root    root       6 Feb 22  2019 tuned
+drwxr-xr-x.  2 unbound unbound   22 Dec 31 00:00 unbound
+drwxr-xr-x.  2 root    root       6 Feb  4  2019 up2date
+[root@ip-172-31-39-243 lib]# cd jenkins
+[root@ip-172-31-39-243 jenkins]# ll
+total 108
+-rw-r--r--.  1 jenkins jenkins  477 Dec 19 06:22 com.cloudbees.hudson.plugins.fo                                                                                                                                                             lder.config.AbstractFolderConfiguration.xml
+-rw-r--r--.  1 jenkins jenkins  789 Dec 20 00:52 com.dabsquared.gitlabjenkins.co                                                                                                                                                             nnection.GitLabConnectionConfig.xml
+-rw-r--r--.  1 jenkins jenkins  366 Dec 20 00:52 com.dabsquared.gitlabjenkins.Gi                                                                                                                                                             tLabPushTrigger.xml
+-rw-r--r--.  1 jenkins jenkins 1642 Dec 20 00:52 config.xml
+-rw-r--r--.  1 jenkins jenkins 2269 Dec 20 00:35 credentials.xml
+drwxr-xr-x.  5 jenkins jenkins   36 Dec 20 03:37 fingerprints
+-rw-r--r--.  1 jenkins jenkins  156 Dec 20 00:52 hudson.model.UpdateCenter.xml
+drwxr-xr-x.  2 jenkins jenkins   33 Dec 19 06:39 hudson.plugins.deploy.DeployPub                                                                                                                                                             lisher.Migrator
+-rw-r--r--.  1 jenkins jenkins  375 Dec 19 06:26 hudson.plugins.git.GitTool.xml
+-rw-r--r--.  1 jenkins jenkins  173 Dec 19 06:26 hudson.plugins.gradle.Gradle.xm                                                                                                                                                             l
+-rw-r--r--.  1 jenkins jenkins  146 Dec 19 06:26 hudson.tasks.Ant.xml
+-rw-r--r--.  1 jenkins jenkins  330 Dec 19 06:26 hudson.tasks.Maven.xml
+-rw-------.  1 jenkins jenkins 1712 Dec 19 06:16 identity.key.enc
+-rw-r--r--.  1 jenkins jenkins    5 Dec 19 06:24 jenkins.install.InstallUtil.las                                                                                                                                                             tExecVersion
+-rw-r--r--.  1 jenkins jenkins    5 Dec 19 06:24 jenkins.install.UpgradeWizard.s                                                                                                                                                             tate
+-rw-r--r--.  1 jenkins jenkins  183 Dec 19 06:24 jenkins.model.JenkinsLocationCo                                                                                                                                                             nfiguration.xml
+-rw-r--r--.  1 jenkins jenkins  247 Dec 19 06:26 jenkins.mvn.GlobalMavenConfig.x                                                                                                                                                             ml
+-rw-r--r--.  1 jenkins jenkins  171 Dec 19 06:16 jenkins.telemetry.Correlator.xm                                                                                                                                                             l
+drwxr-xr-x.  4 jenkins jenkins   42 Dec 31 08:10 jobs
+drwxr-xr-x.  3 jenkins jenkins  109 Dec 19 06:49 logs
+-rw-r--r--.  1 jenkins jenkins  907 Dec 20 00:52 nodeMonitors.xml
+drwxr-xr-x.  2 jenkins jenkins    6 Dec 19 06:16 nodes
+-rw-r--r--.  1 jenkins jenkins  299 Dec 19 06:26 org.jenkinsci.plugins.docker.co                                                                                                                                                             mmons.tools.DockerTool.xml
+-rw-r--r--.  1 jenkins jenkins  255 Dec 19 06:26 org.jenkinsci.plugins.gitclient                                                                                                                                                             .JGitApacheTool.xml
+-rw-r--r--.  1 jenkins jenkins  243 Dec 19 06:26 org.jenkinsci.plugins.gitclient                                                                                                                                                             .JGitTool.xml
+drwxr-xr-x. 80 jenkins jenkins 8192 Dec 20 00:52 plugins
+-rw-r--r--.  1 jenkins jenkins  130 Dec 31 08:15 queue.xml
+-rw-r--r--.  1 jenkins jenkins  130 Dec 20 00:51 queue.xml.bak
+-rw-r--r--.  1 jenkins jenkins   64 Dec 19 06:16 secret.key
+-rw-r--r--.  1 jenkins jenkins    0 Dec 19 06:16 secret.key.not-so-secret
+drwx------.  4 jenkins jenkins 4096 Dec 19 06:45 secrets
+drwxr-xr-x.  2 root    root      21 Dec 31 07:52 sh
+drwxr-xr-x.  2 jenkins jenkins  182 Dec 31 00:52 updates
+drwxr-xr-x.  2 jenkins jenkins   24 Dec 19 06:16 userContent
+drwxr-xr-x.  4 jenkins jenkins   97 Dec 19 06:49 users
+drwxr-xr-x.  2 jenkins jenkins    6 Dec 19 06:22 workflow-libs
+drwxr-xr-x.  6 jenkins jenkins   86 Dec 31 07:43 workspace
+[root@ip-172-31-39-243 jenkins]# cd sh
+[root@ip-172-31-39-243 sh]# ll
+total 4
+-rwxrwxr-x. 1 root root 965 Dec 31 07:52 proc.sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# yum install psmisc -y
+Last metadata expiration check: 2:42:58 ago on Tue 31 Dec 2019 05:35:01 AM UTC.
+Dependencies resolved.
+================================================================================
+ Package    Arch       Version           Repository                        Size
+================================================================================
+Installing:
+ psmisc     x86_64     23.1-3.el8        rhui-rhel-8-baseos-rhui-rpms     150 k
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total download size: 150 k
+Installed size: 486 k
+Downloading Packages:
+psmisc-23.1-3.el8.x86_64.rpm                    1.5 MB/s | 150 kB     00:00
+--------------------------------------------------------------------------------
+Total                                           135 kB/s | 150 kB     00:01
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                        1/1
+  Installing       : psmisc-23.1-3.el8.x86_64                               1/1
+  Running scriptlet: psmisc-23.1-3.el8.x86_64                               1/1
+  Verifying        : psmisc-23.1-3.el8.x86_64                               1/1
+
+Installed:
+  psmisc-23.1-3.el8.x86_64
+
+Complete!
+[root@ip-172-31-39-243 sh]# ./proc.sh
+
+Stoping process on port: 808
+
+
+java -jar -Djava.security.egd=file:/dev/./urandom -Dserver.port=808 /var/lib/jen                                                                                                                                                             kins/workspace/sb-mybatis/target/sb-mybatis.jar /tmp 2>> /dev/null >> /dev/null                                                                                                                                                              &
+
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# cd /etc/
+[root@ip-172-31-39-243 etc]# visudo -f sudoers
+[root@ip-172-31-39-243 etc]# mvn --version
+Apache Maven 3.5.4 (Red Hat 3.5.4-5)
+Maven home: /usr/share/maven
+Java version: 1.8.0_232, vendor: Oracle Corporation, runtime: /usr/lib/jvm/java-                                                                                                                                                             1.8.0-openjdk-1.8.0.232.b09-2.el8_1.x86_64/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "4.18.0-80.el8.x86_64", arch: "amd64", family: "unix"
+[root@ip-172-31-39-243 etc]#

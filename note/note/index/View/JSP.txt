@@ -1,0 +1,18 @@
+
+* jsp include
+<jsp:include page="/WEB-INF/front/include/${param.page}"></jsp:include>
+
+1* 인크루드는 자바파일 2개
+  @는 자바파일 1개
+<%@ include file = "/WEB-INF/front/include/right1.jsp"%>
+<jsp:include page="/WEB-INF/front/include/right1.jsp"></jsp:include>
+
+* page가 없다면
+  <% 요걸로 page를 받아오면 null
+  el태그는 비문자열.
+
+* el태그는 jsp에서 제공하는 것.
+  스크립트리(<%)는 지역변수 따라서 메서드안에 메서드를 정의할 수 없기때문에 있는 메서드만 쓸수 있고 선언은 할 수있다.
+  디클레이션(<!)는 전역변수라고 생각하면됨. 
+
+
