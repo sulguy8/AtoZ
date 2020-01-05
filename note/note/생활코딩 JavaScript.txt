@@ -2,6 +2,11 @@ https://www.youtube.com/watch?v=PZIPsKgWJiw&list=PLuHgQVnccGMA4uSig3hCjl7wTDeyIe
 
 객체지향 프로그래밍!!
 
+
+# 나는 정규표현식을 이용해서 패턴을 만들고 활용할 줄 알아!
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 # 3
 Window, Mac Os에서 콘솔사용법, 크롬 개발자 도구
 
@@ -194,3 +199,64 @@ UI : 사용자를 대면하고 의중을 전달하는 접점이 되는 지점. 이를 User Interface라고
 API : 코드의 형태를 띠고있고 사용자의 의중이 전달되는 것.
 
 사용자 > 웹 개발자 > 브라우저 > 운영체제 > C,C++, JAVA > 어셈블리어 > 기계어 // 이와 같이 뒤집혀진 피라미드 구조로 Interface를 누리고 있다.
+
+# 48 UI, API 그리고 문서 (2/2) : 문서보는법
+* 튜토리얼 : 안내서. 환경이 어떠한 기능을 제공하는가? 사전에 알고있어야 하는 것들.
+* 레퍼런스 : 사전. 튜토리얼이 문법이라면 레퍼런스는 그 언어의 사전.
+* 자바스크립트의 API는 크게 "자바스크립트 자체의 API"와 "자바스크립트가 동작하는 호스트 환경의 API"로 구분된다.
+* https://opentutorials.org/module/532/6533
+* 자바스크립트 API : Math, 정규표현식 등등 자바스크립트가 제공하는 정규적인 API
+* 자바스크립트가 동작하는 호스트 환경의 API : 웹브라우저 API, Node.js API, GoogleApps
+* 커뮤니티에 질문, 검색엔진을 통해서 찾아보는 것이 최종 과정
+
+# 49 정규 표현식 (1/7) : 오리엔테이션
+* 정규표현식이란 문자열에서 특정한 문자를 찾아내는 도구.
+
+# 50 정규표현식 (2/7) : 패턴만들기
+* 컴파일 : 문자열을 치환하거나, 어떤문자가 있는지 없는지 판단하거나 이러한 작업을 하기위해서 우리가 필요한 대상을 찾는것. 패턴을 찾는것. 
+* 실행 : 우리가 찾은 패턴으로 대상을 어떠한 구체적 작업을 하는 것.
+* 패턴을 만드는 방법
+1. 정규표현식 리터럴 : var str = "a"; 라고 정의한 뒤 var pattern = /a/; 를 하면 /~~/사이의 대상이 우리가 찾는 패턴이 됨.
+2. var pattern = new RegExp('a'); // 정규 표현식 객체를 만드는 것임. 위의 예제와 같다.
+
+# 51 정규표현식 (3/7) : RegExp 객체의 정규 표현식
+* 우리가 어떤 일을 할 때 어떤 작업을 할 대상을 지정해야함. 그리고 어떤 일을 할 것인가?
+* var pattern = /a/; => pattern.exec('babdjsa'); // ["ab", index: 1, input: "babdjsa", groups: undefined]  // exec는 추출
+* var pattern = /a./; = > pattern.exec('fuihuaiaf'); // ["ai", index: 5, input: "fuihuaiaf", groups: undefined]
+* pattern.test('bacde'); // true로 리턴. test는 우리가 찾는 정보가 있는지 없는지 찾는 것.
+
+# 52 정규표현식 (4/7) : String 객체의 정규 표현식
+* var str = 'abcdef'; => str.match(pattern); // ["a", index: 0, input: "abcdef", groups: undefined]
+* str.replace(pattern, 'ABC');
+* 기타 함수들은 여기서 http://opentutorials.org/course/743/6580
+
+# 53 정규표현식 (4/7) : String 객체의 정규 표현식
+* 정규표현식에는 옵션이 있는데 옵션을 통하여 좀 다르게 설정할 수 있음.
+* i : 대소문자를 구분하지 않는다.
+** var oi = /a/i; => "Abcde".match(oi); // ["A", index: 0, input: "Abcde", groups: undefined]
+* g : 검색된 모든 결과를 배열로 리턴한다.
+** var xg = /a/g; => "abcdea".match(xg); // ["a", "a"]
+*** var ig = /a/ig; // 옵션은 같이 사용도 가능하다.
+
+# 54 정규표현식 (6/7) : 캡처
+* var pattern = /(\w+)\s(\w+)/; // 괄호안의 패턴은 마치 변수처럼 재사용할 수 있다.
+** (\w+)\s(\w+) // ()는 패턴의 그룹, \w는 A-Z와 a~z와 0~9에 해당되는 어떠한문자, + 수량자라고 부르며 앞의 문자가 1개 이상일 경우에 이패턴의 유효해 짐.
+		 \s는 스페이스. 공백이라는 뜻. 어떠한 문자 뒤에 공백이 있다면 (\w+)\s까지의 조건을 만족하게 됨.
+		 따라서 위의 조건을 만족하는 것을 예제로 들자면 'Aaa AAA' 이렇게?
+* 정규표현식 패턴을 시각화 할 수 있는 사이트! https://regexr.com/
+* var pattern = /(\w+)\s(\w+)/; => var str = "coding everybody"; => var result = str.replace(pattern, "$2, $1"); => "everybody, coding" // $는 패턴의 그룹을 의미한다.
+
+# 55 정규표현식 (7/7) : 치환
+* var urlPattern = /\b(?:https?):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*/gim; // url주소 따는 문자열.
+  var content = '생활코딩 : http://opentutorials.org/course/1 입니다. 네이버 : http://naver.com 입니다. ';
+  var result = content.replace(urlPattern, function(url){
+    return '<a href="'+url+'">'+url+'</a>';
+  });
+  result === "생활코딩 : <a href="http://opentutorials.org/course/1">http://opentutorials.org/course/1</a> 입니다. 네이버 : <a href="http://naver.com">http://naver.com</a> 입니다. "
+
+# 56 유효범위 (1/5) : 전역변수와 지역변수
+* 유효범위(Scope)는 변수의 수명을 의미한다.
+* 지역변수안에서 var vscope = 'abc'랑 vscope = 'abc'의 차이는 꼭 알아둘 것! 전자는 지역변수내에서 죽어버리지만, 후자는 재정의의 의미를 갖기 때문에 전역변수에 영향을 미친다.
+
+# 57 유효범위 (2/5) : 유효범위의 효용
+* 지역변수내에서 항상 선언과 할당 (var i = 0;)을 해주는게 오류가 훨~씬 적다.
