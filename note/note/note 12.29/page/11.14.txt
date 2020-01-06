@@ -1,0 +1,54 @@
+* html이나 자바스크립트의 주석은 실행이 안될뿐이지 읽기는 함. 따라서 JSON parse할때 헤드에 <가 있으면 오류뜸.
+
+* 본인이 임의로 설정하는것은 data-col같이 "-"를 써주는게 예의
+* var datas = document.querySelectorAll('div[data-col]') // div태그중에 data-col있는 것만 갖고옴.
+** var datas = document.querySelectorAll('table>tbody>tr>th[data-col]') // tbody는 항상생략되어있다는 것을 알것!
+*** var datas = document.querySelectorAll('table >tr>th[data-col]') // " "는 내 바로 밑에는 아니더라도 그뒤에것을 찾음. 
+
+* 리스트는 of, in 둘중아무거나 해도 상관없다
+
+*getParameter는 리퀘스트 영역에 있는 메소드 입니다...
+아실거라 생각하지만....스코프에는 page , request, response , session , aplication 등이 있습니다...
+getAttribute에 경우 위에있는 모든영역에 공통으로 있는 메소드로...
+헤쉬맵 방식으로....키값과 벨류값으로 setAttribute 한 값을 키값을 이용해 벨류값을 반환받을수 있습니다...
+일단 큰차이로는 벨류값에 타입인데요...
+getParameter는 스트링 타입입니다....
+그리고 getAttribute 는 오브젝트 타입입니다...
+getParameter는 스트링값을 다루기때문에 주로 쿼리스트링값등을 받는데 사용되고....
+getAttribute는 오브젝트 타입을 다루기때문에 자바빈객체나 뭐 다른클레스객체등을 받을때 사용합니다..
+
+* 상속받는 클래스에서 모체의 클래스의 기본생성자에 파라미터가 있다면 상속받는 클래스의 기본생성자에 "super(해당파라미터);"를 해줘야 한다.
+
+* 만약 상속받는 관계에서 Mother레퍼런스에 test1()라는 메소드가 없다면? 아래처럼 캐스팅해줘야 알 수 있다.
+	Mother t = new Son();
+	Son t1 = (Son)t;
+	t1.test1();
+
+* instanceof로 lazy loading을 구현할 수 있다.
+	if(h instanceof Driver){
+
+* 제너릭이란? 가정을 하고 사용하는것!
+  원래 리스트를 선언할때 내가 무엇으로 구성되는 지 작성할 필요가없었음. 
+	List tList = new ArrayList(); // 이렇게. 실행은 했는데 오류가 나지 않았으니 아무것도 나오지 않음.
+	List<Object> tList = new ArrayList<Object>(); // 사실 이거랑 같음. 하지만 올바르지 않음. 이게 문제가 택시에 동물이 탄다고 하면 사람이랑 뱀이랑 탈수있기때문에 문제가됨.
+  그래서 <>로 명시적으로 확실시 해주는 작업임. 이게 제너릭 개념과 가깝다.
+
+class Gen<T> { // Gen이라는 클래스를 명시적으로 사용할 때는 Gen<Test> gen = new Gen<Test>();로 나는 Test를 사용할거야~
+	List<T> tList;
+
+	public void add(T t) {
+		if(tList == null) {
+		 	tList = new ArrayList<>();
+		}
+	tList.add(t);
+	}
+}
+** 가정 데이터타입!
+Key  
+Value
+Type
+Element
+
+데이터 타입형태는 <T>
+Map형태는 <K,V>
+List형태는 <E>

@@ -1,0 +1,34 @@
+﻿* InitServlet에서 loadOnStartup을 거쳐갈때 static 영역이 활성화가 되면서
+    static {
+	String path = "/config/mybatis-config.xml"; 			// 공사장의 팻말. 하지만 현재 내용은 단순한 String이다.
+	InputStream is = InitServlet.class.getResourceAsStream(path);	// 팻말에 내용들을 집어넣는다. 이는 path의 경로의 내용이다.(공사장 위치, 써야하는 재료)
+	ssf = new SqlSessionFactoryBuilder().build(is); 			// 인부들에게 위의 팻말의 내용들을 숙지시킨다.
+    }	
+		## 이걸로 한가지 일만 하는 공장을 세울 터(mybatis-config.xml)를 만들어놓고 인부들을 대기시켜 놓음. ##
+
+	return ss.selectOne("PtBoard.selectPtBoard",pBoard);  		// 이제 인부(selectOne)들에게 "앞마당(selectPTBoard)일하세요~" 라고 지시하는 내용은 "DAO"에 있음
+
+* UserController의 List<UserInfoVO> uiList = uis.getUserList(null)
+  UserInfoVO(lombok)는 GetaSeta method방식으로 구성되어있다.
+  Map<String,String> istMap = gson.fromJson(json, Map.class);  // 여기서  VO와 JSON의 "Key"를 비교해서 "Key value"를 대입시킨다.
+  따라서 JSP나 Html에서 form으로 태워서 받아오는 key값과 VO의 Key이름은 한치의 오차가 있으면 안된다!
+
+* 롬복이 기동되는 조건?
+  1. 롬복을 설치
+  2. 이프로젝트가 롬복을 바라봄 // 롬복만 pom에 추가하면 안되고 이클립스에 설치까지해야 된다!!
+
+** Data + ctrl + shift + O 하면 롬복이 임포트되면서 겟터셋터 투스트링까지 다 만들어줌.
+
+*  private SqlSessionFactory ssf;				// DAO에 한가지 일(오라클)만 하는 공장을 세워 놓는다!
+   public List<UserInfoVO> selectUserList(Map<String, String> pUser)  
+	SqlSession ss = InitServlet.getSqlSession(); 		// InitServlet의 public static SqlSession getSqlSession()의 리턴값을 가져옴. 즉 쿼리문과 DB접속.
+   return ss.selectList("UserInfo.selectUserList",pUser); 		// 여기서 쿼리문을 실행시킴! 이것은 VO의 userInfo.xml과 같다. 
+
+##### 따라서 우리가 받는 리턴값은? #####
+List<UserInfoVO> uiList = ss.selectList.selectList("UserInfo.selectUserList",pUser);
+
+결론! 우리가 결과적으로 받는 리스트는 userInfo.xml의 쿼리문의 결과로 나오는 DB 리스트들의 Map<String, String> pUser 형태이다.
+
+* UserController의 List<UserInfoVO> uiList = uis.getUserList(null);가 완성되고 이것을 JSON형태로 JSP에 날린다.
+   
+

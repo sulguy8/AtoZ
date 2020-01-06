@@ -1,0 +1,112 @@
+https://blog.naver.com/bkcaller/221456846541
+
+검색엔진에 노출시킬수있는 서버렌더링
+프론트에서 사용할수 있는 데이터를 효율적으로 사용
+
+1. 중앙에 위치하도록 간단한 디자인을 해주고
+2. 할일을 입력하는 텍스트박스를 하나 만든뒤
+3. 입력값을 new.todo라는 변수에 바인딩해주고
+4. 엔터키가입력됐을 경우 메세지를 호출해서
+5. todoList에 값을 추가하고
+6. 추가한 값들을 바로 화면에 출력합니다.
+7. 추가한 한일 목록들은 Todo라는 컴포넌트에 추가를해서
+8. 만약에 완료했을경우 success라는 클래스에 추가해줌
+
+vue.js는 html에서 발생하는 각종 이벤트들을 자바스크립트에 연결하고 자바스크립트의 변경사항을 바로 html에 적용시킨다
+컴포넌트화를 통해 유지보수가 편함
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+Youtube : https://www.youtube.com/watch?v=kYo6FXCVjAI&list=PLwawSyI26pfuGsEzp7AzP_TJVhSdwFuwh&index=2
+
+# 1 Vue.js로 Todo 어플리케이션 만들기 - data binding과 Vue devtools
+* 크롬에서 vue 웹어플리케이션 다운받기
+<body>
+    <div id="app">
+        <input type="text" id="user_id" v-model="userId">
+        <input type="password" id="user_password" v-model="userPassword">
+        <button type="button">로그인</button>
+        <br />
+        아이디 : {{ userId }}
+        <br />
+        비밀번호 : {{ userPassword }}
+    </div>				// 화면을 구성한다. 백엔드의 View와 같다
+<script>
+    new Vue({				// 인스턴스를 만들어야 함.
+        el: '#app',
+        data() {				// view의 v-model에 맵핑
+            return{
+                userId: '',
+                userPassword:''
+            }
+        }
+    })					// 화면구성에 필요한 값들. 백엔드의 Model와 같다. MVC패턴과 비슷
+</script>
+    
+</body>
+
+# 2 Vue.js로 Todo 어플리케이션 만들기 - list 출력하기
+* Vue.js에서 리스트를 출력하려면 반복할 태그에 v-for라는 attribute를 사용하고 
+  두개 이상의 태그를 반복문 안에 사용하려면 templet이라는 태그를 사용해야함. vue.js는 데이터 변경사항을 감지해서 자동으로 업데이트 해줌.
+  태그 안에서는 <img :src="item.image">
+  태그 밖에서는 {{ item.title }}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# Vue.js의 라이프 사이클
+1. 인스턴스 생성
+2. 인스턴스 내용을 화면에 부착
+3. 인스턴스 내용으로 갱신
+4. 인스턴스 소멸
+https://blog.naver.com/bkcaller/221457669330
+<script>
+	new Vue({
+		el: '#app',
+		data: {
+		},
+
+	## 인스턴스 생성 
+	* 이벤트 및 라이프 사이클 초기화. 
+		beforeCreate : function() { 	// 아직 data 속성과 methods 속성이 정의 되어있지 않고, DOM과 같은 화면 요소에 접근 불가 	
+		},
+
+	* 화면에 반응성 주입
+		created : function() {		// data 속성과 methods 속성이 정의되었기 때문에 this.data 또는 this.fetchData()로 접근가능	
+		},				// 다만 아직 인스턴스가 화면 요소에 부착되기 전이기 때문에 template 속성에 정의된 DOM 요소로 접근할 수 없다.
+
+	* el,template 속성 확인
+
+	* template 속성 내용을 render()로 변환
+		beforeMounted : function() {	// created 단계 이후 template 속성에 지정한 마크업 속성을 render()함수로 변환 후
+		},				// el 속성에 지정한 화면 요소(DOM)에 인스턴스를 부착하기 전에 호출되는 단계.
+						// render() 함수가 호출되기 직전의 로직을 추가하기 좋음.
+
+	* $el 생성 후 el 속성 값을 대입
+		mounted : function() {		// el 속성에 지정한 화면 요소에 인스턴스가 부착되고 나면 호출되는 단계.
+		},				// template 속성에 정의한 화면 요소에 접근할 수 있어 화면 요소를 제어하는 로직을 수행하기 좋은 단계
+						// 다만, DOM에 인스턴스가 부착되자마자 바로 호출되기 때문에 하위 컴포넌트나 외부 라이브러리에 의해 추가된 화면 요소들이
+						// 최종 HTML 코드로 변환되는 시점과 다를 수 있다.
+	## 인스턴스를 화면에 부착
+	* 인스턴스의 데이터 변경
+		beforeUpdated : function() {	// el 속성에서 지정한 화면 요소에 인스턴스가 부착되고 나면 인스턴스에 정의한 속성들이 화면에 치환된다.
+		},				// 치환된 값은 뷰의 반응성을 제공하기 위해 $watch 속성으로 감시하며 이를 데이터 관찰이라고 한다.
+						// 또한 beforeUpdate는 관찮하고 있는 데이터가 변경되면 가상 DOM으로 화면을 다시 그리기 전에 호출되는 단계이며,
+						// 변경 예정인 새 데이터에 접근할 수 있어 변경 예정인 데이터의 값과 관련된 로직을 미리 넣을 수 있다.
+						// 만약 여기에 값을 변경하는 로직을 넣더라도 화면이 다시 그려지진 않는다.
+	* 화면 재 렌더링 및 데이터 갱신
+		updated : function() {		// 데이터가 변경되고 나서 가상DOM으로 다시 화면을 그리고 나면 실행되는 단계다/
+		},				// 데이터 변경으로 인한 화면 요소 변경까지 완료된 시점이므로 데이터 변경 후 화면 요소 제어와 관련된 로직을 추가하기 좋은 단계다.
+						// 이 단계에서 데이터 값을 변경하면 무한 루프에 빠질 수 있기 때문에 값을 변경하려면 computed, watch와 같은 속성을 사용해야 한다.
+						// 따라서 데이터 값을 갱신하는 로직은 가급적이면 beforeUpdate에 추가하고 updated에서는 변경 데이터의 화면 요소(DOM)와 관련된 로직을 추가하는 것이 좋다.
+	## 인스턴스 내용 갱신
+	* 인스턴스 접근 가능	
+		beforeDestroy : function(){  	// 뷰 인스턴스가 파괴되기 직전에 호출되는 단계. 이 단계에서는 아직 인스턴스에 접근할 수 있다. 따라서 뷰 인스턴스의 데이터를 삭제하기 좋은 단계다.
+		},
+
+	* 컴포넌트, 인스턴스, 디렉티브 등 모두 해제
+	 	destroyed : function(){ 	// 뷰 인스턴스가 파괴되고 나서 호출되는 단계다. 뷰 인스턴스에 정의한 모든 속성이 제거되고
+		},				// 하위에 선언한 인스턴스들 또한 모두 파괴된다.
+	
+	## 인스턴스 소멸
+
+	})
+</script>

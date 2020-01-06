@@ -1,0 +1,49 @@
+* $('input[value='+ name +']').attr('checked',true); 는 아래와 같다
+<input type="radio" name="name" value="우길동" checked = true>
+** 이해하려면 property와 attribute의 차이를 이해하고 있어야 함.
+*** <c:if test="${name =='이길동'}">checked</c:if> // 옛날 태그에 접근하는 방식.
+
+* produces="application/text;charset=utf-8" // 리스폰스를 이렇게 쓰겠다.
+
+* <script>
+	var name ='${name}'
+	alert(name);
+</script>  // 브라우저 단에서 만들어져서 들어가기 때문에 컨트롤러에있는 name이 나옴.
+
+* jquery 사용할때 1.x(옛버전 브라우저), 2.x(쓰지마!), 3.x(퍼포먼스에 집중)가 있음
+
+* 브라우저는 순서대로 호출한다. 따라서 제이쿼리 다음에다가 ajax를 호출해야함.
+
+* $(); // jquery();의 축소판. 단순한 펑션이라고 생각하면됨.
+$('#btn') // length를 가지고 있음. 단일 셀럭터가 아님. querySelectorAll처럼 써야함.
+
+* window.onload{}
+* window.addEventListener('load',function){}
+* $(document).ready(function(){
+	alert('다큐먼트가 준비가 됐구나~~');
+  });
+**(document).ready(func1); 로 줄여쓸 수 있음.
+*** window.onload{} // (마지막것만 실행)와 $(document).ready(function() // (있는거 전부다 실행)는 차이가 있다.
+
+* jquery에 이벤트 주는 방법
+	$(document).ready(function(){
+		$('#btn').on('click',function(){
+			alert('날 눌렀군~');
+		})
+	}); // 1번째는 어떤이벤트(click)인지 , 다음 2번째는 그 이벤트때 이걸(alert) 실행해라
+
+* alert($('#text').val()); 	// 겟터 역할
+  alert($('#text').val(abc)); 	// 셋터 역할
+
+* 같은 이벤트를 여러번 실행하고 싶을때?
+$(document).ready(function(){
+	$('button').on('click',function()){
+		alert(this.innerText); // 해당 이벤트를 눌렀을때 그 값(this)로 해라. ex) 5개의 버튼중에3번누르면 3이뜸. Jquery의 장점
+		var param = {
+			uiId : $('#uiId').val(),
+			uiPwd : $('#uiPwd').val()
+	}
+	param = JSON.stringify(param);
+	alert(param);
+	})
+})
