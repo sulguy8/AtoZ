@@ -1,0 +1,472 @@
+https://blog.naver.com/spdlqjdudghl
+
+https://beomy.tistory.com/43  - mvp 패턴
+
+https://www.data.go.kr/
+
+
+* chage -l user_001 // 유저 정보보기
+* find -user 1001 -exec rm -r { } \;   // 파일 내용중에서 UID를 찾아서 관련된 파일을 모두 삭제
+* groupadd db_zone 	// 그룹 아이디 만들기
+** grep db_zone /etc/group // 만들고 확인!
+*** groupadd -g 2017 nt_zone // 그룹아이디 주기
+**** gpasswd -a sno_2017001 db_zone // sno_2017001을 db_zone에 그룹추가
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+* a <-(alt+"-") 10 은 a = 10
+* ctrl + shift + enter // 전체실행
+* install.packages("ggplot2") // 설치한 패키지 불러오기
+* tips=read.csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv') //  read.으로 변수 불러오기
+* str(tips)
+* 'data.frame':	244 obs. of  7 variables:
+  data.frame // 데이터 형식
+  244 obs. // 관측된 것들
+  7 variables // 7개의 변수
+
+* summary(tips) // 요약 통계량
+  str(tips) // 데이터 프레임에 저장된 데이터의 갯수, 변수, 자료형, 저장된 데이터의 일부를 보여줌.
+
+* install된거 메모리올리기
+  library(dplyr) 
+  library(ggplot2)
+
+* 그래프 실행
+tips%>%ggplot(aes(size)) + geom_histogram()
+tips%>%ggplot(aes(total_bill, tip)) + geom_point()
+tips%>%ggplot(aes(total_bill, tip)) + geom_point(aes(col=day))
+tips%>%ggplot(aes(total_bill, tip)) + geom_point(aes(col=day, pch=sex), size=3)
+
+* 함수
+log(10) + 5 // 로그함수
+sqrt(25) // 제곱근
+max(5,3,2) // 가장큰 값
+min()
+abs(-10)
+factorial(5)
+sin(pi/2), cos(), tan()
+
+* 데이터타입
+숫자형 1, 2, 3, -4, 12.8
+문자형 'TOM', "JANE"
+논리형 TRUE, FALSE
+특수값 null, na(missing value), NaN, Inf, -Int
+
+* 벡터는 1차원 배열 데이터 ex) 몸무게 30, 32, 38
+  매트리스, 데이터프레임은 2차원 배열 데이터 x, y로 row와 col로 구성
+
+* w <- c(1,2,3,"a","b","C") // 전부다 문자열로 바뀜
+
+* v2 <- c(1,2,5, 50:90) // 1,2,5 찍고 50~90까지
+
+* v3 <- seq(1,101,3) // 1부터 3씩 더하면서 101번까지 찍고 seq해라
+
+* 반복문
+  v4 <- rep(1:5, times=3)
+  v5 <-  rep(c(1,5,9), times=3)
+
+* 2차원으로 바꾸기
+  score <- c(90,85,60)
+  names(score) <- c("A","B","C") // 열의 이름 정하기
+
+* v1[10] // 벡터값의 10번째방
+
+* 배열 방으로 보는 방법
+d <- c(1,4,3,7,8)
+d[c(1,3,5)]
+d[1:3]
+d[seq(1,5,2)]
+d[-2]
+d[-c(3:5)]
+score
+
+* 벡터에 적용 가능한 함수 찾아보기
+
+* sort(d, decreasing = TRUE)
+
+## 리스트 : 서로 다른 자료형들의 값들을 1차원 배열에 저장하고 다룰 수 있다
+  my.info <- list(name='Tom','Jerry', age=60, status=TRUE, score=ds)
+  my.info[[5]]
+
+* 데이터 셋의 기본정보 확인.
+dim(iris)
+nrow(iris)
+ncol(iris)
+colnames(iris)
+head(iris)
+tail(iris)
+str(iris) // 데이터 분석
+unique(iris[,5]) // 중복제거
+table(iris[,"Species"]) // 품종의 종류별 개수 세기
+
+
+## 팩터 : 문자형 데이터가 저장된 벡터의 일종. 성별이나 혈액형, 선호 정당 등과 같이 저장할 문자값들이 fix되어있을때 팩터를 사용. 레벨이 있음
+** 팩터의 선언
+bt <- c('A','B','C','O','AB','A')  // 만약에 여기다 E를 넣으면 오류남.
+bt.new <-  factor(bt)
+** 팩터값 레벨 조회
+levels(bt.new)
+** 팩터값 조회
+bt.new
+
+## 매트릭스 : 2차원 데이터라고도 함.(1차원은 벡터) 키,몸무게,나이 등 여러 주제의 데이터. 벡터들의 모임이라 할 수 있다. *** 모든 셀의 데이터타입이 같다!
+* 행은 관측값(observation), 열은 변수(variable)라고 함
+
+* z <- matrix(1:20, nrow=4, ncol=5) // 1~20까지 열단위로 먼저 들어감.
+** z2 <- matrix(1:20, nrow=4, ncol=5, byrow=T) // 행단위로 먼저 들어감.
+
+* 이해할 것!
+x <-1:4
+y <- 5:8
+z <- matrix(1:20, nrow=4, ncol=5)
+
+m1 <- cbind(x,y)
+
+z[2,4] // 조회방법
+z[1:2,] // 1행과 2행만 다 나와라
+z[,c(1,4)] // 1열과 4열만 다 나와라
+
+* 매트릭스 이름 정하기
+rownames(z) <- c('a','b','c','d')
+colnames(z) <- c('e','f','g','h','i')
+m2 <- rbind(x,y)
+z['a','i']
+colnames(z)[3]
+
+## 데이터 프레임 : *** 자료형이 다른 컬럼으로 구성되어있다
+* 데이터 프레임 만드는 방법
+city <- c("seoul","tokyo","washington")
+rank <- c(1,3,2)
+city.info <- data.frame(city,rank)
+city.info
+
+## 매트릭스와 데이터 프레임에서 사용하는 함수.
+colSums(iris[,-5]) // 열별 합계
+colMeans(iris[,-5]) // 열별 평균
+rowSums(iris[,-5])
+
+* 행과 열 자리바꾸기
+z <- matrix(1:20, nrow=4, ncol=5)
+t(z)
+* 원하는 정보 가져오기
+IR.1 <- subset(iris, Species=="setosa")
+IR.2 <- subset(iris, Sepal.Length>5.0 & Sepal.Width>4.0)
+IR.2[, c(2,4)]
+* 산술연산
+
+* 매트릭스와 데이터프레임의 자료구조 확인
+class(iris) // iris 데이터셋의 자류구조 확인
+is.matrix(iris), is.data.frame(iris)
+
+* 매트릭스와 데이터프레임의 자류구조 변환
+st <- data.frame(state.x77)
+iris.m <- as.matrix(iris[,1:4])
+
+* 구분할 것.
+iris["Species"] // 벡터, 매트릭스와 데이터프레임 모두 가능.
+iris[,"Species"] // 데이터프레임, 데이터프레임만 가능. iris[,5]와 같다.
+iris$Species // 벡터. 데이터프레임만 가능
+
+## 리스트 : 서로 다른 기본 데이터형을 갖는자료 구조를 포함함. 데이터 프레임보다 넓은 의미의 데이터 모임. 
+            *** 데이터 프레임과 달리 모든 속성의 크기가 같을 필요가 없음
+ds <- c(90,85,70,84)
+my.info <- list(name='TOM',age=60, status=TRUE, score=ds) // 리스트 만드는 방법
+my.info
+my.info[[4]]
+my.info$score // 리스트에서 값의 이름이 name인 값 출력
+
+patients = data.frame(name=c("철수","춘향","길동"), age= c(22,20,25), gender = factor(c("M","F","M")), blood.type = factor(c("A","O","B")))
+no.patients = data.frame(day=c(1:6), no=c(50,60,70,80,90,65))
+listPatients = list(patients, no.patients)
+listPatients = list(patients = patients, no.patients = no.patients) // 요소에 이름주기
+
+listPatients$patients // 위의 이름으로 출력가능.
+listPatients[[1]]
+listPatients[["patients"]]
+
+* 유용한 함수들
+** apply : 행렬이나 데이터 프레임을 행 단위로, 또는 열 단위로 행렬의 합이나 평균, 표준편차 등을 계산할 때 씀.
+apply(no.patients,1,sum) // 여기서 1은 행을 의미, 2는 열. 1과 2로 행렬을 구분한다.
+lapply(listPatients$no.patients, mean) // 데이터타입을 list로 리턴.
+sapply(listPatients$no.patients, mean) // 데이터타입이 벡터. 평균내는 두가지 형태의 함수
+
+** tapply : 벡터 등에 있는 데이터를 특정 기준으로 묶어 그룹마다 특정 함수 적용
+tapply(weigth.furit,mean) // 과일을 기준으로 평균을 구해라.
+tapply(iris$Sepal.Width, iris$Species, sum) // 종을 기준으로
+
+** 패키지와 함수 // RStudio에서 우측하단의 인스톨을 통하여 설치해야 함.
+base 기본 패키지
+readr 패키지
+data.table 패키지
+feather 패키지
+
+** 파일 형식 변환 // 엑셀파일에 테이블 형태의 데이터가 저장된 상태에서 .csv형태로 변환하여 R에서 .csv파일을 읽음. 이 파일은 데이터 프레임 형태로 저장됨.
+setwd("C:/source") // 여기 경로의 폴더에 존재하는 csv(Comma-Separated Values)파일 갖고오는 것.(setworkingdirectory의 약자)
+air <- read.csv("airquality.csv", header=T) // csv파일 읽을때
+head(air)
+air <- read.table("airquality.txt", header=T) // txt파일 읽을때
+
+* csv는 이런 파일임.
+name,korean,english
+조씨,60,60
+김씨,70,70
+이씨,80,50	
+박씨,60,50	
+
+* txt파일은 띄어쓰기로 구분
+name korean english
+조씨 60 60
+김씨 70 70
+이씨 80 50	
+박씨 60 50
+
+write.csv(listPatients, file="c://source/output.csv", quote=F)	 // csv파일로 저장
+write.table(listPatients, file="c://source/output2.txt", quote=F) // 텍스트파일로 저장 quote=f는 따옴표가 없음.
+
+setwd("C:/source")
+my.iris <- subset(iris, Species='Setosa')
+write.csv(my.iris, "my_iris.csv", row.names=F) // row.names=F는 행번호 붙이지 않을 때.
+
+
+
+## 조건문
+job.type <- 'A'
+if(job.type == 'B'){
+    bonus <- 200
+} else { 
+    bonus <- 100
+}
+print(bonus)
+
+a <- 10
+b <- 20
+c <- ifelse(a>b, a,b) // 3항연산자. true면 a, false면 b
+
+x=c(-5:5)
+options(digits=3) // 숫자 표현 시 유효자릿수를 3자리로 설정
+sqrt(x) // NaN이 포함되어있어서 오류발생! sqrt는 루트를 의미함.
+sqrt(ifelse(x>=0, x, NA)) // 따라서 이렇게 해결해줘야 함.
+## 반복문
+for (반복변수 in 반복범위){
+	반복할 명령문(들)
+}
+
+for(i in 1:5){
+  print(i);
+}
+
+for(i in 1:9){
+  cat('2*', i, '=', 2*i,'\n');
+}	// 구구단의 2단 만들기
+
+for(i in 1:20){
+  if(i%%2==0){
+    print(i)
+  }
+} 	// 짝수만 출력하기
+
+* 강제로 값 바꾸기
+x <- iris
+x[1,2] <- NA; x[1,3] <- NA
+x[2,3] <- NA; x[3,4] <- NA
+
+# 데이터 프레임의 열별 결측값 확인
+** for문을 이용한 방법
+for(i in 1:ncol(x)){
+  this.na <-  is.na(x[,i]) // na는 NaN. 그게 몇개가 있느냐
+  cat(colnames(x)[i], "\t", sum(this.na), "\n")
+}
+
+** apply를 이용한 방법
+col_na <-  function(y){
+  return(sum(is.na(y)))
+}
+na_count <-  apply(x, 2, FUN=col_na)
+na_count
+
+# 데이터 프레임의 행별 결측값 확인
+rowSums(is.na(x))
+sum(rowSums(is.na(x))>0) // NaN이 포함된 행갯수
+sum(is.na(x)) // NaN 총갯수
+
+# 결측값을 제외하고 새로운 데이터셋 만들기
+head(x)
+x[!complete.cases(x),]
+y <- x[!complete.cases(x),]
+head(y)
+
+# 특이값
+  데이터를 파악할때 왜곡을 가져올 수 있으므로 분석할 때 특이값을 제외하는 경우가 많음. 불량제품이나 사기거래탐지할 때 유용.
+
+st <- data.frame(state.x77)
+boxplot(st$Income)
+boxplot.stats(st$Income)$out // out은 특이값을 표현한다.
+
+
+out.val <- boxplot.stats(st$Income)$out // 특이값 추출
+st$Income[st$Income %in% out.val] <- NA // 특이값을 NA로 대체
+head(st)
+newdata <- st[complete.cases(st),] 	// NA가 포함된 행 제거
+head(newdata)
+
+# 데이터 정렬
+1. 벡터의 정렬
+v1 <- c(1,7,6,8,4,2,3)
+order(v1)
+v1 <- sort(v1)
+v1
+v2 <- sort(v1, decreasing=T)
+v2
+
+2. 매트릭스와 데이터 프레임의 정렬
+order(iris$Sepal.Length)
+iris[order(iris$Sepal.Length),]
+iris.new <- iris[order(iris$Sepal.Length),]
+head(iris.new)
+iris[order(iris$Species, decreasing=T, iris$Petal.Length),]
+
+# 데이터 분리와 선택
+1. 데이터 분리
+sp <- split(iris, iris$Species)
+sp
+
+2. 데이터 선택
+subset(iris, Species =="setosa")
+subset(iris, Sepal.Length > 7.5 & Sepal.Width >2.0)
+subset(iris, Sepal.Length > 7.6, select=c(Petal.Length,Petal.Width))
+
+# 데이터 샘플링 // 주어진 값들이 있을 때 그중에서 임의의 개수의 값들을 추출하는 작업. 데이터셋의 크기가 너무 커서 데이터 ㅜㄴ석에 시간이 많이 걸리는 경우
+		   일부 데이터만 샘플링하여 대략의 결과를 미리 확인
+* 복원 추출과 비복원 추출로 나뉨.
+
+1. 행을 임의로 추출하기
+idx <-  sample(1:nrow(iris), size=50, replace = FALSE)
+iris.50 <-  iris[idx,]		// 50개의 행 추출
+dim(iris.50)			// 행과 열의 개수 확인
+head(iris.50)
+
+2. set.seed() 함수 이해하기
+sample(1:20, size=5)
+set.seed(100) // 이것을 사용하면 random값이었던 sample이 고정값으로 바뀜
+
+3. 데이터 조합
+combn(1:5,3) // 1~5에서 3개를 뽑는 조합
+
+x = c("red","green","blue","black","white")
+com <- combn(x,2)
+com	// x의 원소를 2개씩 봅는 조합
+for(i in 1:ncol(com)) {
+	cat(com[,i], "\n")
+}	// 조합된 것을 출력
+
+# 데이터 집계와 병합
+1. 데이터 집계 // 2차원 데이터는 합계나 평균을 계산해야 하는 일이 많음. 이러한 작업을 집계라하며 aggregate()함수를 통해서 가능
+agg <- aggregate(iris[,-5], by=list(iris$Species), FUN=mean) // iris[,-5] 집계작업을 수행할 대상, 아이리스트에서 ,-5 제외하고 by는 기준점을 잡아서 평균을 내라.
+agg <- aggregate(iris[,-5], by=list(표준편차=iris$Species), FUN=sd)  // iris의 각 변수의 품종별 표준편차 출력
+agg <- aggregate(mtcars, by=list(cyl=mtcars$cyl, vs=mtcars$vs), FUN=max) // 각 변수의 최대값 출력
+
+2. 데이터 병합
+* 병합(merge) : 분리된 데이터 파일을 공통 컬럼을 기준으로 하나로 합치는 작업
+x <-  data.frame(name=c("a","b","C"), math=c(90,80,40))
+y <- data.frame(name=c("a","b","d"), math=c(75,60,90))
+z <-  merge(x,y, by=c("name"))
+
+merge(x,y, all.x=T)
+merge(x,y, all.y=T)
+merge(x,y, all=T)
+
+# 결측값 처리
+is.na : NA인 데이터가 있으면 T, 없으면 F
+na.omit : NA인 데이터를 제거. 즉, NA가 포함된 행을 지운다
+함수의 속성을 이용 : na.rm=T로 하여 함수 수행 시 NA를 제외
+
+table(is.na(airquality))
+
+air_narm1=na.omit(airquality)
+mean(air_narm1$Ozone) 
+
+# 이상값 처리 // 이상한 데이터
+patient=data.frame(name=c("환자1","환자2","환자3","환자4","환자5"), age=c(22, 20, 25, 30, 27), gender=factor(c("M","F","M","K","F")), blood.type=factor(c("A","O","B","AB","C")))
+patient_outrm=patient[patient$gender=="M"|patient$gender=="F",] // K라는 이상값을 뽑아내기 위해서
+patient_outrm
+
+patient[!is.na(patient$gender)&!is.na(patient$blood.type),]// na가 아닌값들만 출력
+
+boxplot(airquality[, c(1:4)]) 
+boxplot(airquality[,1])$stats // Ozone의 boxplot 통계값 계산
+
+# base R을 이용한 데이터 가공
+* gapminder 라이브러리
+
+# glimpse(gapminder)
+gapminder[gapminder$country == "Croatia", "pop"]
+
+# dplyr 라이브러리를 이용한 데이터 가공
+* %>% 
+
+
+
+
+
+@ 단일변수 자료의 탐색
+# 자료의 종류
+1. 범주형 자료(질적 자료)
+* 기본적으로 숫자로 표현할 수 없고, 대소비교나 산술연산이 적용되지 않음. ex)성별, 혈액형, 선호색 등등
+2. 연속형 자료(양적 자료)
+* 크기가 있는 숫자로 구성, 대소 비교가 가능하고, 평균, 최댓값, 최소값과 같은 산술 연산이 가능.
+
+# 단일변수, 다중변수
+* 단일 변수자료는 벡터, 다중 변수자료는 매트릭스나 데이터 프레임에 저장하여 분석
+
+table(favorite) 			// 도수분포표 계산. 열의 이름마다 갯수가 나타나게됨
+table(favorite)/length(favorite) 	// 비율 출력
+
+ds <- table(favorite) // 그래프 그릴때 table 작업이 선행되어야 하구나.
+barplot(ds, main='favorite season') 	// 막대그래프 형. main은 이 표의 제목
+pie(ds, main='favorite season')		// 원그래프 형
+
+weight <- c(60,62,64,65,68,69)
+median(weight) // 중앙값
+mean(weight, trim=0.2) // 절사평균(상하위 20% 제외)
+
+* 4분위수 : 앞에서부터 Q1, Q2(중앙값), Q3이라고 부름
+
+mydata <- c(60,62,64,65,68,69,120)
+quantile(mydata)
+quantile(mydata, (0:10)/10) // 10% 단위로 구간을 나누어 계산
+summary(mydata)
+
+var(mydata)		// 분산		
+sd(mydata)		// 표준편차
+range(mydata)		// 값의 범위
+diff(range(mydata)) 	// 최댓값, 최솟값의 차이
+
+hist(dist,		// 히스토그램 : 연속형자료들의 시각화. 키같은것은 범위에 애매하기때문에 일정한 구간을 정해줌.
+     main="Histogram for 제동거리",
+     xlab = "제동거리",
+     ylab = "빈도수",
+     border= "red",
+     col= "green",
+     las= 2,
+     breaks=5)
+
+* 막대그래프 vs 히스토그램
+1. 막대그래프는 막대끼리 떨어져있지만 히스토그램은 전부붙어있다.(구간이기 때문에!)
+2. 막대그래프에서는 막대의 면적이 의미가 없지만 히스토그램에서는 막대의 면적도 의미가 있음.
+
+dist <- cars[,2]
+boxplot(dist, main="자동차 제동거리리")
+
+boxplot.stats(dist)
+$stats
+[1]  2 26 36 56 93  		// 최소값,1사분위수,중앙값,3사분위수,최대값
+
+$n
+[1] 50				// 자료의 개수
+
+$conf
+[1] 29.29663 42.70337  		// 중앙값에 관련된 신뢰 구간
+
+$out
+[1] 120				// 특이값의 목록
