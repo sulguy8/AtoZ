@@ -5,40 +5,8 @@ https://beomy.tistory.com/43  - mvp 패턴
 https://www.data.go.kr/
 
 
-* chage -l user_001 // 유저 정보보기
-* find -user 1001 -exec rm -r { } \;   // 파일 내용중에서 UID를 찾아서 관련된 파일을 모두 삭제
-* groupadd db_zone 	// 그룹 아이디 만들기
-** grep db_zone /etc/group // 만들고 확인!
-*** groupadd -g 2017 nt_zone // 그룹아이디 주기
-**** gpasswd -a sno_2017001 db_zone // sno_2017001을 db_zone에 그룹추가
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-* a <-(alt+"-") 10 은 a = 10
-* ctrl + shift + enter // 전체실행
-* install.packages("ggplot2") // 설치한 패키지 불러오기
-* tips=read.csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv') //  read.으로 변수 불러오기
-* str(tips)
-* 'data.frame':	244 obs. of  7 variables:
-  data.frame // 데이터 형식
-  244 obs. // 관측된 것들
-  7 variables // 7개의 변수
-
-* summary(tips) // 요약 통계량
-  str(tips) // 데이터 프레임에 저장된 데이터의 갯수, 변수, 자료형, 저장된 데이터의 일부를 보여줌.
-
-* install된거 메모리올리기
-  library(dplyr) 
-  library(ggplot2)
-
-* 그래프 실행
-tips%>%ggplot(aes(size)) + geom_histogram()
-tips%>%ggplot(aes(total_bill, tip)) + geom_point()
-tips%>%ggplot(aes(total_bill, tip)) + geom_point(aes(col=day))
-tips%>%ggplot(aes(total_bill, tip)) + geom_point(aes(col=day, pch=sex), size=3)
-
-* 함수
+# 함수
 log(10) + 5 // 로그함수
 sqrt(25) // 제곱근
 max(5,3,2) // 가장큰 값
@@ -47,145 +15,7 @@ abs(-10)
 factorial(5)
 sin(pi/2), cos(), tan()
 
-* 데이터타입
-숫자형 1, 2, 3, -4, 12.8
-문자형 'TOM', "JANE"
-논리형 TRUE, FALSE
-특수값 null, na(missing value), NaN, Inf, -Int
-
-* 벡터는 1차원 배열 데이터 ex) 몸무게 30, 32, 38
-  매트리스, 데이터프레임은 2차원 배열 데이터 x, y로 row와 col로 구성
-
-* w <- c(1,2,3,"a","b","C") // 전부다 문자열로 바뀜
-
-* v2 <- c(1,2,5, 50:90) // 1,2,5 찍고 50~90까지
-
-* v3 <- seq(1,101,3) // 1부터 3씩 더하면서 101번까지 찍고 seq해라
-
-* 반복문
-  v4 <- rep(1:5, times=3)
-  v5 <-  rep(c(1,5,9), times=3)
-
-* 2차원으로 바꾸기
-  score <- c(90,85,60)
-  names(score) <- c("A","B","C") // 열의 이름 정하기
-
-* v1[10] // 벡터값의 10번째방
-
-* 배열 방으로 보는 방법
-d <- c(1,4,3,7,8)
-d[c(1,3,5)]
-d[1:3]
-d[seq(1,5,2)]
-d[-2]
-d[-c(3:5)]
-score
-
-* 벡터에 적용 가능한 함수 찾아보기
-
-* sort(d, decreasing = TRUE)
-
-## 리스트 : 서로 다른 자료형들의 값들을 1차원 배열에 저장하고 다룰 수 있다
-  my.info <- list(name='Tom','Jerry', age=60, status=TRUE, score=ds)
-  my.info[[5]]
-
-* 데이터 셋의 기본정보 확인.
-dim(iris)
-nrow(iris)
-ncol(iris)
-colnames(iris)
-head(iris)
-tail(iris)
-str(iris) // 데이터 분석
-unique(iris[,5]) // 중복제거
-table(iris[,"Species"]) // 품종의 종류별 개수 세기
-
-
-## 팩터 : 문자형 데이터가 저장된 벡터의 일종. 성별이나 혈액형, 선호 정당 등과 같이 저장할 문자값들이 fix되어있을때 팩터를 사용. 레벨이 있음
-** 팩터의 선언
-bt <- c('A','B','C','O','AB','A')  // 만약에 여기다 E를 넣으면 오류남.
-bt.new <-  factor(bt)
-** 팩터값 레벨 조회
-levels(bt.new)
-** 팩터값 조회
-bt.new
-
-## 매트릭스 : 2차원 데이터라고도 함.(1차원은 벡터) 키,몸무게,나이 등 여러 주제의 데이터. 벡터들의 모임이라 할 수 있다. *** 모든 셀의 데이터타입이 같다!
-* 행은 관측값(observation), 열은 변수(variable)라고 함
-
-* z <- matrix(1:20, nrow=4, ncol=5) // 1~20까지 열단위로 먼저 들어감.
-** z2 <- matrix(1:20, nrow=4, ncol=5, byrow=T) // 행단위로 먼저 들어감.
-
-* 이해할 것!
-x <-1:4
-y <- 5:8
-z <- matrix(1:20, nrow=4, ncol=5)
-
-m1 <- cbind(x,y)
-
-z[2,4] // 조회방법
-z[1:2,] // 1행과 2행만 다 나와라
-z[,c(1,4)] // 1열과 4열만 다 나와라
-
-* 매트릭스 이름 정하기
-rownames(z) <- c('a','b','c','d')
-colnames(z) <- c('e','f','g','h','i')
-m2 <- rbind(x,y)
-z['a','i']
-colnames(z)[3]
-
-## 데이터 프레임 : *** 자료형이 다른 컬럼으로 구성되어있다
-* 데이터 프레임 만드는 방법
-city <- c("seoul","tokyo","washington")
-rank <- c(1,3,2)
-city.info <- data.frame(city,rank)
-city.info
-
-## 매트릭스와 데이터 프레임에서 사용하는 함수.
-colSums(iris[,-5]) // 열별 합계
-colMeans(iris[,-5]) // 열별 평균
-rowSums(iris[,-5])
-
-* 행과 열 자리바꾸기
-z <- matrix(1:20, nrow=4, ncol=5)
-t(z)
-* 원하는 정보 가져오기
-IR.1 <- subset(iris, Species=="setosa")
-IR.2 <- subset(iris, Sepal.Length>5.0 & Sepal.Width>4.0)
-IR.2[, c(2,4)]
-* 산술연산
-
-* 매트릭스와 데이터프레임의 자료구조 확인
-class(iris) // iris 데이터셋의 자류구조 확인
-is.matrix(iris), is.data.frame(iris)
-
-* 매트릭스와 데이터프레임의 자류구조 변환
-st <- data.frame(state.x77)
-iris.m <- as.matrix(iris[,1:4])
-
-* 구분할 것.
-iris["Species"] // 벡터, 매트릭스와 데이터프레임 모두 가능.
-iris[,"Species"] // 데이터프레임, 데이터프레임만 가능. iris[,5]와 같다.
-iris$Species // 벡터. 데이터프레임만 가능
-
-## 리스트 : 서로 다른 기본 데이터형을 갖는자료 구조를 포함함. 데이터 프레임보다 넓은 의미의 데이터 모임. 
-            *** 데이터 프레임과 달리 모든 속성의 크기가 같을 필요가 없음
-ds <- c(90,85,70,84)
-my.info <- list(name='TOM',age=60, status=TRUE, score=ds) // 리스트 만드는 방법
-my.info
-my.info[[4]]
-my.info$score // 리스트에서 값의 이름이 name인 값 출력
-
-patients = data.frame(name=c("철수","춘향","길동"), age= c(22,20,25), gender = factor(c("M","F","M")), blood.type = factor(c("A","O","B")))
-no.patients = data.frame(day=c(1:6), no=c(50,60,70,80,90,65))
-listPatients = list(patients, no.patients)
-listPatients = list(patients = patients, no.patients = no.patients) // 요소에 이름주기
-
-listPatients$patients // 위의 이름으로 출력가능.
-listPatients[[1]]
-listPatients[["patients"]]
-
-* 유용한 함수들
+# 유용한 함수들
 ** apply : 행렬이나 데이터 프레임을 행 단위로, 또는 열 단위로 행렬의 합이나 평균, 표준편차 등을 계산할 때 씀.
 apply(no.patients,1,sum) // 여기서 1은 행을 의미, 2는 열. 1과 2로 행렬을 구분한다.
 lapply(listPatients$no.patients, mean) // 데이터타입을 list로 리턴.
@@ -194,6 +24,143 @@ sapply(listPatients$no.patients, mean) // 데이터타입이 벡터. 평균내는 두가지 형�
 ** tapply : 벡터 등에 있는 데이터를 특정 기준으로 묶어 그룹마다 특정 함수 적용
 tapply(weigth.furit,mean) // 과일을 기준으로 평균을 구해라.
 tapply(iris$Sepal.Width, iris$Species, sum) // 종을 기준으로
+
+# 원하는 정보 가져오기
+IR.1 <- subset(iris, Species=="setosa")
+IR.2 <- subset(iris, Sepal.Length>5.0 & Sepal.Width>4.0)
+IR.2[, c(2,4)]
+
+* 구분할 것.
+iris["Species"] // 벡터, 매트릭스와 데이터프레임 모두 가능.
+iris[,"Species"] // 데이터프레임, 데이터프레임만 가능. iris[,5]와 같다.
+iris$Species // 벡터. 데이터프레임만 가능
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# 단축키
+* ctrl + shift + enter // 전체실행
+
+# library install 순서!
+1. packages에서 다운받고
+2. install.packages("ggplot2") // 설치한 패키지 불러오기
+3. library(ggplot2) 		// install된거 메모리올리기
+ 
+# 외부파일 읽어오기
+* tips=read.csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv') 
+
+# 통계내기
+* summary(tips) // 요약 통계량
+  str(tips) // 데이터 프레임에 저장된 데이터의 갯수, 변수, 자료형, 저장된 데이터의 일부를 보여줌.
+
+# 데이터타입
+숫자형 1, 2, 3, -4, 12.8
+문자형 'TOM', "JANE"
+논리형 TRUE, FALSE
+특수값 null, na(missing value), NaN, Inf, -Int
+* w <- c(1,2,3,"a","b","C") // 전부다 문자열로 바뀜
+
+# 데이터 셋의 기본정보 확인.
+dim(iris) 		// 행, 열을 파악할 때
+nrow(iris)		// 행을 파악할 때
+ncol(iris)		// 열을 파악할 때
+colnames(iris)
+head(iris)
+tail(iris)
+str(iris) 		// 데이터 분석
+unique(iris[,5]) 	// 중복제거
+table(iris[,"Species"]) 	// 품종의 종류별 개수 세기
+
+# 표 그리기
+* 벡터는 1차원 배열 데이터 ex) 몸무게 30, 32, 38
+  매트리스, 데이터프레임은 2차원 배열 데이터 x, y로 row와 col로 구성
+* v2 <- c(1,2,5, 50:90) // 1,2,5 찍고 50~90까지
+* v3 <- seq(1,101,3) // 1부터 3씩 더하면서 101번까지 찍고 seq해라
+* 2차원으로 바꾸기
+  score <- c(90,85,60)
+  names(score) <- c("A","B","C") // 열의 이름 정하기
+
+# 그래프 실행
+tips%>%ggplot(aes(size)) + geom_histogram()
+tips%>%ggplot(aes(total_bill, tip)) + geom_point()
+tips%>%ggplot(aes(total_bill, tip)) + geom_point(aes(col=day))
+tips%>%ggplot(aes(total_bill, tip)) + geom_point(aes(col=day, pch=sex), size=3)
+
+# 반복문
+  v4 <- rep(1:5, times=3)
+  v5 <-  rep(c(1,5,9), times=3)
+
+# 배열
+* v1[10] // 벡터값의 10번째방
+* 배열 방으로 보는 방법
+d <- c(1,4,3,7,8)
+d[c(1,3,5)]
+d[1:3]
+d[seq(1,5,2)] 	// 방번호임.
+d[-2]		// 2번째방 빼기
+d[-c(3:5)]
+* 정렬하기
+sort(d, decreasing = TRUE)
+
+# 리스트 : 서로 다른 자료형들의 값들을 1차원 배열에 저장하고 다룰 수 있다
+  my.info <- list(name='Tom','Jerry', age=60, status=TRUE, score=ds)
+  my.info[[5]]
+
+# 팩터 : 문자형 데이터가 저장된 벡터의 일종. 성별이나 혈액형, 선호 정당 등과 같이 저장할 문자값들이 fix되어있을때 팩터를 사용. 레벨이 있음
+* 팩터의 선언
+bt <- c('A','B','C','O','AB','A')  // 만약에 여기다 E를 넣으면 오류남.
+bt.new <-  factor(bt)
+levels(bt.new)
+
+# 매트릭스 : 2차원 데이터라고도 함.(1차원은 벡터) 키,몸무게,나이 등 여러 주제의 데이터. 벡터들의 모임이라 할 수 있다. *** 모든 셀의 데이터타입이 같다!
+* 행은 관측값(observation), 열은 변수(variable)라고 함
+* z <- matrix(1:20, nrow=4, ncol=5) // 1~20까지 열단위로 먼저 들어감.
+** z2 <- matrix(1:20, nrow=4, ncol=5, byrow=T) // 행단위로 먼저 들어감.
+* m1 <- cbind(x,y) // 바인드로 행 묶어버리기
+** m2 <- rbind(x,y) // 바인드로 열 묶어버리기
+* 행과 열 자리바꾸기
+z <- matrix(1:20, nrow=4, ncol=5)
+t(z)
+* 조회방법
+z[2,4] // 조회방법
+z[1:2,] // 1행과 2행만 다 나와라
+z[,c(1,4)] // 1열과 4열만 다 나와라
+z['a','i']
+* 매트릭스 이름 정하기
+rownames(z) <- c('a','b','c','d')
+colnames(z) <- c('e','f','g','h','i')
+
+# 데이터 프레임 : 자료형이 다른 컬럼으로 구성되어있다
+* 데이터 프레임 만드는 방법
+city <- c("seoul","tokyo","washington")
+rank <- c(1,3,2)
+city.info <- data.frame(city,rank)
+city.info
+
+## 매트릭스와 데이터 프레임에서 사용하는 함수.
+colSums(iris[,-5]) 	// 열별 합계
+colMeans(iris[,-5])	// 열별 평균
+rowSums(iris[,-5])
+* 매트릭스와 데이터프레임의 자료구조 확인
+class(iris) // iris 데이터셋의 자류구조 확인
+is.matrix(iris), is.data.frame(iris)
+* 매트릭스와 데이터프레임의 자료구조 변환
+st <- data.frame(state.x77)
+iris.m <- as.matrix(iris[,1:4])
+
+# 리스트 : 서로 다른 기본 데이터형을 갖는자료 구조를 포함함. 데이터 프레임보다 넓은 의미의 데이터 모임. 
+            *** 데이터 프레임과 달리 모든 속성의 크기가 같을 필요가 없음
+ds <- c(90,85,70,84)
+my.info <- list(name='TOM',age=60, status=TRUE, score=ds) // 리스트 만드는 방법
+my.info[[4]] = my.info[["score"]] = my.info$score
+
+patients = data.frame(name=c("철수","춘향","길동"), age= c(22,20,25), gender = factor(c("M","F","M")), blood.type = factor(c("A","O","B")))
+no.patients = data.frame(day=c(1:6), no=c(50,60,70,80,90,65))
+listPatients = list(patients, no.patients)
+listPatients = list(patients = patients, no.patients = no.patients) // 요소에 이름주기
+listPatients$patients // 위의 이름으로 출력가능.
+listPatients[[1]]
+listPatients[["patients"]]
+
+
 
 ** 패키지와 함수 // RStudio에서 우측하단의 인스톨을 통하여 설치해야 함.
 base 기본 패키지

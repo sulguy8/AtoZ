@@ -1,3 +1,10 @@
+* chage -l user_001 // 유저 정보보기
+* find -user 1001 -exec rm -r { } \;   // 파일 내용중에서 UID를 찾아서 관련된 파일을 모두 삭제
+* groupadd db_zone 	// 그룹 아이디 만들기
+** grep db_zone /etc/group // 만들고 확인!
+*** groupadd -g 2017 nt_zone // 그룹아이디 주기
+**** gpasswd -a sno_2017001 db_zone // sno_2017001을 db_zone에 그룹추가
+
 *R(read)W(write)X(Execcute) // 4 2 1 // 따라서 7은 rwx 다주는것이고 5는 r + x로 rx권한만 주는것임
 rws______ // 3,6,9자릿수로나눠서 처음 3은 root, 다음 3은 그룹, 다음 3은 유저
 
