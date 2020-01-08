@@ -437,3 +437,280 @@ $conf
 
 $out
 [1] 120				// 특이값의 목록
+
+
+boxplot(Petal.Length~Species, data=iris, main="품종별 꽃잎의 길이")
+
+
+* 여러 그래프 그리기
+par(mfrow=c(1,3)) 			// 그래프 3개 설정
+barplot(table(mtcars$carb),
+        main="barplot of Carburetors",
+        xlab="#of carburetors",
+        ylab="frequency",
+        col="blue"
+        )
+barplot(table(mtcars$cyl),
+        main= "barplot of Cylender",
+        xlab="#of carburetors",
+        ylab="frequency",
+        col="red")
+barplot(table(mtcars$gear),
+        main="Barplot of Grar",
+        xlab="#of carburetors",
+        ylab="frequency",
+        col="green")
+par(mfrow=c(1,1))			// 다시 원위치
+
+# 다중변수 자료(다변량 자료) : 변수가 2개 이상인 자료. 따라서 표현하려면 매트릭스나 데이터 프레임이 필요하다.
+* 산점도란 2개의 변수로 구성된 자료의 분포를 알아보는 그래프
+plot(wt, mpg, main = "중량-연비 그래프",
+        xlab="중량",
+        ylab="연비",
+        col="red",
+        pch=19)
+
+vars <- c("mpg","disp", "drat", "wt")
+vars
+mpg
+wt
+target <-  mtcars[,vars]
+head(target)
+pairs(target, main="Multi Plots") // 단일그래프는 plot, 여러가지 그래프를 그릴땐 pairs. 만약에 1행 2열에 있는 그래프를 보자면 x축이 mpg, y축이 disp
+
+iris.2 <- iris[,3:4]			// 데이터 준비
+point <- as.numeric(iris$Species)	// 점의 모양
+color <- c("red","green","blue")	// 점의 컬러
+plot(iris.2,
+        main="Iris plot",
+        pch=c(point),
+        col=color[point])
+
+
+# 상관분석과 상관계수
+* 강한 선형적 관계 : 점들이 밀집되어있어서 하나의 선처럼 보일때
+beers = c(5,2,9,8,3,7,3,5,3,5)
+bal <- c(0.1,0.03,0.19,0.12,0.04,0.0095,0.07,0.06,0.02,0.05)
+tbl <- data.frame(beers,bal)	
+tbl
+plot(bal~beers,data=tbl) 	// 산점도
+res <-  lm(bal~beers,data=tbl)	// 회귀식 도출
+abline(res)			// 회귀선 그리기
+cor(beers,bal)			// 상관계수 계산
+
+
+month = 1:12
+late = c(5,8,7,9,4,6,12,13,8,6,6,4)
+plot(month,late,		// x와 y데이터
+main="지각생통계",
+type="l",			// 그래프의 종류 선택
+lty=1,				// 선의 종류 선택
+lwd=1,				// 선의 굵기 선택
+xlab="Month",			// x축 레이블
+ylab="Late cnt")		// y축 레이블
+
+* 선그래프. 시계열 그래프라고함.
+* 복수의 선그래프 작성
+month = 1:12
+late1 = c(5,8,7,9,4,6,12,13,8,6,6,4)
+late2 = c(4,6,5,8,7,8,10,11,6,5,7,3)
+plot(month,late1,
+     main="Late Student",
+     type="b",			// 그래프의 종류 
+     lty=1,			// 선의 종류
+     col="red",			// 선의 색
+     xlab="Month",		
+     ylab="Late cnt",
+     ylim=c(1,15)		// y축 값의 (하한, 상한)
+     )
+
+* grp 변수추가
+grp <- c()					// grp는 주택가격을 상중하로 분류. 25.0이상이면 상 17이면 하, 나머지 중으로 분류
+for(i in 1:nrow(myds)){
+        if(myds$medv[i] >= 25.0){
+                grp[i] <- "H"
+        } else if(myds$medv[i] <= 17.0){
+                grp[i] <- "L"
+        } else {
+                grp[i] <- "M"
+        }
+        
+}
+str(grp)
+
+grp <- factor(grp)
+grp <- factor(grp, levels=c("H","M","L"))
+grp
+myds <- data.frame(myds, grp)
+myds
+
+* 여러그래프 비교
+par(mfrow=c(2,3))
+for(i in 1:5){
+        hist(myds[,i], main=colnames(myds)[i], col="yellow")
+}
+
+myds
+
+* 상자그림으로 비교
+par(mfrow=c(2,3))
+for(i in 1:5){
+        boxplot(myds[,i], main=colnames(myds)[i])
+}
+par(mfrow=c(1,1)) // 가상화면 분할 이거 꼭해줄 것.
+
+* 다중 산점도를 통한 변수간 상관 관계의 확인
+pairs(myds[,-6])
+
+* 그룹 정보를 포함한 변수 간 상관관계의 확인
+point <- as.integer(myds$grp)			// 점의 모양 설정
+color <- c("red","green","blue")		// 점의 색 지정
+pairs(myds[,-6], pch=point, col=color[point])
+
+* 다중 그래프 
+height1 <- c(4,18,5,8)
+height2 <- c(9,15,20,6)
+height <- rbind(height1, height2)
+height
+name <- c("영업1팀","영업2팀","영업3팀","영업4팀")
+legend_lbl <- c("2014년","2015년")
+
+barplot(height, main="부서별 영업 실적",
+        names.arg=name,
+        xlab="부서", ylab="영업 실적(억원)",
+        col=c("darkblue","red"),
+        legend.text=legend_lbl,
+        ylim=c(0,35)
+        )
+boxplot(mag, main="지진발생강도의 분포", xlab="지진강도", ylab="발생건수수", col="red")
+
+* 트리맵
+library(treemap)
+treemap
+data(GNI2014)
+head(GNI2014)
+
+treemap(GNI2014,
+        index=c("continent","iso3"),	// 계층구조 설정
+        vSize="population",		// 타일의 크기
+        vColor="GNI",			// 타일의 컬러
+        type="value",			// 타일 컬러링 방법
+        bg.labels="yellow",		// 레이블의 배경색
+        title="World's GNI")		// 트리맵 제목
+
+st <- data.frame(state.x77)
+symbols(st$Illiteracy, st$Murder,	
+        circles=st$Population,		// 원의 반지름의 열
+        inchec=0.3,			// 원의 크기 조절값
+        fg="white",			// 원의 테두리 색
+        bg="lightgray",			// 원의 바탕색
+        lwd=1.5,			// 원의 테두리선 두께
+        xlab="rate of Olliteracy",
+        ylab="crime(murder) rate",
+        main="illiteracy and Crime")
+
+text(st$Illiteracy,st$Murder,		// 텍스트가 출력될 x,y좌표
+     rownames(st),			// 출력할 텍스트
+     cex=0.6,				// 폰트 크기
+     col="brown")			// 폰트 컬러
+
+* 모자이크플롯
+head(mtcars)
+mosaicplot(~gear+vs, data = mtcars, color=TRUE,
+           main = "Gear and VS")
+
+* ggplot 패키지
+month <- c(1,2,3,4,5,6)						// 월을 표현
+rain <- c(55,50,45,50,60,70)					// 강수량
+df <- data.frame(month,rain)					// 그래프를 작성할 대상 데이터
+ggplot(df, aes(x=month,y=rain))					// 그래프를 그릴 데이터 지정
+geom_bar(stat="identity", width=0.7, fill="steelblue")		// 막대의 높이는 y축에 해당하는 열의 값, 막대의 폭과 색 지정.
+
+* ggplot으로 히스토그램 그리기
+ggplot(iris, aes(x=Petal.Length)) + geom_histogram(binwidth=0.5)
+
+
+# 크롤링
+* 남의 사이트에서 가져오는것. 스크래핑이라고도 한다.
+1. rvest랑 stringr 다운받고 메모리 올리기
+2. URL복사 : https://www.coupang.com/np/search?q=%EC%97%AC%EC%84%B1%ED%81%AC%EB%A1%9C%EC%8A%A4%EB%B0%B1&channel=user&component=&eventCategory=SRP&trcid=&traid=&sorter=scoreDesc&minPrice
+=&maxPrice=&priceRange=&filterType=&listSize=36&filter=&isPriceRange=false&brand=&offerCondition=&rating=0&page=2 // 페이지까지만 사용!
+
+3. reply_list <-  character() 				// 상품명
+   reply_list2 <- numeric()				// 가격 
+
+3. content <- read_html(mainURL) 			// 주소 읽어오기
+
+4. node_1 <- html_nodes(content, ".name")		// 상품명
+   node_2 <- html_nodes(content, ".price-value")	// 가격
+	
+5. reply1 <- html_text(node_1)				// DOM형식으로 받아오기
+   reply2 <- html_text(node_2)  			
+	
+6. reply_list <- append(reply_list, reply1)		// node들 떼버리고 String만
+   reply_list2 <- append(reply_list2, reply2)
+
+7. df <- data.frame(reply_list, reply_list2)		// data.frame으로 만들기
+
+8. colnames(df) = c("품명","가격")			// 열 이름 지정
+
+9. setwd("c:/source")					// 파일로 만들기
+   write.csv(df,"여성가방.csv",sep=",",row.names=FALSE)
+
+10. View(df)						// 도표로 보기
+
+
+1. 스크래핑 대상 URL 할당
+2. 웹문서추출
+3. 상품정보 추출
+4. 데이터 정제
+5. 데이터 프레임만들기
+6. 데이터 정렬
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+mainURL <- "https://www.coupang.com/np/search?q=%EC%97%AC%EC%84%B1%ED%81%AC%EB%A1%9C%EC%8A%A4%EB%B0%B1&channel=user&component=&eventCategory=SRP&trcid=&traid=&sorter=scoreDesc&minPrice=&maxPrice=&priceRange=&filterType=&listSize=36&filter=&isPriceRange=false&brand=&offerCondition=&rating=0&page=1"
+reply_list <-  character()
+reply_list2 <- numeric()
+
+content <- read_html(mainURL)
+content       
+
+node_1 <- html_nodes(content, ".name")
+node_2 <- html_nodes(content, ".price-value")   
+
+reply1 <- html_text(node_1)
+reply2 <- html_text(node_2)                                                                                                                                                                                    
+
+reply_list <- append(reply_list, reply1)
+reply_list2 <- append(reply_list2, reply2)
+
+df <- data.frame(reply_list, reply_list2)
+View(df)
+
+colnames(df) = c("품명","가격")
+
+setwd("c:/source")
+write.csv(df,"여성가방.csv",sep=",",row.names=FALSE)
+
+View(df)
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+for(pgCnt in 1:10){
+        url <- paste(mainURL, pgCnt)
+        content <- read_html(url)
+        
+        node_1 <- html_nodes(content, ".name")
+        node_2 <- html_nodes(content, ".price-value")   
+        
+        reply1 <- html_text(node_1)
+        reply2 <- html_text(node_2)                                                                                                                                                                                    
+        
+        reply_list <- append(reply_list, reply1)
+        reply_list2 <- append(reply_list2, reply2)
+        df <- data.frame(reply_list, reply_list2)
+        
+        colnames(df) = c("품명","가격")
+        
+        setwd("c:/source")
+        write.csv(df,"여성가방.csv",sep=",",row.names=FALSE)
+}
