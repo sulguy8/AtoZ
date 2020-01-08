@@ -634,7 +634,7 @@ ggplot(iris, aes(x=Petal.Length)) + geom_histogram(binwidth=0.5)
 * 남의 사이트에서 가져오는것. 스크래핑이라고도 한다.
 1. rvest랑 stringr 다운받고 메모리 올리기
 2. URL복사 : https://www.coupang.com/np/search?q=%EC%97%AC%EC%84%B1%ED%81%AC%EB%A1%9C%EC%8A%A4%EB%B0%B1&channel=user&component=&eventCategory=SRP&trcid=&traid=&sorter=scoreDesc&minPrice
-=&maxPrice=&priceRange=&filterType=&listSize=36&filter=&isPriceRange=false&brand=&offerCondition=&rating=0&page=2 // 페이지까지만 사용!
+=&maxPrice=&priceRange=&filterType=&listSize=36&filter=&isPriceRange=false&brand=&offerCondition=&rating=0&page=1 // 페이지까지만 사용!
 
 3. reply_list <-  character() 				// 상품명
    reply_list2 <- numeric()				// 가격 
@@ -694,23 +694,23 @@ write.csv(df,"여성가방.csv",sep=",",row.names=FALSE)
 
 View(df)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+* for문으로 페이지 마다 따오기
 for(pgCnt in 1:10){
-        url <- paste(mainURL, pgCnt)
-        content <- read_html(url)
-        
-        node_1 <- html_nodes(content, ".name")
-        node_2 <- html_nodes(content, ".price-value")   
-        
-        reply1 <- html_text(node_1)
-        reply2 <- html_text(node_2)                                                                                                                                                                                    
-        
-        reply_list <- append(reply_list, reply1)
-        reply_list2 <- append(reply_list2, reply2)
-        df <- data.frame(reply_list, reply_list2)
-        
-        colnames(df) = c("품명","가격")
-        
-        setwd("c:/source")
-        write.csv(df,"여성가방.csv",sep=",",row.names=FALSE)
+  url <- paste0(mainURL, pgCnt)
+  content <- read_html(url)
+  
+  node_1 <- html_nodes(content, ".name")
+  node_2 <- html_nodes(content, ".price-value")   
+  
+  reply1 <- html_text(node_1)
+  reply2 <- html_text(node_2)                                                                                                                                                                                    
+  
+  reply_list <- append(reply_list, reply1)
+  reply_list2 <- append(reply_list2, reply2)
+  df <- data.frame(reply_list, reply_list2)
+  
+  colnames(df) = c("품명","가격")
+  
+  setwd("c:/source")
+  write.csv(df,"여성가방.csv",row.names=FALSE, sep=",")
 }
