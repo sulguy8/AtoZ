@@ -5,6 +5,8 @@ https://beomy.tistory.com/43  - mvp 패턴
 https://www.data.go.kr/
 
 
+http://naver.me/xRCDOuSZ
+
 
 # 함수
 log(10) + 5 // 로그함수
@@ -714,3 +716,301 @@ for(pgCnt in 1:10){
   setwd("c:/source")
   write.csv(df,"여성가방.csv",row.names=FALSE, sep=",")
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# 회귀분석 : 회귀 이론을 기초로 독립변수가 종속변수에 미치는 영향을 파악하여 예측모델을 도출하는 통계적 방법
+* 독립변수 : 주식시세에 영향을 미치는 요인들(매출액, 원유가격, 국제정세, 정부발표) 	// 설명변수
+* 종속변수 : 독립변수의 영향에 따라 값이 결정되는 주식시세				// 반응변수
+** 예측모델 or 예측모형 : 독립변수에 해당하는 자료와 종속변수에 해당하는 자료를 모아 관계를 분석하고 통계
+
+* 단순선형 회귀식 : y = Wx + b(x는 독립변수, y는 종속변수, W,b는 상수) 
+head(cars)
+plot(dist~speed, data=cars)	// 산점도를 통해 선형 관계 확인
+
+model <- lm(dist~speed, cars)	// 회귀모델 구하기
+model
+
+abline(model)			// 회귀선을 산점도에 표시
+coef(model)[1]			// b 값 출력
+coef(model)[2]			// W값출력
+
+* 주행속도에 따른 제동거리 구하기
+b <- coef(model)[1]
+W <- coef(model)[2]
+
+speed <- 30		// 주행속도
+dist <- W*speed +b 
+dist			// 제동거리
+
+speed <- 35		// 주행속도
+dist <- W*speed +b 
+dist			// 제동거리
+
+speed <- 40		// 주행속도
+dist <- W*speed +b 
+dist			// 제동거리
+
+
+
+
+
+
+# 분석 대상 데이터 준비
+setwd("C:/source")
+
+library(ggplot2)
+library(ggmap)
+library(readxl)
+
+files <- c("201512","201606","201612","201706","201712")
+columns <- c("상가업소번호","상호명","상권업종대분류명","상권업종중분류명","상권업종소분류명","시군구명","행정동명","경도","위도")
+ds.total <- NULL
+
+for(i in 1:length(files)){
+        filename <- paste("seoul_",files[i],".xlsx", sep="")
+        cat("read ", filename, "...\n")			// 읽을 파일 이름 출력
+        ds <- read_excel(filename)			// 엑셀 파일 읽기
+        ds <- data.frame(ds)				// 데이터 프레임으로 변환
+        ds <- ds[,columns]				// 분석에 필요한 변수만 추출
+        ds$수집연월 <- rep(i, nrow(ds))			// 데이터 수집 시점
+        ds.total <- rbind(ds.total,ds)			// 데이터 통합
+}
+
+head(ds.total)
+
+
+
+
+
+str(ds.total)
+unique(ds.total$수집연월)				// 수집연월
+unique(ds.total$상권업종대분류명)			// 상권업종 대분류
+unique(ds.total$상권업종중분류명)			// 상권업종 중분류
+unique(ds.total$상권업종소분류명)			// 상권업종 소분류
+
+sum(is.na(ds.total))					// NA포함여부 확인
+ds.201712 <- subset(ds.total, ds.total$수집연월==5)	// 201712 수집데이터만 추출
+dim(ds.201712)
+
+store.level_1 <- aggregate(ds.201712[,1],		// 업종별 점포수(대분류)
+                           by=list(대분류=ds.201712$상권업종대분류명),
+                           FUN=length)
+
+
+# 지도그리기
+
+library(ggplot2)
+library(ggmap)
+library(readxl)
+
+1. https://cloud.google.com/maps-platform/#get-started 들어가서 API활성화
+
+AIzaSyAwn5jGa4t49FYjYk_IEAfx8VtJ9_szfp8 // 내 API Key
+
+# API로 지도 받아오기
+store.region <- data.frame(store.region, store.region.loc[,2:3])
+register_google(key='AIzaSyAwn5jGa4t49FYjYk_IEAfx8VtJ9_szfp8')
+cen <- c(mean(store.region$경도), mean(store.region$위도))
+map <- get_googlemap(center=cen,					// 마커 없는 지도 가져오기
+                     maptype="roadmap",
+                     size=c(640,640),
+                     zoom=11)
+gmap <- ggmap(map)							// 지도를 저장
+gmap + geom_point(data=store.region,
+                  aes(x=경도,y=위도,size=count),
+                  alpha=0.5, col="red") + 
+        scale_size_continuous(range = c(1,15))+				// 원의 크기 조절
+        geom_text(data=store.region,					// 지도 위에 텍스트 표시
+                  aes(x=경도,y=위도),					// 텍스트 위치(=구의 좌표)
+                  size=3,						// 텍스트 크기
+                  lable=store.region$구이름)				// 텍스트 내용
+
+
+# 점포수가 많은 상위 10개 동 확인
+store.dong <- aggregate(ds.201712[,1],
+                        by=list(동이름=ds.201712$행정동명),
+                        FUN=length)
+store.dong
+names(store.dong)[2] = c("count")
+store.dong <- store.dong[order(store.dong$count,decreasing=T),]
+dong.top10 <- store.dong[1:10,]
+dong.top10
+ggplot(dong.top10, aes(x=reorder(동이름,-count),y=count))+
+        geom_bar(stat="identity", width=0.7, fill="steelblue")+
+        ggtitle("점포수 많은 상위 10개 동")+
+        theme(plot.title = element_text(color="black", size=14, face="bold"),
+              axix.text.x = element_text(angle = 45))
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+library(ggmap)
+register_google(key='AIzaSyAwn5jGa4t49FYjYk_IEAfx8VtJ9_szfp8')
+gc <- geocode(enc2utf8("종로구"))					// 지점의 경도 위도
+gc
+cen <- as.numeric(gc)							// 경도 위도를 숫자로
+cen
+map <- get_googlemap(center=cen)					// 지도 생성   center(중심의 좌표값 지정), zoom(3(대륙)~21(빌딩),size, maptype(terrain,roadmap,stellite,hybrid)
+ggmap(map)								// 지도 화면에 보이기
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+library(ggmap)
+register_google(key='AIzaSyAwn5jGa4t49FYjYk_IEAfx8VtJ9_szfp8')
+gc <- geocode(enc2utf8("설악산"))
+gc
+cen <- as.numeric(gc)
+cen
+map <- get_googlemap(center=cen,
+                     zoom=9,
+                     size=c(640,640),
+                     maptype="roadmap")
+ggmap(map)
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# 숫자로 지점 정하기
+cen <- c(-118.233248, 34.085015)
+map <- get_googlemap(center=cen)
+ggmap(map)
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# 마커로 위치 찍기
+gc <- geocode(enc2utf8("용인"))
+cen <- as.numeric(gc)
+map <- get_googlemap(center=cen,
+                     maptyp="roadmap",
+                     marker=gc)
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+names <- c("용두암","성산일출봉","정방폭포","중문관광단지","한라산1100고지","차귀도")
+addr <- c("제주시 용두암길 15",
+          "서귀포시 성산읍 성산리",
+          "서귀포시 동홍동 299-3",
+          "서귀포시 중문동 2624-1",
+          "서귀포시 색달동 산1-2",
+          "제주시 한경면 고산리 125")
+gc <- geocode(enc2utf8(addr))
+
+df <- data.frame(name=names,
+                 lon=gc$lon,
+                 lat=gc$lat)
+df
+ggmap(map)
+
+cen <- c(mean(df$lon),mean(df$lat))
+map <- get_googlemap(center=cen,
+                     maptype="roadmap",
+                     zoom=10,
+                     size=c(640,640),
+                     marker=gc)
+ggmap(map)
+
+gmap <- ggmap(map)
+gmap+geom_text(data=df, 		// 지도 위에 텍스트 표시
+               aes(x=lon,y=lat),	// 텍스트 위치(관광지 좌표)
+               size=5,			// 텍스트 크기
+               label=df$name)		// 텍스트 내용
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# 지도 위에 데이터 표시
+sp <- sample(1:nrow(wind),50)
+df <- wind[sp,]
+head(df)
+
+cen <- c(mean(df$lon), mean(df$lat))
+gc <- data.frame(lon=df$lon, lat= df$lat)
+head(gc)
+
+# 측정 위치에 마커 표시하기
+map <- get_googlemap(center=cen,
+                     maptype="roadmap",
+                     zoom=6,
+                     marker=gc)
+ggmap(map)
+
+# 풍속을 원의 크기로 표시하기
+map <- get_googlemap(center=cen,		// 마커 없는 지도 가져오기
+                     maptype="roadmap",
+                     zoom=6)
+gmap <- ggmap(map)				// 지도를 저장
+		gmap+geom_point(data=df,	// 풍속을 원의 크기로 표시
+                aes(x=lon,y=lat,size=spd),
+                alpha=0.5,
+                col="blue") +
+        scale_size_continuous(range = c(1,14))	// 원의 크기 조절
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# 워드 클라우드
+1. 텍스트 파일 혀태로 준비
+2. 파일의 끝부분 처리를 반드시 줄 바꿈을 하고 저장
+3. 파일을 저장할 때 [다른 이름으로 저장] 선택하고 인코딩을 'UTF-8'로 선택
+4. 파일 이름이나 폴더 경로에 한글이 포함되어 있으면 파일을 읽을 때 에러가 발생하는 경우가 있으므로 영어로 저장 
+
+
+Sys.setenv(JAVA_HOME='C:/Program Files/Java/jdk1.8.0_221')
+
+library(wordcloud)			// 워드 클라우드
+library(KoNLP)				// 한국어 처리
+library(RColorBrewer)			// 색상 선택
+
+setwd("C:/source")
+text <- readLines("mis_document.txt", encoding="UTF-8")	// 파일 읽기
+buildDictionary(ext_dic = "woorimalsam")		// 우리말씀 한글사전 로딩
+pal2 <- brewer.pal(8, "Dark2")				// 팔레트 생성
+noun <- sapply(text,extractNoun, USE.NAMES=F)		// 명사 추출
+noun							// 추출된 명사 출력
+
+noun2 <- unlist(noun)					// 추출된 명사 통합
+wordcount <- table(noun2)				// 단어 빈도수 계산
+temp <- sort(wordcount, decreasing=T)[1:10]		// 빈도수 높은 단어 10개 추출
+temp
+temp <- temp[-1]					// 공백 단어 제거
+barplot(temp,						// 막대그래프 작성
+        names.arg = names(temp),			// 막대 이름을 단어로 표시
+        col = "lightblue",				// 막대의 색상 지정
+        main = "빈도수 높은 단어", ylab = "단어 빈도수")
+
+
+wordcloud(names(wordcount),		// 단어들
+          freq=wordcount,		// 단어들의 빈도
+          scale=c(6,0.7),		// 단어의 폰트 크기
+          min.freq = 3,			// 단어의 최소 빈도
+          random.order=F,		// 단어의 출력 위치
+          rot.per=.1,			// 90도 회전 단어 비율
+          colors=pal2)			// 단어의 색
+
+# 빈도수 높은데 워드 클라우드에 없으면 사용자 사전에 추가
+buildDictionary(ext_dic ="woorimalsam",				
+                user_dic=data.frame("정치","ncn"),
+                replace_usr_dic = T)
+
+noun <- sapply(text.extractNoun, USE.NAMES=F)
+noun2 <- unlist(noun)			// 추출된 명사 통합
+
+# 무의미한 단어 제거
+noun2 <- noun2[nchar(noun2)>1]		// 1글자 단어 제거
+noun2 <- gsub("하지","",noun2)		// '하지' 제거
+noun2 <- gsub("때문","",noun2)		// '때문' 제거
+wordcount <- table(noun2)		// 단어 빈도수 계산
+wordcloud(names(wordcount),
+          freq=wordcount,
+          scale=c(6,0.7),
+          min.freq=3,
+          random.order=F,
+          rot.per=.1,
+          colors=pal2)
+
+# 인터넷 검색어 분석
+1. 랭킹으로 트렌드 분석
+네이버 데이터 랩과 구글 트렌드가 대표적.
+분야별 인기검색어 확인.
+
+2. 관심 키워드로 트렌드 분석
+
+3. 카드지출 추이
+
+# 공공 빅데이터 
+1. 공공 빅데이터 포탈에서 서울시에서는 공공데이터를 활용하여 공중화장실의 위치정보를 알 수 있음
+2. 기상청 날씨누리
+3. 국가 통계포털
