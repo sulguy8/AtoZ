@@ -1,29 +1,35 @@
 package homework;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class StudentImpl implements Student {
-	Map<String, StudentVO> studentList = new HashMap<String, StudentVO>();
+	Map<String, StudentVO> rMap = new HashMap<String, StudentVO>();
 	StudentVO stVO = new StudentVO();
-	
+
 	@Override
-	public StudentVO insertStudent(StudentVO stVO) {
-		studentList.put(stVO.name, stVO);
-		System.out.println(studentList.get(stVO.name));
-		return null;
+	public StudentVO insertStudent(List<String> stList) {
+		stVO = new StudentVO();
+		stVO.setName(stList.get(0));
+		stVO.setAge(stList.get(1));
+		stVO.setAddr(stList.get(2));
+		return stVO;
 	}
 
 	@Override
-	public Map<String, String> updateStudent(StudentVO st) {
-		
-		return null;
+	public StudentVO updateStudent(List<String> stList) {
+		stVO = new StudentVO();
+		stVO.setName(stList.get(0));
+		stVO.setAge(stList.get(1));
+		stVO.setAddr(stList.get(2));		
+		return stVO;
 	}
 
 	@Override
-	public Map<String, String> deleteStudent(StudentVO st) {
+	public int deleteStudent(String name) {
 		
-		return null;
+		return 0;
 	}
 
 	@Override
