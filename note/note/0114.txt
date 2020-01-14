@@ -1,0 +1,44 @@
+# 싱글모드 > 컴1대로 하둡구성
+
+마스터 6
+백업 2
+데이터노드1 2
+데이터노드2 2
+데이터노드3 2
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+1. VMware 설정하기 : Virtual Network Editor에서 subnet IP를 192.168.100.0으로 바꾸기 > NAT Settings에서 Gateway IP 192.168.100.2 로 바꾸기 > 
+  
+2. CentOS 설치
+  a. ISO image file 설정하고 Connect at power on 체크.
+  b. Hardware 설정 8GB, 2processors, 30GB
+  c. Kdump 해제 시키기.
+
+3. 네트워크 설정 : 꼭 관리자 계정으로! > # system-config-network ifconfig로 
+   Static IP : 192.168.100.151
+   Netmask : 255.255.255.0
+   Default gateway IP : 192.168.100.2
+   Primary DNS Server : 168.126.63.1
+   Secondary DNS Server : 164.124.101.2
+	.151, localhost(127.0.0.1) 확인
+
+2. JDK, Hadoop 다운로드 및 압축풀기 > home(~)폴더에다가 풀기 // tar -xvf Downloads/파일명
+
+3. 환경 변수 설정 // ~에서 vi~/.bash_profile(환경변수 잡아주는 파일)
+
+4. 하둡에 어떤 코어(자바)를 쓰는지 알려줘야 함
+cd $HADOOP_HOME > cd etc > cd hadoop/ > vi hadoop-env.sh 로 자바로 환경변수 바꿔주기(VMware2.png 5번째그림) > vi core-site.xml 바꿔주기(6번째그림)
+> vi slaves 바꿔주기(7번째그림)
+
+
+공개키 만들땐 마스터에서만. 이하 노드에 만들면 안됨!
+
+5. ssh-keygen -t rsa(8~10번째그림) // 공개키를 생성한다.
+
+6. 포맷해야 함.(11~13번째 그림) // hdfs namenode -format
+
+7. 하둡관리
+hdfs dfs -mkdir /rr
+hdfs dfs -ls /
+
+8. 종료까지 해줄것
