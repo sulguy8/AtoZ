@@ -1,0 +1,25 @@
+8 마스터 151
+4 백업 152
+
+# 방화벽설정
+su로 관리자 계정들어오기
+cd /etc > vi hosts
+그림참조
+
+공개키는 여러번 만들면 안되고 만약 하려면 ssh-add명령어를 써줘야함
+
+# 모든 노드 공통작업
+hadoop-env.sh
+core-site.xml
+
+* master만의 작업
+HDFS-stie.xml
+mapred-site.xml
+yarn-site.xml
+slvaes
+
+* backup만의 작업
+HDFS-site.xml(내용이 약간 틀림 checkpoint, shuffle)
+
+* datanode만의 작업
+HDFS-site.xml(내용이 약간 틀림)

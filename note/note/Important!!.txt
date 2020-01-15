@@ -26,6 +26,7 @@ board 		JSP, JSTL
 ys_ajax		AJAX, onkey
 mvn_test	AJAX, Maven
 ys-mav-test	AJAX, Maven, File, Progress bar
+ajax_board	AJAX, MAven, File
 sp-prac		Spring(3.1.1), BootStrap
 sb-test		SpringBoot(2.2.1)
 sb-mybatis	SpringBoot(2.2.1), Mybatis(Oracle)

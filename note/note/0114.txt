@@ -24,7 +24,7 @@
 
 2. JDK, Hadoop 다운로드 및 압축풀기 > home(~)폴더에다가 풀기 // tar -xvf Downloads/파일명
 
-3. 환경 변수 설정 // ~에서 vi~/.bash_profile(환경변수 잡아주는 파일)
+3. 환경 변수 설정 // ~에서 vi ~/.bash_profile(환경변수 잡아주는 파일)
 
 4. 하둡에 어떤 코어(자바)를 쓰는지 알려줘야 함
 cd $HADOOP_HOME > cd etc > cd hadoop/ > vi hadoop-env.sh 로 자바로 환경변수 바꿔주기(VMware2.png 5번째그림) > vi core-site.xml 바꿔주기(6번째그림)
