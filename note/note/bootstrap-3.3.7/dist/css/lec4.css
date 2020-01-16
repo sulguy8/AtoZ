@@ -42,7 +42,15 @@ a:hover {
 	background-color: #ffffff;
 	text-decoration: none;
 }
-.navbar-default .navbar-nav > li > a{
+.navbar-default .navbar-nav > li > a { /*네비게이션 기본색상*/
 	color: white;
 }
-@media (max-width:)
+@media (max-width: 767px){ /*해상도가 작아졌을때 드랍다운 아이템에 마우스를 올렸을 때*/
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a{
+		color: #ffffff;
+	}
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus{
+		color: #bbbbbb;
+	}
+}
