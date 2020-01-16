@@ -23,3 +23,5 @@ HDFS-site.xml(내용이 약간 틀림 checkpoint, shuffle)
 
 * datanode만의 작업
 HDFS-site.xml(내용이 약간 틀림)
+
+
