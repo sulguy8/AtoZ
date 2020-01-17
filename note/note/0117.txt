@@ -1,0 +1,40 @@
+* rsa 키를 재생성하면 ssh-add하기
+
+* 모든 노드의 DFS를 삭제하고 format하기! (클러스터 아이디를 새로운 master로 맞추던가) // rm -rf dfs
+
+
+# 5개 노드 한꺼번에 설정하는 순서
+1. setup에서 network 설정하기
+
+2. 모든 노드들 방화벽 열어 놓기(hosts, iptables)
+
+3. 마스터에만 자바랑 하둡 깔아놓고 환경변수 설정하기
+
+4. 마스터에다가 설정
+   vi core-site.xml
+   vi hadoop-env.sh
+
+5. rsa 공개키 설정해서 모든 노드에 뿌려주기
+
+6. 자바랑 하둡 동기화로 모든 노드에 뿌려주기
+
+7. 마스터 노드 설정
+   vi slaves
+   vi hdfs-site.xml  		//  dfs.replication  value를 3으로 설정
+   vi mapred-site.xml
+   vi yarn-site.xml
+
+8. 백업 노드 설정
+   vi hdfs-site.xml
+
+9. 이하 노드 설정
+   vi hdfs-site.xm
+
+
+
+dsf 찾아서 dfs로 고치기
+]
+
+hdfs dfs -ls /output/word_count
+hdfs dfs -cat /output/word_count/part-r-00000
+hdfs dfs -cat /output/word_count/part-r-00000 | head -150

@@ -52,8 +52,59 @@
 			</div>
 		</nav>
 
+		<!-- lec11 리스트 만들기 -->
+
+		<div class="container">
+			<div class="row">
+				<ul class="list-group">
+					<a href="#" class="list-group-item active">1강 Hello World</a>
+					<a href="#" class="list-group-item">2강 Hello World</a>
+					<a href="#" class="list-group-item">3강 Hello World</a>
+					<a href="#" class="list-group-item">4강 Hello World</a>
+					<a href="#" class="list-group-item">5강 Hello World</a>
 
 
+				</ul>
+			</div>
+			<div class="row">
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/dh4hdtZ00EU"></iframe>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<p>
+					첫번째 강의는 c언어 ~~~~~
+				</p>
+
+
+
+			<!-- lec13 소스코드 작성하기	-->			
+				<pre class="pre-scrollable">
+#include &lt;stdio.h&gt; <!-- html환경에서 꺽쇠(<>)를 인식을 못하기 때문에 이렇게 써야함 -->
+
+int main(void)
+{
+	printf("Hello world!");
+}					
+				</pre>
+			</div>
+		</div>
+
+
+			<!-- lect14 Form -->
+		<div class="container">
+		<hr>
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label>댓글</label>
+					<textarea class="form-control" rows="5" id="commentContent" name="commentContent"></textarea>
+					<br>
+					<button type="submit" class="btn pull-right">등록</button>
+				</div>
+			</form>
+				<hr>
+		</div>
 
 
 
