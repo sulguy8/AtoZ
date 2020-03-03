@@ -1,0 +1,67 @@
+# Pig
+1. ½º³À¼¦
+master : pig,hive ¼³Ä¡
+backup : hive ½º³À¼¦
+slave1 : pig,hive ¼³Ä¡
+slave2 : hive ½º³À¼¦
+slave3 : hive ½º³À¼¦
+
+2. °¡µ¿ÁØºñ
+start-all.sh
+mr-jobhistory-daemon.sh start historyserver
+pig(ÇÏµÓÀÌ ÄÑÁ®¾ßÇÔ.)
+
+# Flume
+./flume-ng agent -c conf -f ../conf/log_agent.conf -n logAgent-Dflume.root.logger=INFO,console
+
+./flume-ng agent -c conf -f ../conf/log_agent.conf -n logAgent-Dflume.root.logger=INFO,console
+
+./flume-ng agent -c conf -f ../conf/log_agent.conf -n logAgent-Dflume.root.logger=INFO,console
+
+
+./flume-ng agent -c conf -f ../conf/log_agent.conf -n logAgent-Dflume.root.logger=INFO,console
+
+$FLUME_HOME/bin/flume-ng agent -c ./conf -f ./conf/log_agent.conf -n logAgent
+
+ flume-ng agent ?c ./ -f twitter-agent.conf ?n twitterAgent ?Dflume.root.logger=INFO,console
+
+ flume-ng agent ?c ./ -f twitter-agent.conf ?n twitterAgent ?Dflume.root.logger=INFO,console
+hdfs dfs -ls /user/flume/tweets/
+
+ SELECT REGEXP_EXTRACT(line, "\"text\:.+,\"place\"",0) FROM tweets LIMIT 1;
+
+SELECT SUBSTRING(REGEXP_EXTRACT(line,"\"text\:.+,\"place\"",0)) FROM tweets LIMIT 1;
+
+SELECT REGEXP_REPLACE(SUBSTRING(REGEXP_EXTRACT(line,"\"text\:.+,\"place\"",0), 9), "\", \"place\" .*", "") FROM tweets LIMIT 10;
+
+create table tweets_text AS SELECT REGEXP_REPLACE(SUBSTRING(REGEXP_EXTRACT(line,"\" text\":/+,\"place\"", 0), 9), "\", \"place \".*","") AS text FROM tweets;
+
+ flume-ng agent ?c ./ -f twitter-agent.conf ?n twitterAgent ?Dflume.root.logger=INFO,console
+agent.sinks.hdfsSink.hdfs.path
+./flume-ng agent -c conf -f ../conf/log_agent.conf -n logAgent -Dflume.root.logger=INFO,console
+ flume-ng agent ?c ./ -f twitter-agent.conf ?n twitterAgent ?Dflume.root.logger=INFO,console
+twitterAgent.sources = Twitter
+twitterAgent.channels = MemChannel
+twitterAgent.sinks = HDFS
+# SOURCE
+twitterAgent.sources.Twitter.type = com.cloudera.flume.source.TwitterSource
+twitterAgent.sources.Twitter.channels = MemChannel
+twitterAgent.sources.Twitter.consumerKey = WeNWpmMjn7x05uBwoT48gOglH
+twitterAgent.sources.Twitter.consumerSecret = cXdzfFpUZMPj1RQTaapdUNBSjezh8JdedPvNGUTVekp2DlPYrS
+twitterAgent.sources.Twitter.accessToken = 4290319514-EpYbprhUwfUBGRbVTjoqpjhenCAuvEjWTFMvaMH
+twitterAgent.sources.Twitter.accessTokenSecret = V5Hjag3pe2Hf5CDmqudGpZftGeKVeMzJR4HLcaxZCof8V
+twitterAgent.sources.Twitter.keywords = data, mining
+# SINK
+twitterAgent.sinks.HDFS.channel = MemChannel
+twitterAgent.sinks.HDFS.type = hdfs
+twitterAgent.sinks.HDFS.hdfs.path = hdfs://master:9000/user/flume/tweets
+twitterAgent.sinks.HDFS.hdfs.fileType = DataStream
+twitterAgent.sinks.HDFS.hdfs.writeFormat = Text
+twitterAgent.sinks.HDFS.hdfs.batchSize = 100
+twitterAgent.sinks.HDFS.hdfs.rollInterval = 60
+twitterAgent.sinks.HDFS.hdfs.rollSize = 600000
+twitterAgent.sinks.HDFS.hdfs.rollCount = 0
+# CHANNEL
+twitterAgent.channels.MemChannel.type = memory
+twitterAgent.channels.MemChannel.capacity = 1000
+twitterAgent.channels.MemChannel.transactionCapcity = 1000

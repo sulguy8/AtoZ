@@ -1,0 +1,79 @@
+# JSP 페이지
+
+ws = new WebSocket(url); 	// 1. 웹소켓에 url을 담아주면 그때부터 시작!
+
+ws.onopen = function(evt{	// 2. 건드리면 웹소켓 실행됨.
+	if(evt && evt.isTrusted){  3. 귀를 귀울임
+	
+		ws.send(msg);	// 4. 컨트롤러로 보냄			
+	}
+})
+
+ws.onmessage = function(evt){	// 5. 상대방이 보낸 메세지를 받을때
+
+}
+
+# ServletConfig(modifyHandshake) 	// 웹소켓 컨트롤러를 타기 이전에 한번 거쳐가는 곳.
+public class ServletConfig extends ServerEndpointConfig.Configurator{ 
+	@Override
+	public void modifyHandshake (ServerEndpointConfig sec,			// ServerEndpointConfig로 EndPoint 지정해주고
+			HandshakeRequest request,
+			HandshakeResponse response){
+		System.out.println("나는 서블릿컨피그");
+		HttpSession hs = (HttpSession) request.getHttpSession();	// 이곳에서 HttpSession과 SevletContext를 넣어준다.
+		ServletContext sc = hs.getServletContext();
+		sec.getUserProperties().put("hs", hs);
+		sec.getUserProperties().put("sc", sc);
+	}									// Endpoint에 대한 준비 끝!
+}		
+
+# SocketTest(open)
+@ServerEndpoint(value="/ws/chat", configurator = ServletConfig.class)		// JSP와 ServletConfig를 연결시키는 anotation
+@Slf4j
+public class SocketTest { 
+	
+	private static List<Session> ssList = new ArrayList<>();		// 접속 명부
+	@OnOpen
+	public void open(Session ss, EndpointConfig ec) {			// JSP의 onopen메서드가 실행될 때 실행되는 메서드
+		HttpSession hs = (HttpSession)ec.getUserProperties().get("hs");	// 현재 들어온 httpSession의 정보를 가져온다.
+		if(ssList.indexOf(ss)==-1) {					 
+			ssList.add(ss);						// 현재 들어온 httpSession 정보가 나의 Session 리스트에 남아있는지 확인하고 없으면 add
+		}
+		log.info(ss.getId());
+		try {
+			ss.getBasicRemote().sendText("용수 톡톡에 접속함");	// Greeting 메세지
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@OnMessage								// 특정 세션이 메세지를 보낼때 전체적으로 뿌려주는 anotation
+	public void message(String msg, Session ss) {				
+		String rst = ss.getId() + "번 세션 : " + msg;
+		
+		for(Session ss1:ssList) {					// 자신을 제외한 모든 세션들에게 보내기 위한 for문
+			if(ss1!=ss) {						
+				try {			
+					
+					ss1.getBasicRemote().sendText(rst);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	@OnClose
+	public void close(Session ss)	{					// 세션이 종료될때 실행되는 anotation
+		System.out.println("나는 소켓테스트의 클로즈 메서드");
+		ssList.remove(ss);						// 접속 명부에서도 삭제
+		log.info(ss.getId());
+	}
+	
+	@OnError								// 에러날때 실행되는 anotation
+	public void error(Throwable t) {
+		System.out.println("나는 소켓테스트의 에러 메서드");
+		log.error("err=>{}",t);
+	}
+	
+}	
