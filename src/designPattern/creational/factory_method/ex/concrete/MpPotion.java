@@ -6,7 +6,7 @@ public class MpPotion implements Item {
 
 	@Override
 	public void use() {
-		System.out.println("마력 회복!");
+		System.out.println("마나 회복 물약을 사용했다!");
 		
 	}
 
