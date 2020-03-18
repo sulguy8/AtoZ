@@ -1,0 +1,139 @@
+Using username "ec2-user".
+Authenticating with public key "imported-openssh-key"
+Passphrase for key "imported-openssh-key":
+Last login: Mon Dec 23 04:40:46 2019 from 211.118.162.122
+[ec2-user@ip-172-31-39-243 ~]$ sudo su
+[root@ip-172-31-39-243 ec2-user]# ll
+total 8
+-rwxrwxr-x. 1 root root 139 Dec 23 05:27 param.sh
+-rwxrwxr-x. 1 root root  48 Dec 23 04:51 test.sh
+[root@ip-172-31-39-243 ec2-user]# /
+bash: /: Is a directory
+[root@ip-172-31-39-243 ec2-user]# cd /
+[root@ip-172-31-39-243 /]# ll
+
+[root@ip-172-31-39-243 /]# cd var
+[root@ip-172-31-39-243 var]# cd lib
+[root@ip-172-31-39-243 lib]# cd jenkins
+[root@ip-172-31-39-243 jenkins]# ll
+
+[root@ip-172-31-39-243 jenkins]# cd sh
+bash: cd: sh: No such file or directory
+[root@ip-172-31-39-243 jenkins]# mkdir sh
+[root@ip-172-31-39-243 jenkins]# cd sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# ll
+total 4
+-rw-r--r--. 1 root root 966 Dec 31 07:31 proc.sh
+[root@ip-172-31-39-243 sh]# ll
+total 4
+-rw-r--r--. 1 root root 966 Dec 31 07:31 proc.sh
+[root@ip-172-31-39-243 sh]# chmod 775 proc.sh
+[root@ip-172-31-39-243 sh]# ll
+total 4
+-rwxrwxr-x. 1 root root 966 Dec 31 07:31 proc.sh
+[root@ip-172-31-39-243 sh]# ll
+total 4
+-rwxrwxr-x. 1 root root 966 Dec 31 07:31 proc.sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# free - m
+              total        used        free      shared  buff/cache   available
+Mem:         839608      682624       56336         680      100648       43632
+Swap:       1999996      331520     1668476
+[root@ip-172-31-39-243 sh]# ll
+total 4
+-rwxrwxr-x. 1 root root 965 Dec 31 07:52 proc.sh
+[root@ip-172-31-39-243 sh]# cd /
+[root@ip-172-31-39-243 /]# cd ~
+[root@ip-172-31-39-243 ~]# ps -ef | grep java
+root     18376 17738  0 08:11 pts/0    00:00:00 grep --color=auto java
+jenkins  25467     1  0 Dec19 ?        00:13:55 /etc/alternatives/java -Djava.aw                                                                                                                                                             t.headless=true -DJENKINS_HOME=/var/lib/jenkins -jar /usr/lib/jenkins/jenkins.wa                                                                                                                                                             r --logfile=/var/log/jenkins/jenkins.log --webroot=/var/cache/jenkins/war --http                                                                                                                                                             Port=8080 --debug=5 --handlerCountMax=100 --handlerCountMaxIdle=20
+root     27863     1  0 Dec20 ?        00:10:44 //bin/java -Djava.util.logging.c                                                                                                                                                             onfig.file=/home/tomcat8/conf/logging.properties -Djava.util.logging.manager=org                                                                                                                                                             .apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.prot                                                                                                                                                             ocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.securit                                                                                                                                                             y.SecurityListener.UMASK=0027 -Dignore.endorsed.dirs= -classpath /home/tomcat8/b                                                                                                                                                             in/bootstrap.jar:/home/tomcat8/bin/tomcat-juli.jar -Dcatalina.base=/home/tomcat8                                                                                                                                                              -Dcatalina.home=/home/tomcat8 -Djava.io.tmpdir=/home/tomcat8/temp org.apache.ca                                                                                                                                                             talina.startup.Bootstrap start
+[root@ip-172-31-39-243 ~]# cd /
+[root@ip-172-31-39-243 /]# ll
+
+[root@ip-172-31-39-243 bin]# cd ..
+[root@ip-172-31-39-243 /]# ll
+total 2000016
+l
+[root@ip-172-31-39-243 /]# cd root
+[root@ip-172-31-39-243 ~]# ll
+
+
+[root@ip-172-31-39-243 ~]# cd ..
+[root@ip-172-31-39-243 /]# ll
+
+
+[root@ip-172-31-39-243 /]# cd home
+[root@ip-172-31-39-243 home]# ll
+
+[root@ip-172-31-39-243 home]# cd tomcat8/
+[root@ip-172-31-39-243 tomcat8]# ll
+
+[root@ip-172-31-39-243 tomcat8]# cd bin
+[root@ip-172-31-39-243 bin]# ll
+
+[root@ip-172-31-39-243 bin]# ./shutdown.sh
+                                                                                                                                                         juli.jar
+[root@ip-172-31-39-243 bin]# ps -ef | grep java
+                                                                                                                                                         t.headless=true -DJENKINS_HOME=/var/lib/jenkins -jar /usr/lib/jenkins/jenkins.wa                                                                                                                                                             r --logfile=/var/log/jenkins/jenkins.log --webroot=/var/cache/jenkins/war --http                                                                                                                                                             Port=8080 --debug=5 --handlerCountMax=100 --handlerCountMaxIdle=20
+[root@ip-172-31-39-243 bin]# cd /
+[root@ip-172-31-39-243 /]# ll
+
+[root@ip-172-31-39-243 /]# cd var
+[root@ip-172-31-39-243 var]# ll
+
+[root@ip-172-31-39-243 var]# cd lib
+[root@ip-172-31-39-243 lib]# ll
+
+[root@ip-172-31-39-243 lib]# cd jenkins
+[root@ip-172-31-39-243 jenkins]# ll
+
+[root@ip-172-31-39-243 jenkins]# cd sh
+[root@ip-172-31-39-243 sh]# ll
+total 4
+-rwxrwxr-x. 1 root root 965 Dec 31 07:52 proc.sh
+[root@ip-172-31-39-243 sh]# vi proc.sh
+[root@ip-172-31-39-243 sh]# yum install psmisc -y
+
+Complete!
+[root@ip-172-31-39-243 sh]# ./proc.sh                                                                                                                                                     kins/workspace/sb-mybatis/target/sb-mybatis.jar /tmp 2>> /dev/null >> /dev/null                                                                                                                                                              &
+
+[root@ip-172-31-39-243 etc]#
+
+
+
+
+
+
+/var/lib/jenkins/sh/proc.sh  //////////////////////////////////////////////////////////////////////////////////
+
+#!/bin/bash
+# bash Call
+SERVER_PORT=80
+# Service Name
+# Ex) spring-boot-jenkins
+PROJECT_NAME=bdi-grabbit
+#Folder Name
+FOLDER_NAME=bdi-grabbi.git
+
+PROJECT_PATH=/var/lib/jenkins/workspace/$FOLDER_NAME/target
+JAR_FILE=$PROJECT_PATH/$PROJECT_NAME.jar
+TMP_PATH_NAME=/tmp/$FOLDER_NAME-pid
+
+# Function
+function stop(){
+    sudo echo " "
+    sudo echo "Stoping process on port: $SERVER_PORT"
+    sudo fuser -n tcp -k $SERVER_PORT # tcp $serverPort에 해당하는 port를 Kill함
+.
+
+    if [ -f $TMP_PATH_NAME ]; then
+        sudo rm $TMP_PATH_NAME
+    fi
+"proc.sh" 39L, 970C
