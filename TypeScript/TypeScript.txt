@@ -1,0 +1,35 @@
+* 타입 스크립트는 '프로그래밍 언어'이다.
+* 타입스크립트(정적타입언어)는 자바스크립트(동적타입언어) 'Interpreted Language'와 달리 'Compiled Language'이다.
+* 따라서 컴파일하는 과정이 필요하며 거기서 가장 중요한 것이 "Type" 이다.
+
+* tsc person student 	// 한번에 2개 컴파일러 가능
+* node student 		// 파일실행할 때
+* tsc student --watch	// 자동으로 컴파일
+
+* let foo: string = 'hello'; 	// 변수명 뒤에 타입을 명시하는 것으로 선언
+
+* function multiply1(x: number, y: number): number {		// 함수 선언식
+	return x * y;
+  }
+* const multiply2 = (x: number, y: number): number => x * y;	// 함수 표현식
+
+  console.log(multiply1(10, 2));
+  console.log(multiply2(10, 3));
+  console.log(multiply1(true, 1));	// error
+
+* JS, TS 공통으로 존재하는 데이터타입
+  boolean, null, undefined, number, string, symbol, object
+* TS에서만 존재하는 데이터 타입
+  array, tuple, enum, any, void, never
+
+
+
+??????????????????????????????????????????
+interface IPerson {
+    sayHello(): void;		// method
+}
+
+interface SquareFunc {
+    (num: number): number;	// function
+}
+??????????????????????????????????????????
