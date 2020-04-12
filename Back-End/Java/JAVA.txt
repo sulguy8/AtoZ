@@ -1,0 +1,50 @@
+
+
+
+내리는게 "플러쉬"
+한번 내리고 바로 내리는게 의미가 있나? 물찰때까지 기다려야지. 물이 채워지는 시간까지 기다려야 플러쉬가 의미가 있구나!(안된다는건 아님)
+물찰때까지 기다리는게 "버퍼" (쌓아놓았다가 한번에 보내는게 "버퍼", 하나하나 읽으면서 보내면 속도가 느리기때문에 미리 읽어둔것들을 저장해둠.)
+
+Key
+Value
+Element
+Type
+	// kv는 맵 e는 리스트
+
+* hasNext() 는 다음거 갖고있어?
+  ishas 이거 맞아?
+  Next() 그다음게 트루면 리턴해줘.
+
+* 컨테이너는 메모리의 생성과 동시에 클래스 정의된 것들을 담고 있음  
+
+* 기본생성자 생성시 오류날때 3가지를 의심해봐야함
+1. 기본생성자에 파라미터값이 있을때
+2. 상속받는 클래스가 상속하는 클래스와의 인자값이 다를때
+3. 추상클래스일때
+
+* 자바는 단일상속, 다중역할!
+
+* 메모리 생성(객체), 클래스 정의
+
+* 메모리가 생성되지 않았을 때 "null", 생성되면 "메모리주소"
+
+* 클래스가 정의되지 않았을 때 "~ : null", 생성되면 "value"
+
+BufferedReader br = request.getReader();
+		String str = null;
+		String json = "";
+		while((str=br.readLine())!=null) {
+			json +=str;
+		}
+
+* private static final Logger logger 와 System.out.println 과의 차이점.
+logger.info("hello", locale); // info : 찍히고 경로까지 다나옴. syso보다 경제적임. {} 여기에 locale이 들어감.
+
+* private static final Logger logger = LoggerFactory.getLogger(HomeController.class); // 클래스마다 logger쓰려면 선언해줘야함.
+  lombok을 이용해서 @Slf4j를 선언하면 위에것을 대신할 수 있다.
+
+String str ="나는";
+String naem = "홍길동";
+logger.info("{} {}입니다", str, name); // 나는 홍길동 입니다.
+
+System.out.println("hello", locale); // 이제 왠만하면 안쓰는게 나음.

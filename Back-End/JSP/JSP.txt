@@ -1,0 +1,190 @@
+*.do 누가봐도 jsp
+이벤트만! 카멜케이스 쓰지말고 소문자로 통일하자 onsubmit
+white space "" 비문자열 요놈을 없애는 trim
+
+alter sequence seq_ui_num increment by 빼고싶은수(-7) ;
+
+location.href='<%=url %>'; //앵커태그와 비슷한데 그냥바로 그쪽링크로 보내버림.
+header.jspf 파일
+
+jsp : 보통이거씀
+jspx : 요건 안쓰긴하는데 jsp에서 조금 발전했을때 사용해야하는 이름.
+jspf : include할 파일의 의미 
+
+
+login.jsp에서
+<% String rPath = request.getContextPath(); %> 요거 붙여주고
+<%=rPath=>/경로~   를 원래 넣어줘야한다. 
+
+DAO는 데이터베이스영역
+
+서비스 > 컨트롤러 > 화면 순으로 확인!
+
+유전(상속)적인 : exetends, 
+overloading, overridding : 하나의 이름으로 다양한 행동을 하고싶을때.
+
+행동적인 : interface, 행동을 통일시켜주고 싶을때.
+List<> = new list<>안되는 이유. 리스트가 인터페이스라 ArrayList,LinkedList로 받아야함/
+Map도 마찬가지
+
+
+손님 >(was, 주문)> 서빙><(service)> 요리담당> (Dao) > 재료(DB 
+
+request dispatcher : 손님이 들어왔잖아. 그런데 요리하는사람이 주문을 바로듣을수 있는게 아니잖아.
+서버가 고객이 요청한것을 번호를 적어서 그대로 전달함. 이게 그런역할을 함. 
+forward : 주문넣으면 그대상을 알아야 하잖아. 제대로된 주문(request)과 제대로된 전달(response)을 해야하니까
+
+404 : 페이지를 찾을 수 없습니다..
+500 : 봐야할 문제
+
+
+4가지 scope!
+page context
+request
+session 아무거나 담는게 아니라 로그인 할때 신상정보들. 네이버에서 로그인하면 나 따라다니잖아? 다 session에 저장해두는거임.
+application
+
+세션타임아웃 : 톰캣에서는 기본 30분.
+
+크롬에서 ctrl+shift+n : 크롬 시크릿모드
+
+forward : 고객센터에 연락했는데 상담사가 전화번호가 다르다고 자기가 연락해주는 것.
+redirect : 고객센터에 연락했는데 상담사가 전화번호가 다르다고 전화 끊으시고 다른 곳으로 연락하라는 것.
+
+1. 글쓰기 버튼만들기
+2. 글쓰기 화면(그 폼태그의 양식은 post action은 board/insert
+3. 저장하면 다시 리스트로 돌아오기.
+
+## form 태그의 method
+get(select 할때, 조회, 검색어처리, 우리입장으로 리스트뽑는거, 단일 뽑는거(수정) 단! 로그인만 post! 아이디 비밀번호 때문에.), 동기화가 내가보는화면에서 일어남.
+post(새로운 생성, 입력, 어떤 리소스를 새로 생성할때)
+이외에 
+put(수정)
+delete(삭제)
+option(나 해도돼? 백엔드와 프론트엔드할때 반드시 알아야함.)
+
+Data
+Access
+Object
+말그대로 말단직원 데이터베이스와 1차적인 협력관계. 서비스에 전달만한다.
+
+따라서 실제 실행되는 부분은 DAO에서! 
+
+web-inf.view.user.index.jsp인데
+기본적으로 실행되는 index.jsp가 web-inf 폴더내에 있으니 /views/를 타야열림
+/views/와 연계되는 URIController로 타고 들어가면 열리고
+(web-inf)views.user.index(jsp)를 떼버리게 되니까 저 주소만으로도 web-inf에 접근이 가능한 것.
+그렇게 돌아오면 이미 URIController를 거친상태였으니.
+여기서 (views)/user/signup이 생략되어있음.
+
+try catch문에서 중간에 리턴되도 finally는 return 이전에 실행됨!
+
+return됐다고 끝이라고 생각하지 말자.
+
+다수의 변수들을 하나로 묶으려면? 맵!
+
+RequestDispatcher rd = request.getRequestDispatcher("/target.jsp");
+rd.forward(request, response); // 다른놈들을 화면을 보여줌.
+
+* MVC 패턴
+Model : 아래 두놈들이 아니면 전부 모델! 화면도 아니고, 중개자 역할도 아닌. 비지니스 모집단이라고 부름 이것들을 모델이라 생각해도 좋다.
+View : Jsp
+Controller : 우리들이 컨트롤이라고 말하는것
+
+URL : 로케이션, 실제로있는 물리적인 주소  
+URI : 조금더 큰 개념. 물리적이지 않고 논리적으로 정한 주소값을 쓸때.
+
+?~ 이후의 요청값을 map으로 생각할 것.
+getParameter 하면 무조건 0번째것 갖고옴. 따라서 여러개 갖고오려면 getParameterValue.
+무조건 1 request이면 1 response. 오류뜨는것도 response!
+getParameter는 기본적으로 map으로 저장함.
+
+## JSP 처리과정(99pg) PPT로 발표하기.
+WebContent에
+1.jsp
+2.jsp
+3.jsp
+4.jsp 4개의 .jsp 페이지가 만들어진다면?
+
+톰캣(WAS, web이 파일의 존재는 알지만 4개의 페이지를 바로 자바로 만들지 않음.
+
+처음 요청하게된다면...
+1-1. 내가 요청을 1.jsp부르면 그때 1이됨.
+1-2. 이때 자바파일이 만들어짐!
+1-3. 자바파일을 실행하는게 아니야! 요청을 했을 때만 자바 코드를 컴파일을 시킴(전부다 시키는것이 아님). 결국 1.jsp.class만듬 이걸 실행을 함.
+2-2 ~ 3 은 처음 요청했을때까지 진행.
+똑같은걸 요청하면 1-1을 안타고 2-1을 탐. 바로 1-3을 실행시켜버림.
+만약에 jsp소스를 수정했을 때 다시 1-1순서로 시작.
+
+* post에서 form으로 태워서 보내면 겟방식처럼 바로 파라미터로 가는게 아니라 form data 형식의 body영역에 파라미터로 들어간다.
+
+* jsp include
+<jsp:include page="/WEB-INF/front/include/${param.page}"></jsp:include>
+
+1* 인크루드는 자바파일 2개
+  @는 자바파일 1개
+<%@ include file = "/WEB-INF/front/include/right1.jsp"%>
+<jsp:include page="/WEB-INF/front/include/right1.jsp"></jsp:include>
+
+* page가 없다면
+  <% 요걸로 page를 받아오면 null
+  el태그는 비문자열.
+
+* el태그는 jsp에서 제공하는 것.
+  스크립트리(<%)는 지역변수 따라서 메서드안에 메서드를 정의할 수 없기때문에 있는 메서드만 쓸수 있고 선언은 할 수있다.
+  디클레이션(<!)는 전역변수라고 생각하면됨. 
+
+<select name - "search">
+	<option value = "ui_name">이름</option>
+jsp로 땡겨올땐
+
+String search = request.getParameter("search");
+
+if(search!=null) {
+	if("ui_name".equals(search)) {
+	 	sql += " where ui_name like ? ";
+
+list에서 getString("ui_num")하면  rs.next한 부분의 num을 가져감.
+
+form 태그에 버튼이 액션이 없다면 자기페이지에서 jsp를 한번 돌림.
+
+체크박스같은 같은 이름의 여러개의 밸류를 받고 싶다면
+String[] hobbies = request.getParameterValues("hobby");
+
+request.setCharacterEncoding("utf-8");
+	String[] hobbies = request.getParameterValues("hobby");
+	String hobby = "";
+		for(int i=0; i<hobbies.length; i++){
+			hobby += hobbies[i] + ",";
+		}
+	hobby = hobby.substring(0, hobby.length()-1);
+	out.println(hobby);
+
+setString 쓸때 ps쓰는구나!
+
+체크박스 : /user/user-update.jsp
+셀렉트박스 : /board/board-list.jsp
+
+## 모르겠음...
+	public String checkStr(String str, String targetStr) {
+		String[] strs = str.split(",");
+		for(String s:strs) {
+			if(s.equals(targetStr)){
+				return "checkd";
+			}
+		}
+		return "";
+	}
+
+# 순서!
+1. html로 폼이나 테이블을 먼저 그린다.(굳이 rs.setString이 필요없다면 그냥 먼저 폼이나 테이블 만들어!)
+
+2. 위에 내용들을 request.getParameter로 <% 영역안에 끌어온다. %>
+3. sql문을 작성한다.
+4. Connection con을 소환! ps or stmt와 짝궁.
+5. ?를 ps.setString 이나 stmt.setString으로 잘라낸다.
+6. ResultSet이나 int result 소환!
+7. while이나 if문으로 테이블에 넣어준다.
+
+연결된 상황에서!
+8. Database에서 html로 가져올땐 <%=rs.getString%> or <%=stmt.getString%>

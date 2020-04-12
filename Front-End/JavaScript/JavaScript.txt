@@ -1,0 +1,202 @@
+* 남들이 내가 열어둔 소켓에 접속하기 위해서 해당 서버의 포트를 열어두면 된다.
+
+* 자바스크립트에서도 접근제어자가 있다!
+public, private, protected 3개만!
+
+* var Human = function(){
+	var name = '홍길동';
+	this.age=1;
+};
+
+var h = new Human();
+alert(h.age); 	// 1이 뜸
+alert(h.name);  // undefined 뜸. 그래서 this. 안붙은것은 private라고 생각하면됨.
+
+** var Human = function(){
+	var name = '홍길동';
+	this.age=1;
+	this.getName = function(){
+		return name;  // getset구조와 비슷
+	}
+};
+
+var h = new Human();
+alert(h.age);
+alert(h.getName()); // 이렇게 해야 private를 가져올 수 있음.
+
+* @는 6버전 이후부터.
+
+글쓴이
+생성일자 
+생성날짜
+파일저장	
+
+* @PropertySource({"env.properties"}) // env.properties처럼 새로운 프로퍼티 파일을 만들때.
+
+* html이나 자바스크립트의 주석은 실행이 안될뿐이지 읽기는 함. 따라서 JSON parse할때 헤드에 <가 있으면 오류뜸.
+
+* 본인이 임의로 설정하는것은 data-col같이 "-"를 써주는게 예의
+* var datas = document.querySelectorAll('div[data-col]') // div태그중에 data-col있는 것만 갖고옴.
+** var datas = document.querySelectorAll('table>tbody>tr>th[data-col]') // tbody는 항상생략되어있다는 것을 알것!
+*** var datas = document.querySelectorAll('table >tr>th[data-col]') // " "는 내 바로 밑에는 아니더라도 그뒤에것을 찾음. 
+
+* 리스트는 of, in 둘중아무거나 해도 상관없다
+
+*getParameter는 리퀘스트 영역에 있는 메소드 입니다...
+아실거라 생각하지만....스코프에는 page , request, response , session , aplication 등이 있습니다...
+getAttribute에 경우 위에있는 모든영역에 공통으로 있는 메소드로...
+헤쉬맵 방식으로....키값과 벨류값으로 setAttribute 한 값을 키값을 이용해 벨류값을 반환받을수 있습니다...
+일단 큰차이로는 벨류값에 타입인데요...
+getParameter는 스트링 타입입니다....
+그리고 getAttribute 는 오브젝트 타입입니다...
+getParameter는 스트링값을 다루기때문에 주로 쿼리스트링값등을 받는데 사용되고....
+getAttribute는 오브젝트 타입을 다루기때문에 자바빈객체나 뭐 다른클레스객체등을 받을때 사용합니다..
+
+taglib 치고 그 뒤에 ctrl+space 여기까지 만들기. <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+TestController
+
+<c:set var="str" value="abc1"/>
+<c:if test="${test eq 'abc'}"> // eq는 equals
+	str은 abc네
+</c:if>
+<c:if test="${str ne 'abc'}">  // ne는 not equals
+	str은 abc가 아니네
+</c:if>
+
+<%@include는 코드가 그대로 박히는것
+<jsp:include> 호출했다가 다시 돌아오는 케이스, 얘는 해당되는 jsp를 실행해버리고 꺼버림
+
+
+로그인 한 시간이아니라
+서버에 세션이등록된시간이 세션creTime
+
+  <session-config>
+  	<session-timeout>1</session-timeout>
+  </session-config>
+
+1분 기다리면 됨.
+
+자바스크립트 :	첫번째 방향 = 브라우저
+		두번째 방향 = Nodejs(따로 설치해야함! 리눅스,윈도우 등등 nodejs만깔려있으면 다됨.)
+
+모바일에서 임베디드(예를 들자면 엠피쓰리안에 들어가는 프로그램)프로그램으로 고랭썼지만, 자바 이후로 다른곳에서 병행가능하게.
+
+폼안에 버튼은 기본적으로 submit!
+
+자바스크립트를 하기위에 알아야할 것!
+Document
+Object
+Model
+
+Browser
+Object
+Model
+
+<></> 이범위 하나하나를 객체로 봄. 처음부터 끝까지 접근 가능
+둘다 윈도우꺼
+따라서 alert()는 window.alert() 윈도우의 내장객체
+
+* post의 form형식을 서블릿에서 받을땐 parameter로 받지않는다. 따라서! JSon형태로 payload(적재)형태로 보낼거임.
+
+가끔 라이브러리가 많아지면 이클립스가 받은 척을 함. 따라서 이클립스에 기본설치돼있는 것을 사용하지않음.
+
+Project 
+Object
+Management
+ // 이프로젝트를 빌드를 하고 관리하는 것을 도와주는 프로그램
+
+document.querySelector('.class');
+document.querySelector('#id');
+document.querySelector('body');
+document.querySelector('[name]');
+
+* document.querySelector('#uiName').value;
+
+<body id="ok" class="class" name="1234">TEST</body> // querySelector는 CSS 선택문자인 #이나 .을 같이 써서 '#node .class' 이렇게 쓰이는데 비해
+클래스를 지정하여 여러 엘리먼트를 선택하고 싶을 경우 querySelectorAll 함수를 사용합니다.
+document.getElementById("ok"); // getElementId는 id의 이름만 들어가므로 특수문자가 들어가지 않는다는 것만 알아두시기 바랍니다.
+<body id="ok">TEST</body>
+
+document.querySelector('#test').innerText = '안녕?'; 
+document.querySelector('input[name=id]').value = '반가링';
+document.querySelector('input[id=input1]').value = '수고링';
+
+* 호출순서!
+1. $(document).ready(function(){})
+2. window.onload
+3. on 메서드
+
+$('#pagination').html(html);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<body>
+	<input type="number" id="num1">X<input type="number" id="num2">
+	<div id="div1"></div>
+	<button onclick="changeDiv()">수정</button>
+		<script>
+			var arr = [1,2,3]; 
+			arr.push(4);
+			console.log(arr);	
+		</script>
+</body>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<script>
+	var ani1 = {
+		name : "°­¾ÆAo"
+		
+	}
+	var animals = [ani1,{
+		name:"°i¾cAI"
+	}]; 
+	
+	/* alert(animals[0].name); */
+	alert(animals[1]['name']);
+</script>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<div id = "div1">div1</div>
+<div id = "div2">div2</div>
+<div id = "div3">div3</div>
+
+<script>
+var contents = {
+	div1:'Ci·I¿i',
+	div2:'CICICI',
+	div3:'CaCaCa'
+}
+	
+	var divs = document.querySelectorAll('div');
+	
+	
+	for(var abc of divs){ 
+		abc.innerText = contents[abc.innerText]
+	}
+/* var divs = document.querySelectorAll('div');
+for(var i =0;i<divs.length;i++){
+	var div = divs[i];
+	div.innerText = contents[div.innerText];
+} */
+</script>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+이름 : <input type="text" id="name"><br>
+나이 : <input type="text" id="age"><br>
+주소 : <input type="text" id="addr"><br>
+<script>
+var userInfo = {
+	name : '홍길동',
+	age : 33,
+	addr : '서울시 강서구 등촌동'
+}
+var inputs = document.querySelectorAll('input');
+for(var input of inputs){
+	if(input.id){
+	input.value = userInfo[input.id];
+	}
+}
+</script>

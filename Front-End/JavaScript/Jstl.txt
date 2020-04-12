@@ -1,0 +1,15 @@
+* jstl과 jsp의 차이는 기능적으로 같지만 단순히 표현방식이라고 생각하자. jstl은 태그기반라이브러리.
+
+* jstl의 기본스코프는 page 
+
+* <c:set var=" name" value = "abc" scope = "request"/>
+는 이거랑 같다. <% request.setAttribute("name","abc");
+
+${name} // 아래랑 차이점은. 제일 작은 scope인 page.name이 나옴.
+${requestScope.name} // 이거는 request 스코프의 name.
+<%=request.getAttribute("name") %> // 스코프가 같다면! 세개 모두 같다.
+
+** 하지만!! 위에도 차이점이 있긴있음. eltag는 없으면 비문자열을 뱉음. jsp와 차이점은 
+만약 request가 없다면 
+${requestScope.name} 는 아무것도("",비문자열)을 출력하고 
+<%=request.getAttribute("name") %>  는 null을 출력한다.

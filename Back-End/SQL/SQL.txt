@@ -1,0 +1,153 @@
+create table books_info(
+bi_num number PRIMARY key,
+bi_image varchar2(300), 
+bi_name varchar2(300) not null,
+bi_type char(2) default '00',
+bi_star number(4,2) default 0.0,
+bi_credat char(8) not null,
+bi_desc varchar2(4000) not null
+);
+
+create table books_type(
+bt_num char(2) not null primary key,
+bt_name varchar(30) not null
+);
+
+
+====================================================================
+select bi.bi_name, bi.bi_type,  
+(select bt_name from books_type where bt_num = bi_type)
+from books_info bi; 
+
+bi_name이랑 bi_type을 볼거야
+그리고 bt_name을 덧붙일거야. bt_num과 bi_type이 같은 곳의
+====================================================================
+
+select bi.bi_num, bi.bi_image, bi.bi_name, bi.bi_desc, bi.bi_star, bi.bi_credat, 
+(select bt.bt_name from books_type bt where bt.bt_num = bi.Bi_type) bi_type
+from books_info bi;
+
+select * from books_info, books_type
+create table board_info(
+bi_num INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+bi_title VARCHAR(200) NOT NULL,
+bi_writer VARCHAR(20) NOT NULL,
+bi_content TEXT NOT NULL,
+bi_file VARCHAR(30),
+credat CHAR(8) NOT NULL,
+cretim CHAR(6) NOT NULL,
+active CHAR(1) DEFAULT '1',
+bi_cnt INT(11) DEFAULT 0
+)
+COLLATE='utf8_general_ci'
+ENGINE=INNODB
+;
+
+
+create table user_info(
+ui_num number primary key,
+ui_name varchar2(30) not null,
+ui_id varchar2(30) not null,
+ui_pwd varchar2(30) not null,
+credat char(8) not null,
+cretim char(6) not null,
+moddat char(8) not null,
+modtim char(6) not null,
+active char(1) default '1'
+);
+
+select * from board_info;
+
+create table board_info(
+bi_num number primary key,
+bi_title varchar2(300) not null,
+bi_content varchar2(4000) not null,
+ui_num number not null,
+credat char(8) not null,
+cretim char(6) not null,
+moddat char(8) not null,
+modtim char(6) not null,
+active char(1) default '1',
+constraints fk_ui_num foreign key(ui_num)	// 안해줘도 생기지만 내가 원하는 이름으로 하려고 만듬. (ui_num)은 board_info꺼! 만약 이름을 바꿀거면 데이터타입이 일치해야한다.
+						// 
+references user_info(ui_num) // 여기는 user_info에 있는거 그대로 써야됨
+);
+
+insert into board_info
+values(1, 'test', 'test', 1, '20191019', '131500', '20191019', '131500', 1); // 안되는 이유! BDI.FK_UI_NUM에 따르면 여기 데이터 타입이랑 일치하지 않아서.
+
+where bi_type = bt_num
+;
+
+
+
+쿼리에서 합집합은 join이나, 아예 조건을 안주거나.
+관계를 증명하면 교집합. 증명이 안되면 합집합.
+
+
+create table books_info(
+bi_num number PRIMARY key,
+bi_image varchar2(300), 
+bi_name varchar2(300) not null,
+bi_type char(2) default '00',
+bi_star number(4,2) default 0.0,
+bi_credat char(8) not null,
+bi_desc varchar2(4000) not null
+);
+
+create table books_type(
+bt_num char(2) not null primary key,
+bt_name varchar(30) not null
+);
+
+select bi.bi_name, bi.bi_type, 
+(select bt_name from books_type where bt_num = bi_type)
+from books_info bi; 
+
+select * from books_info;
+select * from books_type;
+
+update books_info set bi_type = '00'
+where bi_num = '12';
+
+select bi.bi_num, bi.bi_image, bi.bi_name, bi.bi_desc, bi.bi_star, bi.bi_credat, 
+(select bt.bt_name from books_type bt where bt.bt_num = bi.Bi_type) bi_type
+from books_info bi;
+
+select * from books_info, books_type
+where bi_type = bt_num
+;
+
+select bi_num, bi_title, bi_user, bi_content,
+to_char(to_date(bi_credat),'YYYY-MM-DD') as bi_credat,
+bi_cretim,
+to_char(to_date(bi_moddat),'YYYY-MM-DD') as bi_moddat,
+bi_modtim
+from board_info
+where bi_num = 5;
+
+select bi_credat, bi_user, count(bi_num) from board_info  -- count는 row갯수! 따라서 컬럼에 없는의미없는 숫자를 쓴다면 전체를 카운트함. 
+group by bi_Credat, bi_user -- 그룹화
+having count(bi_num)>1 -- 그룹화 한 다음에 count를 쓰는 방법!
+order by count(bi_num) -- 항상 제일 마지막
+;
+
+
+트랜젝션. 저장시점의 기준, 데이터베이스가 제공해주는 간편한 기능. 안정성이 제고된다. 하지만 이것때문에 느려지고 무거워질 수 있다.
+2개를 제출하면 둘다 되거나 둘다 실패해야함. 1개만 성공하고 1개만 실패하면 잘못짠것. 하지만 오라클에선 데이터가 유실되지 않도록 알아서 트랜젝션 해줌.
+
+
+select bi_user, count(1),10 from board_info
+group by bi_user
+;
+
+// select 1,2,1+2,1/2*100 from board_info; 2는 가변적인 값이기 때문에! 아래처럼 바뀌어야 함.
+// select 1,(select count(1) from board_info) from board_info;
+
+select BI_USER, concat(count(1)/(select count(1) from board_info)*100, '%') from board_info  // concat은 두 문자열을 붙일때.
+group by bi_user
+;
+
+ceil 올림
+round 반올림
+floor 내림

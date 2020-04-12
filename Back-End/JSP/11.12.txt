@@ -1,0 +1,118 @@
+﻿* WEB-INF
+** common 폴더
+head.jsp : JavaSourcefile(공통적으로 쓰는 메소드 저장)과 css를 저장.
+header.jspf : 모든 jsp파일에 뿌려주는 역할. web.xml에 아래와 같이 저장할 것!
+  <jsp-config>
+  	<jsp-property-group>
+  		<url-pattern>*.jsp</url-pattern>
+  		<include-prelude>/WEB-INF/views/common/header.jspf</include-prelude>
+  	</jsp-property-group>
+  </jsp-config>
+** ${pageContext.request.contextPath}
+contextPath가 변경되어도 소스 수정없이 적용하기 위해 사용 -> 유지보수 용이
+
+* src
+** filter
+servlet의 urlPattern과 filter의 urlPatter과 동일하면 filter먼저 거치고 servlet에 도착함.
+    public EncodingFilter() {
+        System.out.println("난 자동실행됨");
+    } // filter의 영역 
+
+${param.biNum} = request.getParameter('biNum');
+
+**	(servlet) pw.print(g.toJson(boardList)); 
+
+짝꿍!	(jsp) var list = JSON.parse(xhr.responseText);
+ 
+**	(jsp) var param = {
+				biTitle : document.getElementById('biTitle').value,
+				biContent : document.getElementById('biContent').value,
+				uiNum : document.getElementById('uiNum').value
+		}
+		console.log(param);
+		param = JSON.stringify(param);
+
+짝꿍!	(servlet) Map<String,String> board = g.fromJson(json, Map.class);
+
+========================================================================
+* 서블릿 컨테이너가 요청을 받았을 때 클래스를 new를 만들어줌.
+톰캣을 킬때는 new를 해주는 것이아님.
+
+    public BoardController() {
+    	System.out.println("1.보드컨트롤러를 생성했군");
+    }
+    public void init() {
+    	System.out.println("2.생성자 호출뒤에 나를 반드시 실행할거야");
+    }
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("3.get방식이 일어날때마다 날 호출하겠지");
+    } 
+따라서 서버킨다고해서 BoardController가 안나옴.
+
+* 요청 했을때 1. 생성자(new)를 호출하고 2. init()메소드들을 호출 3. get or post를 호출 // 필요에 따라 메모리를 생성하는 것. 요청할때마다 뜸 "lazy loading"* 
+* 언젠가 한번은 실행될것이면 "pre loading"이 적합함. 
+
+* @WebServlet(name = "BoardController", urlPatterns = {"/ajax/board/*", "/jsp/board/*"},loadOnStartup = 1)
+ // 이렇게하면 서버키자마자 생성자와 init메소드가 실행되고 이후에는 요청해도 나타나지 않음. 클래스가 다른데 
+여러개면 알파벳순으로 호출되고 순서를 정하고 싶으면 loadOnStartup = 2 라고 뒤에 숫자를 변경해주면 됨.(이 작업은 url-pattern같이 web.xml에서도 가능) 
+
+* 메모리생성하자 마자 생성자 이후에 호출되는 메소드는 init()메소드(만들면 원래있던것에 오버라이딩시킴)
+
+* 어플리케이션은 lazy loading, 웹어플리케이션은 pre loading가 적합하다.
+
+* 필터는 메모리를 먼저 실행함. 필터는 대문같은 역할. 필터를 분기해서 서블릿을 호출하기 때문에 메모리가 먼저 실행됨. 
+따라서 한글깨지는 상황에서 우리는 항상 서블릿마다 명시를 해줘야하기 때문에 필터에다 껴놓고 사용하면 편하다. 이것을 "chain class", "chain filter"라고 부름
+
+* ${pageContext.request.contextPath} == request.getContextPath();
+
+* js는 순서도 중요하다! 
+<script src="/text.js"></script>가 어디에 호출되는지에 따라 그아래부터 실행되기 때문에!
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+* Include Directive
+<%@ include file="somePage.jsp" %>
+JSP가 Servlet으로 변환될 때 해당 페이지를 읽어와서 같이 변환해버린다.
+수정이 거의 없지만 재활용이 많은 경우 사용하면 적합
+간혹 container에 따라서 include 하는 page가 수정되지 않으면
+include되는 페이지가 수정되어도 갱신되지 않는 경우가 있을 수 있음
+
+* Include Action Tag
+<jsp:include page="somePage.jsp"/>
+JSP가 Servlet으로 변환될 때 해당 페이지를 읽어오지 않고
+request 시점(브라우저)에 해당 페이지를 읽어온다.
+수정이 잦지만 재활용이 많은 경우 사용하면 적합 
+따라서 크롬에서 페이지 소스보기(ctrl + U)를 누르면 연결된 태그들이 나오는 것들을 볼 수 있음.
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+* <jsp:include page="/WEB-INF/views/common/head.jsp"></jsp:include> // 액션태그 인크루드는 서버에서 부르는게아니라 브라우저에서 부르는 것.
+
+********* 브라우저에 원하는게 나오더라도 꼭 콘솔에서 오류가 떴는지 안떴는지 확인할 것!! *********
+
+* ajax는 get post put delete 전부 사용가능!
+get 조회
+post 인서트
+put(patch과 비슷)
+delete 삭제
+(patch)
+(option)
+
+* get은 arc에서 확인하면 body가 없다. url에 태워서 보내기때문에
+  하지만 post는 body로보냄
+
+*		console.log(param); // 얘가 어떻게 구성되어있는지 알려주는것이기때문에 객체를 포함한 내용이 전부나옴
+		alert(param); // 객체이기 때문에 alert는 알 수 없음. "undeifned,undeifned" 뜸.
+	따라서! alert(JSON.stringify(param)); // 이런과정을 거쳐야 스트링으로 변환시킴.
+
+* BufferedReader br = request.getReader(); // 버퍼된 리더를 받아오는 것.
+
+String json = {"biTitle":"sads","biContent":"sadasd","uiNum":"1"} 맵으로 바꿔줘야함. Map<String,String> param = g.fromJson(json, Map.class);
+Map<String,String> param = {biTitle=sads, biContent=sadasd, uiNum=1}
+
+
+
+
+'<td><button onclick="goPage_update(\'/views/ajax/update.jsp?biNum=' + list[i].biNum + ')">수정</button></td>';

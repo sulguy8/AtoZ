@@ -1,0 +1,51 @@
+* forward는 무언가 들고 이동하는거고. move는 그냥 가는 것.
+
+* 만약에 루트폴더가 "/" 아닐때 ? 서블릿에다가 이런 작업을 해줘야 함.
+String rootPath = request.getContextPath();
+String path = request.getRequestURI();
+path = path.replace(rootPath, "");
+path = " /WEB-INF" + path + ".jsp";
+
+* 같은 리퀘스트는 서블릿을 거치더라도 다른 jsp에서도 계속 유지됨.
+같은 리퀘스트로 이동된 jsp 에서 request.getParameter('name')은 ${param.name}으로 축소해서 부를 수 있다. // name은 ?name="" 이거임.
+
+
+
+* 
+8. son() {
+	super(str);
+} // 확인!
+15. document.querySelector('#test')
+16. document.querySelector('input[name=id]')
+17. document.querySelector('input[id=input]')
+18. 80,443
+
+* http !! localhost/test1/ 는  localhost:80/test1/ . 80을 기본적으로 생략해놓음.
+  https !! localhost/test1/ 는  localhost:443/test1/ . 443을 기본적으로 생략해놓음.
+
+
+
+    	response.setContentType("application/json;charset=utf-8");
+		String getStr = request.getParameter("id");
+		
+		System.out.println(getStr);
+		
+	 	List<String> lst = new ArrayList<String>();
+		lst.add("가나다");
+		lst.add("나다라");
+		lst.add("가다");
+		lst.add("오라");
+		
+		List<String> tmpLst = new ArrayList<String>();
+		for(int i=0; i<lst.size(); i++) {
+			if(lst.get(i).indexOf(getStr)!=-1) {
+				tmpLst.add(getStr);
+			}		
+		}	
+	
+		System.out.println("나는 결과물" + tmpLst);
+		
+		PrintWriter pw = response.getWriter();
+		pw.print(g.toJson(tmpLst));
+		
+	}

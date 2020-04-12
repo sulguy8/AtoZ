@@ -1,0 +1,5 @@
+* 자바 스크립트 el태그와 html el태그와 다름
+`<li>${li}</li>` 이게 html에서 자바스크립트 el태그 사용하는 방법 따라서 jsp에서 이렇게 하면 동작하지 않음.
+
+${msg} // EL tag는 작은 순서대로 나타남.pgcontext,request,session,application순으로 나타남.
+${param.a} // String a = request.getParameter("a") 이후 <%=a%> // 같음.

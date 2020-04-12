@@ -1,0 +1,224 @@
+* 상속받는 클래스에서 모체의 클래스의 기본생성자에 파라미터가 있다면 상속받는 클래스의 기본생성자에 "super(해당파라미터);"를 해줘야 한다.
+
+* 만약 상속받는 관계에서 Mother레퍼런스에 test1()라는 메소드가 없다면? 아래처럼 캐스팅해줘야 알 수 있다.
+	Mother t = new Son();
+	Son t1 = (Son)t;
+	t1.test1();
+
+* instanceof로 lazy loading을 구현할 수 있다.
+	if(h instanceof Driver){
+
+* 제너릭이란? 가정을 하고 사용하는것!
+  원래 리스트를 선언할때 내가 무엇으로 구성되는 지 작성할 필요가없었음. 
+	List tList = new ArrayList(); // 이렇게. 실행은 했는데 오류가 나지 않았으니 아무것도 나오지 않음.
+	List<Object> tList = new ArrayList<Object>(); // 사실 이거랑 같음. 하지만 올바르지 않음. 이게 문제가 택시에 동물이 탄다고 하면 사람이랑 뱀이랑 탈수있기때문에 문제가됨.
+  그래서 <>로 명시적으로 확실시 해주는 작업임. 이게 제너릭 개념과 가깝다.
+
+class Gen<T> { // Gen이라는 클래스를 명시적으로 사용할 때는 Gen<Test> gen = new Gen<Test>();로 나는 Test를 사용할거야~
+	List<T> tList;
+
+	public void add(T t) {
+		if(tList == null) {
+		 	tList = new ArrayList<>();
+		}
+	tList.add(t);
+	}
+}
+** 가정 데이터타입!
+Key  
+Value
+Type
+Element
+
+데이터 타입형태는 <T>
+Map형태는 <K,V>
+List형태는 <E>
+
+
+## "무명"클래스를 이용해 리스트안에 클래스를 넣는방법.
+interface TestInter {
+	void test();
+}
+
+public class ListSort {
+
+	public static void main(String[] args) {
+		List<TestInter> tiList = new ArrayList<>();
+		tiList.add(new TestInter() {
+			public void test() {
+				System.out.println("a");
+			}
+		});
+	}
+}
+
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		
+		
+
+		/*
+		 * ArrayList<Integer> nums = new ArrayList<>();
+		 * 
+		 * nums.add(1); nums.add(2); nums.add(3); nums.add(4); nums.add(5);
+		 * 
+		 * Collections.reverse(nums);
+		 * 
+		 * System.out.println(nums);
+		 */
+
+		/*
+		 * for (int i = 0; i < nums.size(); i++) { for (int j = i + 1; j < nums.size();
+		 * j++) { if (nums.get(i < nums.get(j)){ nums.add(nums.get(i)); nums.set(i,
+		 * nums.get(j)); nums.set(j, nums.get(nums.size() -1)); nums.remove(nums.size()
+		 * -1); } } }
+		 */
+
+	}
+}
+
+* 법칙은 아니고 룰!
+<K,V> // 키와 밸류가 있을때 
+<T> type // 공통으로쓸때
+<E> elements
+
+class Human{
+	private int age;
+	private int height;
+	
+	public Human(int age, int height) {
+		super();
+		this.age = age;
+		this.height = height;
+	}
+
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public int getHeight() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	
+	@Override
+	public String toString() {
+		return "Human [age=" + age + ", height=" + height + "]";
+	}
+}
+
+class Compare<T> implements Comparator<T>{ // 뭐가 들어가는지는 모르지만 T라고 불리는 type이 들어간다.
+
+	@Override
+	public int compare(T o1, T o2) {
+		Human h1 = (Human)o1;
+		Human h2 = (Human)o2;
+		if(h1.getAge()<h2.getAge()) {
+			return -1;
+		}
+		if(h1.getAge()>h2.getAge()) {
+			return 1;
+		}
+		return 0; // 두개의 수가 같을때
+	}
+	
+}
+public class Test {
+
+	public static void main(String[] args) {
+
+		List<Human> hList = new ArrayList<>();
+		hList.add(new Human(20,170));
+		hList.add(new Human(17,180));
+		hList.add(new Human(23,174));
+		hList.add(new Human(28,169));
+		hList.add(new Human(30,173));
+		
+		for(int i=0;i<hList.size();i++) {
+			for(int j=i+1;j<hList.size();j++) {
+				if(hList.get(i).getHeight()>hList.get(j).getHeight()) {
+					Human h = hList.get(i);
+					hList.set(i,hList.get(j));
+					hList.set(j, h);
+				}
+			}
+		}
+		System.out.println(hList);
+	}
+}
+
+
+
+
+========================================================
+Class Human {
+
+	public int getAge() {
+		return this.age;
+	}
+}
+
+
+class Compare<T> implements Comparator<T> {
+
+	public int compare(T o1, T o2) {
+		Human h1 = (human)o1;
+		human h2 = (human)o2;
+		if(h1.getAge()<h2.getAge()) {
+			return 1;
+		}
+		if(h1.getAge()>h2.getAGe()) {
+			return -1;
+		}
+		
+		return 0;
+
+	}
+
+public class Test {
+	public static void main(String[] args) {
+	
+	Collections.sort(hList, new Compare<Human>());	
+	}
+}
+=========================================================
+public calss DBCon {
+	private static String URL;
+	private static String ID;
+	private static String PWD;
+	
+	static {
+		InputStream is = DBCon.class.getResourceAsStream("/config/dbcon.properties");
+
+	Properties prop = new Properties();
+	
+		try {
+			prop.laod(is);
+			URL = prop.getProperty("url");
+			ID = prop.getProperty("id");
+			PWD = prop.getProperty("pwd");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.pritnln(prop);
+	}
+
+
+	
+
+
+
+
+
+
+
+
+
+
