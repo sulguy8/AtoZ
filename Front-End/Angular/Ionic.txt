@@ -1,0 +1,43 @@
+* npm install -g ionic
+* ionic start fsPetlist sidemenu
+* cd fsPetlist 
+* ionic serve
+
+* ionic build	// 트랜스파일링. 어떠한 브라우저 상관없이 맞는것을 보여줌
+		www 폴더가 만들어짐. 아이오닉이 여러 환경에 맞게 이곳으로 트랜스파일링해줌.
+
+* ionic g		// 생성할 수 있는 목록이 나옴.
+
+* page: item엔터	// item 폴더가 생기고 라우팅테이블에 자동으로 생성됨. 파라미터넘기고 싶으면 앵귤러처럼 item/:id 추가
+
+* ionic g 
+* service  엔터
+* secvices/item
+
+* ionic g class classes/item
+
+* 만약 삭제하게되면 라우팅테이블에서 수작업으로 지워줘야함.
+
+* npm install --save @ionic/storage	// 아이오닉 기본 로컬스토리지 설치
+* app.module.ts에 import { IonicStorageModule } from '@ionic/storage' 해주고 imports에 IonicStorage.forRoot()추가
+
+* item.service.ts에 import { Storage } from '@ionic/storage' 추가
+* constructor에 (여기 안에서만 쓸거니까)private storages: Stroage 추가해서 DI해줄것.
+* getItems() {
+	}
+* saveItems() {
+	}
+* getItem(id: stirng) {
+	}
+* addItem(item: Item) {
+	}
+* deleteItem(item: Item) {
+	}
+
+
+* export class Item { 	// VO 만들기
+	id: string;
+	name: string;
+	}
+
+* ngmodel은 투에이 바인딩과 관련있다.
