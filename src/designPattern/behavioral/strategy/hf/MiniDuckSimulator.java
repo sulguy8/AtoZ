@@ -1,6 +1,9 @@
 package designPattern.behavioral.strategy.hf;
 
-import designPattern.behavioral.strategy.hf.service.impl.FlyRockeyPowered;
+import designPattern.behavioral.strategy.hf.behavior.impl.FlyRockeyPowered;
+import designPattern.behavioral.strategy.hf.ducks.Duck;
+import designPattern.behavioral.strategy.hf.ducks.impl.MallardDuck;
+import designPattern.behavioral.strategy.hf.ducks.impl.ModelDuck;
 
 public class MiniDuckSimulator {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package designPattern.behavioral.strategy.hf.service;
+package designPattern.behavioral.strategy.hf.behavior;
 
 public interface QuackBehavior {
 	public void quack();
